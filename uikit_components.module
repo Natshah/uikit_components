@@ -76,3 +76,11 @@ function uikit_components_admin_settings_form() {
 
   return system_settings_form($form);
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function uikit_components_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  $link_path_description = t('The path for this menu link. This can be an internal path such as <em class="placeholder">node/add</em> or an external URL such as <em class="placeholder">http://example.com</em>. Enter <em class="placeholder">&lt;front&gt;</em> to link to the front page, <em class="placeholder">&lt;uk-nav-header&gt;</em> to create a header, <em class="placeholder">&lt;uk-nav-divider&gt;</em> to create a separator, or <em class="placeholder">&lt;uk-parent&gt;</em> to create a parent menu item with no link.');
+  $form['link_path']['#description'] = $link_path_description;
+}
