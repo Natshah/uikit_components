@@ -66,6 +66,60 @@ function uikit_components_menu() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function uikit_components_theme($existing, $type, $theme, $path) {
+  return array(
+    'uikit_navbar' => array(
+      'variables' => array(
+        'menus' => NULL,
+        'menus_flipped' => NULL,
+        'attached' => FALSE,
+      ),
+    ),
+  );
+}
+
+function theme_uikit_navbar($variables) {
+  $menus = $variables['menus'];
+  $menus_flipped = $variables['menus_flipped'];
+  $attributes['class'][] = 'uk-navbar';
+
+  if ($variables['attached']) {
+    $attributes['class'][] = 'uk-navbar-attached';
+  }
+
+  $output = '';
+
+  if (!empty($menus) || !empty($menus_flipped)) {
+    // Navbar wrapper.
+    $output = '<nav' . drupal_attributes($attributes) . '>';
+
+    if (!empty($menus)) {
+      foreach ($menus as $menu) {
+        // Render menu trees for each menu.
+        $menu_tree = menu_tree($menu);
+        $menu_tree['#theme_wrappers'] = array('menu_tree__navbar');
+        $output .= render($menu_tree);
+      }
+    }
+
+    if (!empty($menus_flipped)) {
+      foreach ($menus_flipped as $menu_flip) {
+        // Render menu trees for each flipped menu.
+        $menu_tree_flip = menu_tree($menu_flip);
+        $menu_tree_flip['#theme_wrappers'] = array('menu_tree__navbar_flip');
+        $output .= render($menu_tree_flip);
+      }
+    }
+
+    $output .= '</nav>';
+  }
+
+  return $output;
+}
+
+/**
  * System settings form builder for the uikit_components module.
  *
  * @return array
