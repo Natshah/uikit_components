@@ -1,7 +1,0 @@
-name = UIkit Components
-description = Companion module to the UIkit base theme to provide additional components and functionality.
-core = 7.x
-package = User interface
-dependencies[] = menu
-
-configure = admin/config/user-interface/uikit-components

@@ -14,7 +14,7 @@ INTRODUCTION
 
 The UIkit Components module is a companion module for the UIkit base theme.
 
- * For a full description of the theme, visit the project page:
+ * For a full description of the module, visit the project page:
    https://drupal.org/project/uikit_components
 
  * To submit bug reports and feature suggestions, or to track changes:
@@ -31,8 +31,8 @@ INSTALLATION
 ------------
 
  * Install as you would normally install a contributed Drupal module. See:
-   https://www.drupal.org/docs/7/extending-drupal-7/installing-contributed-modules-find-import-enable-configure-drupal-7
-   for further information.
+   https://www.drupal.org/docs/8/extending-drupal-8/installing-modules for
+   further information.
 
 
 CONFIGURATION
