@@ -1,0 +1,13 @@
+uikit_components.settings:
+  type: config_object
+  label: 'UIkit Components settings'
+  mapping:
+    uikit_components:
+      type: mapping
+      mapping:
+        page_title:
+          type: text
+          label: 'Lorem ipsum generator page title:'
+        source_text:
+          type: text
+          label: 'Source text for lorem ipsum generation:'

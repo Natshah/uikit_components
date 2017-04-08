@@ -8,26 +8,31 @@
  * functionality.
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
+
 /**
  * Implements hook_help().
  */
-function uikit_components_help($path, $arg) {
-  switch ($path) {
-    case 'admin/config/user-interface/uikit-components':
-      return '<p>' . t('TODO: Add help text and a configuration form for configurable settings.') . '</p>';
-
-    case 'admin/help#uikit_components':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
-      $output .= '<h3>' . t('Uses') . '</h3>';
-      $output .= '<dl>';
-      $output .= '<dt>' . t('Navbar special menu items') . '</dt>';
-      $output .= '<dd><p>' . t('When working with menus, UIkit navbars can contain special menu items such as headers, dividers and parent items with no path. Users with the <em>Administer menus and menu items</em> permission can create these special menu items by entering the corresponding text in the <em>Path</em> field when adding/editing links from the <a href="@menu">Menus</a> administration page.', array('@menu' => '/admin/structure/menu')) . '</p>';
-      $output .= '<p>Enter one of the following (including &lt; and &gt;) in the <em>Path</em> field to use the special menu item:</p>';
-      $output .= t('<ul><li><em>&lt;uk-nav-header&gt;</em>: Creates a menu item as a header</li><li><em>&lt;uk-nav-divider&gt;</em>: Creates a menu item as a separator</li><li><em>&lt;uk-parent&gt;</em>: Creates a parent menu item with no path to follow when clicked</li></ul>') . '</dd>';
-      $output .= '</dl>';
-      return $output;
+function uikit_components_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.uikit_components':
+      return t('
+        <h3>About</h3>
+        <p>The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.</p>
+        <h3>Uses</h3>
+        <dl>
+        <dt>Navbar special menu items</dt>
+        <dd>
+        <p>When working with menus, UIkit navbars can contain special menu items such as headers, dividers and parent items with no path. Users with the <em>Administer menus and menu items</em> permission can create these special menu items by entering the corresponding text in the <em>Path</em> field when adding/editing links from the <a href="/admin/structure/menu">Menus</a> administration page.</p>
+        <p>Enter one of the following (including &lt; and &gt;) in the <em>Path</em> field to use the special menu item:</p>
+        <ul>
+        <li><em>&lt;uk-nav-header&gt;</em>: Creates a menu item as a header</li>
+        <li><em>&lt;uk-nav-divider&gt;</em>: Creates a menu item as a separator</li>
+        <li><em>&lt;uk-parent&gt;</em>: Creates a parent menu item with no path to follow when clicked</li>
+        </ul>
+        </dd>
+        </dl>
+      ');
   }
 }
 

@@ -1,0 +1,7 @@
+uikit_components.admin:
+  path: '/admin/config/user-interface/uikit_components'
+  defaults:
+    _form: 'Drupal\uikit_components\Form\UIkitComponentsAdminForm'
+    _title: 'UIkit Components settings'
+  requirements:
+    _permission: 'administer site configuration'
