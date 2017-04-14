@@ -8,6 +8,7 @@
  * functionality.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -26,9 +27,9 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
         <p>When working with menus, UIkit navbars can contain special menu items such as headers, dividers and parent items with no path. Users with the <em>Administer menus and menu items</em> permission can create these special menu items by entering the corresponding text in the <em>Path</em> field when adding/editing links from the <a href="/admin/structure/menu">Menus</a> administration page.</p>
         <p>Enter one of the following (including &lt; and &gt;) in the <em>Path</em> field to use the special menu item:</p>
         <ul>
-        <li><em>&lt;uk-nav-header&gt;</em>: Creates a menu item as a header</li>
-        <li><em>&lt;uk-nav-divider&gt;</em>: Creates a menu item as a separator</li>
-        <li><em>&lt;uk-parent&gt;</em>: Creates a parent menu item with no path to follow when clicked</li>
+        <li><em>/&lt;uk-nav-header&gt;</em>: Creates a menu item as a header</li>
+        <li><em>/&lt;uk-nav-divider&gt;</em>: Creates a menu item as a separator</li>
+        <li><em>/&lt;uk-parent&gt;</em>: Creates a parent menu item with no path to follow when clicked</li>
         </ul>
         </dd>
         </dl>
@@ -37,109 +38,48 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Implements hook_menu().
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
-function uikit_components_menu() {
-  // The <uk-nav-header>, <uk-parent> and <uk-nav-divider> menu items allow us
-  // to enter these values in the path field when creating a new menu item so we
-  // can theme navbar menus correctly.
-  $items['<uk-nav-header>'] = array(
-    'page callback' => 'drupal_not_found',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  $items['<uk-parent>'] = array(
-    'page callback' => 'drupal_not_found',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  $items['<uk-nav-divider>'] = array(
-    'page callback' => 'drupal_not_found',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-  $items['admin/config/user-interface/uikit-components'] = array(
-    'title' => 'UIkit components',
-    'description' => 'Configure UIkit components.',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('uikit_components_admin_settings_form'),
-    'access arguments' => array('administer menu'),
-    'type' => MENU_NORMAL_ITEM,
+function uikit_components_form_menu_link_content_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $menu_link = $form_state->getFormObject()->getEntity();
+  $menu_link_options = $menu_link->link->first()->options ?: [];
+
+  $form['menu_item_type'] = array(
+    '#type'          => 'select',
+    '#title'         => t('Menu item type'),
+    '#default_value' => !empty($menu_link_options['menu_item_type']) ? $menu_link_options['menu_item_type'] : 0,
+    '#options' => [
+      0 => t('Normal menu item'),
+      'nav_header' => t('Navigation header'),
+      'nav_divider' => t('Navigation divider'),
+    ],
+    '#description' => t('Select the type of menu item this is. <em class="placeholder">Navigation header</em> and <em class="placeholder">Navigation divider</em> are special menu items from the <a href="@navbar" target="_blank">UIkit navbar component</a>.', array(
+      '@navbar' => 'https://getuikit.com/v2/docs/navbar.html',
+    )),
   );
 
-  return $items;
+  $form['actions']['submit']['#submit'][] = 'uikit_components_menu_link_content_form_submit';
 }
 
 /**
- * Implements hook_theme().
- */
-function uikit_components_theme($existing, $type, $theme, $path) {
-  return array(
-    'uikit_navbar' => array(
-      'variables' => array(
-        'menus' => NULL,
-        'menus_flipped' => NULL,
-        'attached' => FALSE,
-      ),
-    ),
-  );
-}
-
-function theme_uikit_navbar($variables) {
-  $menus = $variables['menus'];
-  $menus_flipped = $variables['menus_flipped'];
-  $attributes['class'][] = 'uk-navbar';
-
-  if ($variables['attached']) {
-    $attributes['class'][] = 'uk-navbar-attached';
-  }
-
-  $output = '';
-
-  if (!empty($menus) || !empty($menus_flipped)) {
-    // Navbar wrapper.
-    $output = '<nav' . drupal_attributes($attributes) . '>';
-
-    if (!empty($menus)) {
-      foreach ($menus as $menu) {
-        // Render menu trees for each menu.
-        $menu_tree = menu_tree($menu);
-        $menu_tree['#theme_wrappers'] = array('menu_tree__navbar');
-        $output .= render($menu_tree);
-      }
-    }
-
-    if (!empty($menus_flipped)) {
-      foreach ($menus_flipped as $menu_flip) {
-        // Render menu trees for each flipped menu.
-        $menu_tree_flip = menu_tree($menu_flip);
-        $menu_tree_flip['#theme_wrappers'] = array('menu_tree__navbar_flip');
-        $output .= render($menu_tree_flip);
-      }
-    }
-
-    $output .= '</nav>';
-  }
-
-  return $output;
-}
-
-/**
- * System settings form builder for the uikit_components module.
+ * Process the submitted form.
  *
- * @return array
- *   Returns the system settings form.
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function uikit_components_admin_settings_form() {
-  $form = array();
+function uikit_components_menu_link_content_form_submit($form, FormStateInterface $form_state) {
+  $menu_item_type = $form_state->getValue('menu_item_type');
+  $type = empty($menu_item_type) ? 'normal_menu_item' : $menu_item_type;
 
-  return system_settings_form($form);
-}
+  $options = [
+    'menu_item_type' => $type,
+  ];
 
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function uikit_components_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
-  $link_path_description = t('The path for this menu link. This can be an internal path such as <em class="placeholder">node/add</em> or an external URL such as <em class="placeholder">http://example.com</em>. Enter <em class="placeholder">&lt;front&gt;</em> to link to the front page, <em class="placeholder">&lt;uk-nav-header&gt;</em> to create a header, <em class="placeholder">&lt;uk-nav-divider&gt;</em> to create a separator, or <em class="placeholder">&lt;uk-parent&gt;</em> to create a parent menu item with no link.');
-  $form['link_path']['#description'] = $link_path_description;
+  $menu_link = $form_state->getFormObject()->getEntity();
+  $menu_link_options = $menu_link->link->first()->options;
+
+  $merged = array_merge($menu_link_options, $options);
+
+  $menu_link->link->first()->options = $merged;
+  $menu_link->save();
 }

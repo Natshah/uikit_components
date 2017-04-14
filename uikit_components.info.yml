@@ -4,4 +4,8 @@ description: 'Companion module to the UIkit base theme to provide additional com
 core: 8.x
 package: 'User interface'
 
+dependencies:
+  - drupal:link
+  - drupal:menu_link_content
+
 configure: uikit_components.admin
