@@ -62,7 +62,7 @@ function uikit_components_form_menu_link_content_form_alter(&$form, FormStateInt
 }
 
 /**
- * Process the submitted form.
+ * Process handler for the menu link content form.
  *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
@@ -92,6 +92,7 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
   $region = $block->getRegion();
 
   if ($region == 'navbar') {
+    // Add navbar alignment setting to navbar blocks.
     $form['navbar_alignment'] = array(
       '#type' => 'select',
       '#title' => t('Navbar alignment'),
@@ -104,12 +105,13 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
       '#weight' => 0,
     );
 
+    // Add a form entity builder.
     $form['#entity_builders'][] = 'uikit_components_form_block_form_builder';
   }
 }
 
 /**
- * Entity builder for the menu configuration entity.
+ * Entity builder for the block configuration entity.
  */
 function uikit_components_form_block_form_builder($entity_type, Drupal\block\Entity\Block $block, &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
   if ($form_state->getValue('navbar_alignment')) {
