@@ -2,6 +2,22 @@ uikit_components.admin:
   path: '/admin/config/user-interface/uikit_components'
   defaults:
     _form: 'Drupal\uikit_components\Form\UIkitComponentsAdminForm'
-    _title: 'UIkit Components settings'
+    _title: 'UIkit Components'
+  requirements:
+    _permission: 'administer site configuration'
+
+uikit_components.core:
+  path: '/admin/config/user-interface/uikit_components/core'
+  defaults:
+    _form: 'Drupal\uikit_components\Form\UIkitComponentsCoreForm'
+    _title: 'Core components'
+  requirements:
+    _permission: 'administer site configuration'
+
+uikit_components.advanced:
+  path: '/admin/config/user-interface/uikit_components/advanced'
+  defaults:
+    _form: 'Drupal\uikit_components\Form\UIkitComponentsAdvancedForm'
+    _title: 'Advanced components'
   requirements:
     _permission: 'administer site configuration'

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for UIkit Components.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_install().
+ */
+function uikit_components_install() {
+  $t_args =[
+    ':uikit_components' => Url::fromRoute('uikit_components.admin')->toString()
+  ];
+  $message = t('Configure <a href=":uikit_components">UIkit Components</a>.', $t_args);
+  drupal_set_message($message, 'status');
+}

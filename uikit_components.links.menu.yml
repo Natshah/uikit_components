@@ -1,5 +1,5 @@
 uikit_components.admin:
-  title: 'UIkit Components settings'
+  title: 'UIkit Components'
   description: 'Configure settings for the UIkit Components module.'
   route_name: uikit_components.admin
   parent: system.admin_config_ui

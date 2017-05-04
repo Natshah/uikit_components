@@ -15,26 +15,26 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * Implements hook_help().
  */
 function uikit_components_help($route_name, RouteMatchInterface $route_match) {
+  $output = '';
   switch ($route_name) {
     case 'help.page.uikit_components':
-      return t('
-        <h3>About</h3>
-        <p>The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.</p>
-        <h3>Uses</h3>
-        <dl>
-        <dt>Navbar special menu items</dt>
-        <dd>
-        <p>When working with menus, UIkit navbars can contain special menu items such as headers, dividers and parent items with no path. Users with the <em>Administer menus and menu items</em> permission can create these special menu items by entering the corresponding text in the <em>Path</em> field when adding/editing links from the <a href="/admin/structure/menu">Menus</a> administration page.</p>
-        <p>Enter one of the following (including &lt; and &gt;) in the <em>Path</em> field to use the special menu item:</p>
-        <ul>
-        <li><em>/&lt;uk-nav-header&gt;</em>: Creates a menu item as a header</li>
-        <li><em>/&lt;uk-nav-divider&gt;</em>: Creates a menu item as a separator</li>
-        <li><em>/&lt;uk-parent&gt;</em>: Creates a parent menu item with no path to follow when clicked</li>
-        </ul>
-        </dd>
-        </dl>
-      ');
+      $output = '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
+      break;
+
+    case 'uikit_components.admin':
+      $output = '<p>' . t('Admin') . '</p>';
+      break;
+
+    case 'uikit_components.core':
+      $output = '<p>' . t('UIkit offers over 30 modular and extendible components, which can be combined with each other. Components are divided into different compartments according to their purpose and functionality. This form allows you to control how some of these components are used.') . '</p>';
+      break;
+
+    case 'uikit_components.advanced':
+      $output = '<p>' . t('UIkit offers some advanced components that are not included in the UIkit core framework. Usually you wouldn\'t use these components in your everyday website. They include stuff like nestables and datepickers, which will come in handy, if you create advanced user interfaces like administration areas. This form allows you to control how some of these components are used.') . '</p>';
+      break;
   }
+
+  return $output;
 }
 
 /**

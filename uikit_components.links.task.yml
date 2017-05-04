@@ -1,0 +1,14 @@
+uikit_components.admin:
+  title: Configure
+  route_name: uikit_components.admin
+  base_route: uikit_components.admin
+
+uikit_components.core:
+  title: Core components
+  route_name: uikit_components.core
+  base_route: uikit_components.admin
+
+uikit_components.advanced:
+  title: Advanced components
+  route_name: uikit_components.advanced
+  base_route: uikit_components.admin

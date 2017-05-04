@@ -4,6 +4,8 @@ namespace Drupal\uikit_components\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\uikit\UIkit;
 
 class UIkitComponentsAdminForm extends ConfigFormBase {
 
@@ -22,25 +24,32 @@ class UIkitComponentsAdminForm extends ConfigFormBase {
     $form = parent::buildForm($form, $form_state);
     // Default settings.
     $config = $this->config('uikit_components.settings');
+    // Translatable strings.
+    $t_args = [
+      ':uikit_project' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
+    ];
 
-    // To-do field.
-    $form['todo'] = array(
-      '#markup' => t('<em>@TODO: Replace example form with configuration settings.</em>'),
-    );
-    // Page title field.
-    $form['page_title'] = array(
-      '#type' => 'textfield',
-      '#title' => $this->t('Lorem ipsum generator page title:'),
-      '#default_value' => $config->get('uikit_components.page_title'),
-      '#description' => $this->t('Give your lorem ipsum generator page a title.'),
-    );
-    // Source text field.
-    $form['source_text'] = array(
-      '#type' => 'textarea',
-      '#title' => $this->t('Source text for lorem ipsum generation:'),
-      '#default_value' => $config->get('uikit_components.source_text'),
-      '#description' => $this->t('Write one sentence per line. Those sentences will be used to generate random text.'),
-    );
+    // Get UIkit framework version from UIkit base theme.
+    $uikit_version = explode('.', UIkit::UIKIT_LIBRARY_VERSION);
+    $framework_version = '';
+    if ($uikit_version[0]) {
+      $config->set('uikit_components.uikit_framework_version', $uikit_version[0]);
+      $framework_version = 'disabled';
+    }
+
+    // UIkit framework version field.
+    $form['uikit_framework_version'] = [
+      '#type' => 'select',
+      '#title' => $this->t('UIkit Framework'),
+      '#default_value' => $config->get('uikit_components.uikit_framework_version'),
+      '#description' => $this->t('Select the version of the UIkit framework your theme uses. This is important because the framework versions are not compatible with each other. If the UIkit base theme is found in your Drupal installation this value is selected for you. Otherwise you can download the base theme <a href=":uikit_project" target="_blank">here</a>.', $t_args),
+      '#options' => [
+        0 => $this->t('- Select -'),
+        2 => $this->t('v2.x.x'),
+        3 => $this->t('v3.x.x'),
+      ],
+      '#disabled' => $framework_version,
+    ];
 
     return $form;
   }
@@ -57,8 +66,7 @@ class UIkitComponentsAdminForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('uikit_components.settings');
-    $config->set('uikit_components.source_text', $form_state->getValue('source_text'));
-    $config->set('uikit_components.page_title', $form_state->getValue('page_title'));
+    $config->set('uikit_components.uikit_framework_version', $form_state->getValue('uikit_framework_version'));
     $config->save();
     return parent::submitForm($form, $form_state);
   }
