@@ -2,6 +2,9 @@
 
 namespace Drupal\uikit_components\Form;
 
+// Include the file which contains UIkit class.
+include_once drupal_get_path('theme', 'uikit') . '/src/UIkit.php';
+
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
