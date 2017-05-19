@@ -2,6 +2,9 @@
 
 namespace Drupal\uikit_components;
 
+use Drupal\Component\Utility\Html;
+use Drupal\views\ViewExecutable;
+
 /**
  * Class UIkitComponents
  *
@@ -10,6 +13,7 @@ namespace Drupal\uikit_components;
  * @package Drupal\uikit_components
  */
 class UIkitComponents {
+
   /**
    * Loads a theme include file.
    *
@@ -72,4 +76,34 @@ class UIkitComponents {
     }
     return FALSE;
   }
+
+  /**
+   * Returns the theme hook definition information.
+   */
+  public static function getThemeHooks() {
+    $hooks['views_uikit_grid'] = [
+      'preprocess functions' => [
+        'template_preprocess_views_uikit_grid',
+        'template_preprocess_views_view_grid',
+      ],
+      'file' => 'uikit_components.theme.inc',
+    ];
+
+    return $hooks;
+  }
+
+  /**
+   * Get unique element id.
+   *
+   * @param \Drupal\views\ViewExecutable $view
+   *   A ViewExecutable object.
+   *
+   * @return string
+   *   A unique id for an HTML element.
+   */
+  public static function getUniqueId(ViewExecutable $view) {
+    $id = $view->storage->id() . '-' . $view->current_display;
+    return Html::getUniqueId('views-bootstrap-' . $id);
+  }
+
 }

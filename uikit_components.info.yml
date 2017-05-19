@@ -7,5 +7,6 @@ package: 'User interface'
 dependencies:
   - drupal:link
   - drupal:menu_link_content
+  - drupal:views
 
 configure: uikit_components.admin

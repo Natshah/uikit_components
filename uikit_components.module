@@ -10,6 +10,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\uikit_components\UIkitComponents;
 
 /**
  * Implements hook_help().
@@ -59,6 +60,13 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   }
 
   return $output;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function uikit_components_theme($existing, $type, $theme, $path) {
+  return UIkitComponents::getThemeHooks();
 }
 
 /**

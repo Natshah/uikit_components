@@ -1,0 +1,28 @@
+{#
+/**
+ * @file views-bootstrap-grid.html.twig
+ * Default simple view template to display Bootstrap Grids.
+ *
+ *
+ * - columns: Contains rows grouped by columns.
+ * - rows: Contains a nested array of rows. Each row contains an array of
+ *   columns.
+ * - column_type: Contains a number (default Bootstrap grid system column type).
+ *
+ * @ingroup views_templates
+ */
+#}
+{%
+  set classes = [
+    'views-view-grid',
+  ]
+%}
+<div id="{{ id }}" {{ attributes.addClass(classes) }}>
+  <div class="uk-grid {{ width_small }} {{ width_medium }} {{ width_large }} {{ width_xlarge }}{% if options.row_class %} {{ options.row_class }}{% endif %}">
+    {% for column in items %}
+      {% for row in column.content %}
+        {{ row.content }}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
