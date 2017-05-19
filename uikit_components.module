@@ -10,15 +10,43 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\uikit_components\UIkitComponents;
+
+// Store UIkit Components preprocess theme functions in a separate .inc file.
+\Drupal::moduleHandler()->loadInclude('uikit_components', 'inc', 'uikit_components.theme');
 
 /**
  * Implements hook_help().
  */
 function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   $output = '';
+  $args = [
+    '@grid' => 'https://getuikit.com/v2/docs/grid.html',
+    '@panel' => 'https://getuikit.com/v2/docs/panel.html',
+    '@block' => 'https://getuikit.com/v2/docs/block.html',
+    '@cover' => 'https://getuikit.com/v2/docs/cover.html',
+    '@nav' => 'https://getuikit.com/v2/docs/nav.html',
+    '@subnav' => 'https://getuikit.com/v2/docs/subnav.html',
+    '@list' => 'https://getuikit.com/v2/docs/list.html',
+    '@table' => 'https://getuikit.com/v2/docs/table.html',
+    '@slideshow' => 'https://getuikit.com/v2/docs/slideshow.html',
+    '@accordion' => 'https://getuikit.com/v2/docs/accordion.html',
+  ];
+
   switch ($route_name) {
     case 'help.page.uikit_components':
-      $output = '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
+      $output = '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links and Views display styles. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
+      $output .= '<h3>' . t('Views') . '</h3>';
+      $output .= '<p>' . t('UIkit Components adds styles to Views to output the results of a view as several common UIkit components. The available views styles are:') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('<a href="@grid" target="_blank">Grid</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@panel" target="_blank">Panel</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@block" target="_blank">Block</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@nav" target="_blank">Nav</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@list" target="_blank">List</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@table" target="_blank">Table</a>', $args) . '</li>';
+      $output .= '</ul>';
+      $output .= '<p>' . t('<strong>Note</strong>: The 8.x-2.x branch of the UIkit theme is the only supported branch at this time. Once YOOtheme releases a fully-stable version for UIkit 3 we will provide views styles for the UIkit 8.x-3.x branch.') . '</p>';
       break;
 
     case 'uikit_components.admin':
