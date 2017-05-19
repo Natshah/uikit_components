@@ -10,10 +10,6 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\uikit_components\UIkitComponents;
-
-// Store UIkit Components preprocess theme functions in a separate .inc file.
-\Drupal::moduleHandler()->loadInclude('uikit_components', 'inc', 'uikit_components.theme');
 
 /**
  * Implements hook_help().
