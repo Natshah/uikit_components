@@ -87,14 +87,21 @@ class UIkitComponents {
         'template_preprocess_uikit_view_grid',
         'template_preprocess_views_view_grid',
       ],
-      'file' => "includes/uikit_components.theme.inc",
+      'file' => 'includes/uikit_components.theme.inc',
     ];
     $hooks['uikit_view_list'] = [
       'preprocess functions' => [
         'template_preprocess_uikit_view_list',
         'template_preprocess_views_view_list',
       ],
-      'file' => "includes/uikit_components.theme.inc",
+      'file' => 'includes/uikit_components.theme.inc',
+    ];
+    $hooks['uikit_view_table'] = [
+      'preprocess functions' => [
+        'template_preprocess_uikit_view_table',
+        'template_preprocess_views_view_table',
+      ],
+      'file' => 'includes/uikit_components.theme.inc',
     ];
 
     return $hooks;

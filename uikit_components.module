@@ -75,6 +75,7 @@ function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable 
   $uikit_plugins = [
     'uikit_view_grid',
     'uikit_view_list',
+    'uikit_view_table',
   ];
 
   if (in_array($plugin_id, $uikit_plugins)) {

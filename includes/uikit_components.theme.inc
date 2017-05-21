@@ -62,3 +62,28 @@ function template_preprocess_uikit_view_list(array &$variables) {
     $variables['list_attributes']['class'][] = $options['class'];
   }
 }
+
+/**
+ * Prepares variables for views table templates.
+ *
+ * Default template: uikit-view-table.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_uikit_view_table(array &$variables) {
+  $view = $variables['view'];
+  $options = $view->style_plugin->options;
+
+  // Add additional options as variables.
+  $variables['responsive_table'] = $options['responsive_table'];
+  $variables['vertical_modifier'] = $options['vertical_modifier'];
+
+  // Add each table modifier option as variables.
+  $table_modifiers = $options['table_modifiers'];
+  foreach ($table_modifiers as $modifier_key => $modifier) {
+    $variables[$modifier_key] = $modifier;
+  }
+}
