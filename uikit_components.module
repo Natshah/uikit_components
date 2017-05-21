@@ -39,6 +39,7 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<ul>';
       $output .= '<li>' . t('<a href="@grid" target="_blank">Grid</a>', $args) . '</li>';
       $output .= '<li>' . t('<a href="@list" target="_blank">List</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href="@table" target="_blank">Table</a>', $args) . '</li>';
       $output .= '</ul>';
       $output .= '<p>' . t('<strong>Note</strong>: The 8.x-2.x branch of the UIkit theme is the only supported branch at this time. Once YOOtheme releases a fully-stable version for UIkit 3 we will provide views styles for the UIkit 8.x-3.x branch.') . '</p>';
       break;
