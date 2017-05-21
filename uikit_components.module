@@ -72,8 +72,12 @@ function uikit_components_theme($existing, $type, $theme, $path) {
 function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable $view) {
   $style = $view->getStyle();
   $plugin_id = $style->getPluginId();
+  $uikit_plugins = [
+    'uikit_view_grid',
+    'uikit_view_list',
+  ];
 
-  if ($plugin_id == 'uikit_view_grid') {
+  if (in_array($plugin_id, $uikit_plugins)) {
     $version = UIkitComponents::getUIkitLibraryVersion();
     $view->element['#attached']['library'][] = "uikit_components/uikit$version";
   }

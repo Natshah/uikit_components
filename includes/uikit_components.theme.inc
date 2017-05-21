@@ -5,12 +5,13 @@
  * Preprocessors and helper functions to make theming easier.
  */
 
+use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 
 /**
  * Prepares variables for views grid templates.
  *
- * Default template: views-uikit-grid.html.twig.
+ * Default template: uikit-view-grid.html.twig.
  *
  * @param array $variables
  *   An associative array containing:
@@ -44,7 +45,7 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 /**
  * Prepares variables for views list templates.
  *
- * Default template: views-uikit-list.html.twig.
+ * Default template: uikit-view-list.html.twig.
  *
  * @param array $variables
  *   An associative array containing:
@@ -52,5 +53,12 @@ function template_preprocess_uikit_view_grid(array &$variables) {
  *   - rows: The raw row data.
  */
 function template_preprocess_uikit_view_list(array &$variables) {
+  $view = $variables['view'];
+  $options = $view->style_plugin->options;
+  $variables['list_attributes'] = new Attribute();
+  $variables['list_attributes']['class'] = ['uk-list'];
 
+  if ($options['class'] != 'default') {
+    $variables['list_attributes']['class'][] = $options['class'];
+  }
 }

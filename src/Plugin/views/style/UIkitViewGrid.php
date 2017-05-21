@@ -7,14 +7,14 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\Component\Utility\Html;
 
 /**
- * Style plugin to render each item in an ordered or unordered list.
+ * Style plugin to render each item in a UIkit Grid component.
  *
  * @ingroup views_style_plugins
  *
  * @ViewsStyle(
  *   id = "uikit_view_grid",
  *   title = @Translation("UIkit Grid"),
- *   help = @Translation("Displays rows in a UIkit Grid layout"),
+ *   help = @Translation("Displays rows in a UIkit Grid component"),
  *   theme = "uikit_view_grid",
  *   display_types = {"normal"}
  * )
