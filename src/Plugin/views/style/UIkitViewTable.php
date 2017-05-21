@@ -79,7 +79,7 @@ class UIkitViewTable extends StylePluginBase implements CacheableDependencyInter
     $options['empty_table'] = ['default' => FALSE];
 
     // UIkit table view options.
-    $options['responsive_table'] = ['default' => TRUE];
+    $options['responsive_table'] = ['default' => FALSE];
     $options['vertical_modifier'] = ['default' => FALSE];
     $options['table_modifiers'] = ['default' => [
       'hover' => FALSE,
