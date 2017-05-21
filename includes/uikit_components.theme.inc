@@ -17,7 +17,7 @@ use Drupal\uikit_components\UIkitComponents;
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_uikit_grid(array &$variables) {
+function template_preprocess_uikit_view_grid(array &$variables) {
   $view = $variables['view'];
   $options = $view->style_plugin->options;
   $grid_classes = ['uk-grid'];
@@ -39,4 +39,18 @@ function template_preprocess_views_uikit_grid(array &$variables) {
   $variables['id'] = UIkitComponents::getUniqueId($view);
   $variables['options'] = $options;
   $variables['uikit_version'] = UIkitComponents::getUIkitLibraryVersion();
+}
+
+/**
+ * Prepares variables for views list templates.
+ *
+ * Default template: views-uikit-list.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_uikit_view_list(array &$variables) {
+
 }

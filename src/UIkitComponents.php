@@ -82,10 +82,17 @@ class UIkitComponents {
    * Returns the theme hook definition information.
    */
   public static function getThemeHooks() {
-    $hooks['views_uikit_grid'] = [
+    $hooks['uikit_view_grid'] = [
       'preprocess functions' => [
-        'template_preprocess_views_uikit_grid',
+        'template_preprocess_uikit_view_grid',
         'template_preprocess_views_view_grid',
+      ],
+      'file' => "includes/uikit_components.theme.inc",
+    ];
+    $hooks['uikit_view_list'] = [
+      'preprocess functions' => [
+        'template_preprocess_uikit_view_list',
+        'template_preprocess_views_view_list',
       ],
       'file' => "includes/uikit_components.theme.inc",
     ];

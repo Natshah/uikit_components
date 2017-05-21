@@ -12,14 +12,14 @@ use Drupal\Component\Utility\Html;
  * @ingroup views_style_plugins
  *
  * @ViewsStyle(
- *   id = "views_uikit_grid",
+ *   id = "uikit_view_grid",
  *   title = @Translation("UIkit Grid"),
  *   help = @Translation("Displays rows in a UIkit Grid layout"),
- *   theme = "views_uikit_grid",
+ *   theme = "uikit_view_grid",
  *   display_types = {"normal"}
  * )
  */
-class ViewsUIkitGrid extends StylePluginBase {
+class UIkitViewGrid extends StylePluginBase {
   /**
    * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::usesRowPlugin.
    *
