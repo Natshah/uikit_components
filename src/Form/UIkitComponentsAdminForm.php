@@ -2,13 +2,10 @@
 
 namespace Drupal\uikit_components\Form;
 
-// Include the file which contains UIkit class.
-include_once drupal_get_path('theme', 'uikit') . '/src/UIkit.php';
-
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\uikit\UIkit;
+use Drupal\uikit_components\UIkitComponents;
 
 class UIkitComponentsAdminForm extends ConfigFormBase {
 
@@ -33,7 +30,7 @@ class UIkitComponentsAdminForm extends ConfigFormBase {
     ];
 
     // Get UIkit framework version from UIkit base theme.
-    $uikit_version = explode('.', UIkit::UIKIT_LIBRARY_VERSION);
+    $uikit_version = UIkitComponents::getUIkitLibraryVersion();
     $framework_version = '';
     if ($uikit_version[0]) {
       $config->set('uikit_components.uikit_framework_version', $uikit_version[0]);

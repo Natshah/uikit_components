@@ -11,6 +11,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\uikit_components\UIkitComponents;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
@@ -67,6 +68,19 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
  */
 function uikit_components_theme($existing, $type, $theme, $path) {
   return UIkitComponents::getThemeHooks();
+}
+
+/**
+ * Implements hook_views_preview_info_alter().
+ */
+function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable $view) {
+  $style = $view->getStyle();
+  $plugin_id = $style->getPluginId();
+
+  if ($plugin_id == 'views_uikit_grid') {
+    $version = UIkitComponents::getUIkitLibraryVersion();
+    $view->element['#attached']['library'][] = "uikit_components/uikit$version";
+  }
 }
 
 /**

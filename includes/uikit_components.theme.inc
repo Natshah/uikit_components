@@ -19,12 +19,24 @@ use Drupal\uikit_components\UIkitComponents;
  */
 function template_preprocess_views_uikit_grid(array &$variables) {
   $view = $variables['view'];
-  $variables['id'] = UIkitComponents::getUniqueId($view);
-  $variables['attributes']['class'][] = 'grid';
   $options = $view->style_plugin->options;
+  $grid_classes = ['uk-grid'];
+
+  if ($options['grid_gutter'] != 'default') {
+    $grid_classes[] = $options['grid_gutter'];
+  }
 
   foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
-    $variables["width_" . $size] = $options["width_" . $size];
+    $grid_classes[] = $options["width_" . $size];
   }
+
+  if ($options['row_class']) {
+    $grid_classes[] = $options['row_class'];
+  }
+
+  $variables['grid_classes'] = implode(' ', $grid_classes);
+
+  $variables['id'] = UIkitComponents::getUniqueId($view);
   $variables['options'] = $options;
+  $variables['uikit_version'] = UIkitComponents::getUIkitLibraryVersion();
 }

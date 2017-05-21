@@ -4,6 +4,7 @@ namespace Drupal\uikit_components;
 
 use Drupal\Component\Utility\Html;
 use Drupal\views\ViewExecutable;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class UIkitComponents
@@ -86,7 +87,7 @@ class UIkitComponents {
         'template_preprocess_views_uikit_grid',
         'template_preprocess_views_view_grid',
       ],
-      'file' => 'uikit_components.theme.inc',
+      'file' => "includes/uikit_components.theme.inc",
     ];
 
     return $hooks;
@@ -103,7 +104,18 @@ class UIkitComponents {
    */
   public static function getUniqueId(ViewExecutable $view) {
     $id = $view->storage->id() . '-' . $view->current_display;
-    return Html::getUniqueId('views-bootstrap-' . $id);
+    return Html::getUniqueId('views-uikit-' . $id);
   }
 
+  /**
+   * Get the library version from the UIkit base theme.
+   *
+   * @return string
+   *   The major version of the UIkit library from the install UIkit base theme.
+   */
+  public static function getUIkitLibraryVersion() {
+    $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
+    $uikit_version = explode('.', $uikit_libraries['uikit']['version']);
+    return $uikit_version[0];
+  }
 }

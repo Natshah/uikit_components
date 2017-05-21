@@ -16,7 +16,6 @@ use Drupal\Component\Utility\Html;
  *   title = @Translation("UIkit Grid"),
  *   help = @Translation("Displays rows in a UIkit Grid layout"),
  *   theme = "views_uikit_grid",
- *   theme_file = "../uikit_components.theme.inc",
  *   display_types = {"normal"}
  * )
  */
@@ -62,67 +61,7 @@ class ViewsUIkitGrid extends StylePluginBase {
   }
 
   /**
-   * Normalize a list of columns.
-   *
-   * Normalize columns based upon the fields that are available. This compares
-   * the fields stored in the style handler
-   * to the list of fields actually in the view, removing fields that
-   * have been removed and adding new fields in their own column.
-   * - Each field must be in a column.
-   * - Each column must be based upon a field, and that field is somewhere in
-   * the column.
-   * - Any fields not currently represented must be added.
-   * - Columns must be re-ordered to match the fields.
-   *
-   * @param array $columns
-   *   An array of all fields; the key is the id of the field and the
-   *   value is the id of the column the field should be in.
-   * @param array|null $fields
-   *   The fields to use for the columns. If not provided, they will
-   *   be requested from the current display. The running render should
-   *   send the fields through, as they may be different than what the
-   *   display has listed due to access control or other changes.
-   *
-   * @return array
-   *   An array of all the sanitized columns.
-   */
-  public function sanitizeColumns(array $columns, $fields = NULL) {
-    $sanitized = [];
-    if ($fields === NULL) {
-      $fields = $this->displayHandler->getOption('fields');
-    }
-    // Pre-configure the sanitized array so that the order is retained.
-    foreach ($fields as $field => $info) {
-      // Set to itself so that if it isn't touched, it gets column
-      // status automatically.
-      $sanitized[$field] = $field;
-    }
-
-    if (!empty($columns)) {
-      return $sanitized;
-    }
-
-    foreach ($columns as $field => $column) {
-      // first, make sure the field still exists.
-      if (!isset($sanitized[$field])) {
-        continue;
-      }
-
-      // If the field is the column, mark it so, or the column
-      // it's set to is a column, that's ok.
-      if ($field == $column || $columns[$column] == $column && !empty($sanitized[$column])) {
-        $sanitized[$field] = $column;
-      }
-      // Since we set the field to itself initially, ignoring
-      // the condition is ok; the field will get its column
-      // status back.
-    }
-
-    return $sanitized;
-  }
-
-  /**
-   * Definition.
+   * {@inheritdoc}
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
@@ -132,6 +71,8 @@ class ViewsUIkitGrid extends StylePluginBase {
     $options['width_medium'] = ['default' => 'uk-grid-width-medium-1-2'];
     $options['width_large'] = ['default' => 'uk-grid-width-large-1-3'];
     $options['width_xlarge'] = ['default' => 'uk-grid-width-xlarge-1-4'];
+    $options['grid_gutter'] = ['default' => 'default'];
+    $options['columns'] = ['default' => '4'];
     $options['automatic_width'] = ['default' => TRUE];
     $options['col_class_custom'] = ['default' => ''];
     $options['col_class_default'] = ['default' => TRUE];
@@ -154,26 +95,29 @@ class ViewsUIkitGrid extends StylePluginBase {
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
 
-    $form['columns'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Number of columns per row'),
-      '#required' => TRUE,
-      '#default_value' => isset($this->options['columns']) ? $this->options['columns'] : NULL,
-      '#options' => [
-        1 => 1,
-        2 => 2,
-        3 => 3,
-        4 => 4,
-        5 => 5,
-        6 => 6,
-        10 => 10,
-      ],
+    $breakpoints = [
+      'small' => $this->t('Affects device widths of 480px and higher.'),
+      'medium' => $this->t('Affects device widths of 768px and higher.'),
+      'large' => $this->t('Affects device widths of 960px and higher.'),
+      'xlarge' => $this->t('Affects device widths of 1220px and higher.'),
+    ];
+
+    $form['column_widths'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Column widths'),
+      '#description' => $this->t("To create a grid whose child elements' widths are evenly split, we apply one class to the grid for each breakpoint. Each item in the grid is then automatically applied a width based on the number of columns selected for each breakpoint."),
+      '#open' => TRUE,
+    ];
+
+    $form['column_widths']['container'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Number of columns to display for each breakpoint'),
     ];
 
     foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
-      $form["width_${size}"] = [
+      $form['column_widths']['container']["width_${size}"] = [
         '#type' => 'select',
-        '#title' => $this->t("Number of columns (uk-grid-width-${size}-*)"),
+        '#title' => $this->t("uk-grid-width-${size}-*"),
         '#required' => TRUE,
         '#default_value' => isset($this->options["width_${size}"]) ? $this->options["width_${size}"] : NULL,
         '#options' => [
@@ -185,8 +129,24 @@ class ViewsUIkitGrid extends StylePluginBase {
           "uk-grid-width-${size}-1-6" => 6,
           "uk-grid-width-${size}-1-10" => 10,
         ],
+        '#description' => '<p>' . $breakpoints[$size] . '</p>',
       ];
     }
+
+    $form['grid_gutter'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Grid gutter'),
+      '#required' => TRUE,
+      '#default_value' => isset($this->options['grid_gutter']) ? $this->options['grid_gutter'] : NULL,
+      '#options' => [
+        'default' => $this->t('Default gutter'),
+        'uk-grid-small' => $this->t('Small gutter'),
+        'uk-grid-medium' => $this->t('Medium gutter'),
+        'uk-grid-large' => $this->t('Large gutter'),
+        'uk-grid-collapse' => $this->t('Collapse gutter'),
+      ],
+      '#description' => $this->t('<p>Grids automatically create a horizontal gutter between columns and a vertical one between two succeeding grids. By default, the grid gutter is wider on large screens.<br /><strong>Note</strong>: <em class="placeholder">Grid collapse</em> removes the grid gutter.</p>'),
+    ];
   }
 
 }

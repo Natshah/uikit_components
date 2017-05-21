@@ -18,7 +18,7 @@
   ]
 %}
 <div id="{{ id }}" {{ attributes.addClass(classes) }}>
-  <div class="uk-grid {{ width_small }} {{ width_medium }} {{ width_large }} {{ width_xlarge }}{% if options.row_class %} {{ options.row_class }}{% endif %}">
+  <div class="{{ grid_classes }}">
     {% for column in items %}
       {% for row in column.content %}
         {{ row.content }}
