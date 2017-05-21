@@ -66,26 +66,21 @@ class UIkitViewGrid extends StylePluginBase {
   protected function defineOptions() {
     $options = parent::defineOptions();
 
+    // Default grid view options.
+    $options['columns'] = ['default' => '4'];
+    $options['automatic_width'] = ['default' => TRUE];
     $options['alignment'] = ['default' => 'horizontal'];
+    $options['col_class_custom'] = ['default' => ''];
+    $options['col_class_default'] = ['default' => TRUE];
+    $options['row_class_custom'] = ['default' => ''];
+    $options['row_class_default'] = ['default' => TRUE];
+
+    // UIkit grid view options.
     $options['width_small'] = ['default' => 'uk-grid-width-small-1-1'];
     $options['width_medium'] = ['default' => 'uk-grid-width-medium-1-2'];
     $options['width_large'] = ['default' => 'uk-grid-width-large-1-3'];
     $options['width_xlarge'] = ['default' => 'uk-grid-width-xlarge-1-4'];
     $options['grid_gutter'] = ['default' => 'default'];
-    $options['columns'] = ['default' => '4'];
-    $options['automatic_width'] = ['default' => TRUE];
-    $options['col_class_custom'] = ['default' => ''];
-    $options['col_class_default'] = ['default' => TRUE];
-    $options['row_class_custom'] = ['default' => ''];
-    $options['row_class_default'] = ['default' => TRUE];
-    $options['default'] = ['default' => ''];
-    $options['info'] = ['default' => []];
-    $options['override'] = ['default' => TRUE];
-    $options['sticky'] = ['default' => FALSE];
-    $options['order'] = ['default' => 'asc'];
-    $options['caption'] = ['default' => ''];
-    $options['summary'] = ['default' => ''];
-    $options['description'] = ['default' => ''];
     return $options;
   }
 
@@ -94,6 +89,11 @@ class UIkitViewGrid extends StylePluginBase {
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
+
+    $args = [
+      '@href' => 'https://getuikit.com/v2/docs/grid.html#even-grid-columns',
+      '@title' => 'Grid component - UIkit documentation',
+    ];
 
     $breakpoints = [
       'small' => $this->t('Affects device widths of 480px and higher.'),
@@ -104,14 +104,14 @@ class UIkitViewGrid extends StylePluginBase {
 
     $form['column_widths'] = [
       '#type' => 'details',
-      '#title' => $this->t('Column widths'),
-      '#description' => $this->t("To create a grid whose child elements' widths are evenly split, we apply one class to the grid for each breakpoint. Each item in the grid is then automatically applied a width based on the number of columns selected for each breakpoint."),
+      '#title' => $this->t('Grid columns'),
+      '#description' => $this->t("To create a grid whose child elements' widths are evenly split, we apply one class to the grid for each breakpoint. Each item in the grid is then automatically applied a width based on the number of columns selected for each breakpoint. See <a href='@href' target='_blank' title='@title'>Grid component</a> for more details.", $args),
       '#open' => TRUE,
     ];
 
     $form['column_widths']['container'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Number of columns to display for each breakpoint'),
+      '#title' => $this->t('Responsive width'),
     ];
 
     foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
