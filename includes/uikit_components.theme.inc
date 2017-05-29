@@ -23,6 +23,11 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   $options = $view->style_plugin->options;
   $grid_classes = ['uk-grid'];
 
+  $variables['grid_divider'] = FALSE;
+  if ($options['grid_divider']) {
+    $variables['grid_divider'] = TRUE;
+  }
+
   if ($options['grid_gutter'] != 'default') {
     $grid_classes[] = $options['grid_gutter'];
   }

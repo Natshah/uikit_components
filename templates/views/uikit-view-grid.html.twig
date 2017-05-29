@@ -25,21 +25,23 @@
  * @see template_preprocess_uikit_view_grid()
  */
 #}
+{{ attach_library('uikit_components/uikit-view-grid') }}
 {%
   set classes = [
     'views-view-grid',
     'uikit-view-grid',
+    grid_divider ? 'uikit-view-grid-divider',
   ]
 %}
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
 <div id="{{ id }}" {{ attributes.addClass(classes) }}>
-  <div class="{{ grid_classes }}">
+  <ul class="{{ grid_classes }}">
     {% for column in items %}
       {% for row in column.content %}
-        {{ row.content }}
+        <li>{{ row.content }}</li>
       {% endfor %}
     {% endfor %}
-  </div>
+  </ul>
 </div>

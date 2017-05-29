@@ -45,6 +45,7 @@ class UIkitViewGrid extends StylePluginBase {
     $options['width_medium'] = ['default' => 'uk-grid-width-medium-1-2'];
     $options['width_large'] = ['default' => 'uk-grid-width-large-1-3'];
     $options['width_xlarge'] = ['default' => 'uk-grid-width-xlarge-1-4'];
+    $options['grid_divider'] = ['default' => 1];
     $options['grid_gutter'] = ['default' => 'default'];
 
     return $options;
@@ -95,9 +96,16 @@ class UIkitViewGrid extends StylePluginBase {
           "uk-grid-width-${size}-1-6" => 6,
           "uk-grid-width-${size}-1-10" => 10,
         ],
-        '#description' => '<p>' . $breakpoints[$size] . '</p>',
+        '#description' => $breakpoints[$size],
       ];
     }
+
+    $form['grid_divider'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Grid divider'),
+      '#default_value' => $this->options['grid_divider'],
+      '#description' => $this->t('Apply a horizontal border to each row in the grid, except the first row.'),
+    ];
 
     $form['grid_gutter'] = [
       '#type' => 'select',
@@ -111,7 +119,7 @@ class UIkitViewGrid extends StylePluginBase {
         'uk-grid-large' => $this->t('Large gutter'),
         'uk-grid-collapse' => $this->t('Collapse gutter'),
       ],
-      '#description' => $this->t('<p>Grids automatically create a horizontal gutter between columns and a vertical one between two succeeding grids. By default, the grid gutter is wider on large screens.<br /><strong>Note</strong>: <em class="placeholder">Grid collapse</em> removes the grid gutter.</p>'),
+      '#description' => $this->t('Grids automatically create a horizontal gutter between columns and a vertical one between two succeeding grids. By default, the grid gutter is wider on large screens.<br /><strong>Note</strong>: <em class="placeholder">Grid collapse</em> removes the grid gutter.'),
     ];
   }
 

@@ -1,3 +1,4 @@
+
 uikit2:
   remote: https://getuikit.com/v2/index.html
   version: 2.27.4
@@ -29,3 +30,9 @@ uikit3:
   dependencies:
     - core/drupal
     - core/jquery
+
+uikit-view-grid:
+  version: VERSION
+  css:
+    layout:
+      css/uikit-view-grid.layout.css: {}
