@@ -36,6 +36,9 @@ class UIkitViewGrid extends StylePluginBase {
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
+    $options['columns'] = ['default' => '4'];
+    $options['automatic_width'] = ['default' => TRUE];
+    $options['alignment'] = ['default' => 'horizontal'];
 
     // UIkit grid view options.
     $options['width_small'] = ['default' => 'uk-grid-width-small-1-1'];
