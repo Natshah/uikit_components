@@ -28,7 +28,7 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   }
 
   foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
-    $grid_classes[] = $options["width_" . $size];
+    $grid_classes[] = $options['column_widths']['container']["width_" . $size];
   }
 
   if ($options['row_class']) {
