@@ -68,6 +68,18 @@ function uikit_components_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_theme_registry_alter().
+ */
+function uikit_components_theme_registry_alter(&$theme_registry) {
+  $module_path = drupal_get_path('module', 'uikit_components');
+
+  // Alter the path so we can put templates into separate directories.
+  $theme_registry['uikit_view_grid']['path'] = $module_path . '/templates/views';
+  $theme_registry['uikit_view_list']['path'] = $module_path . '/templates/views';
+  $theme_registry['uikit_view_table']['path'] = $module_path . '/templates/views';
+}
+
+/**
  * Implements hook_views_preview_info_alter().
  */
 function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable $view) {
