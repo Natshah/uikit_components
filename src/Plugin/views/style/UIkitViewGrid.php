@@ -45,7 +45,7 @@ class UIkitViewGrid extends StylePluginBase {
     $options['width_medium'] = ['default' => 'uk-grid-width-medium-1-2'];
     $options['width_large'] = ['default' => 'uk-grid-width-large-1-3'];
     $options['width_xlarge'] = ['default' => 'uk-grid-width-xlarge-1-4'];
-    $options['grid_divider'] = ['default' => 1];
+    $options['grid_divider'] = ['default' => TRUE];
     $options['grid_gutter'] = ['default' => 'default'];
 
     return $options;
@@ -76,13 +76,8 @@ class UIkitViewGrid extends StylePluginBase {
       '#open' => TRUE,
     ];
 
-    $form['column_widths']['container'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Responsive width'),
-    ];
-
     foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
-      $form['column_widths']['container']["width_${size}"] = [
+      $form["width_${size}"] = [
         '#type' => 'select',
         '#title' => $this->t("uk-grid-width-${size}-*"),
         '#required' => TRUE,
