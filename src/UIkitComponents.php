@@ -128,8 +128,16 @@ class UIkitComponents {
    *   The major version of the UIkit library from the install UIkit base theme.
    */
   public static function getUIkitLibraryVersion() {
-    $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
-    $uikit_version = explode('.', $uikit_libraries['uikit']['version']);
-    return $uikit_version[0];
+    $theme_list = \Drupal::service('theme_handler')->listInfo();
+
+    if (isset($theme_list['uikit'])) {
+      $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
+      $uikit_version = explode('.', $uikit_libraries['uikit']['version']);
+      return $uikit_version[0];
+    }
+    else {
+      drupal_set_message(t('The UIkit base theme was not found. Please <a href="@download">download</a> and install UIkit.', array('@download' => 'https://www.drupal.org/project/uikit')), 'error');
+      return FALSE;
+    }
   }
 }

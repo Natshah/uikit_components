@@ -32,8 +32,12 @@ class UIkitComponentsAdminForm extends ConfigFormBase {
     // Get UIkit framework version from UIkit base theme.
     $uikit_version = UIkitComponents::getUIkitLibraryVersion();
     $framework_version = '';
-    if ($uikit_version[0]) {
+    if (isset($uikit_version[0])) {
       $config->set('uikit_components.uikit_framework_version', $uikit_version[0]);
+      $framework_version = 'disabled';
+    }
+    elseif (!$uikit_version) {
+      $config->set('uikit_components.uikit_framework_version', 0);
       $framework_version = 'disabled';
     }
 
