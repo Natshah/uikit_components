@@ -24,3 +24,9 @@ uikit_components.advanced:
     uikit_components:
       type: mapping
       mapping:
+
+block.settings.*.third_party.uikit_components:
+  mapping:
+    uikit_navbar_alignment:
+      type: integer
+      label: 'UIkit navbar alignment'

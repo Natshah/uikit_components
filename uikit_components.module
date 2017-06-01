@@ -153,15 +153,15 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
 
   if ($region == 'navbar') {
     // Add navbar alignment setting to navbar blocks.
-    $form['navbar_alignment'] = array(
+    $form['uikit_navbar_alignment'] = array(
       '#type' => 'select',
-      '#title' => t('Navbar alignment'),
-      '#default_value' => $block->getThirdPartySetting('uikit_components', 'navbar_alignment'),
+      '#title' => t('UIkit navbar alignment'),
+      '#default_value' => $block->getThirdPartySetting('uikit_components', 'uikit_navbar_alignment'),
       '#options' => [
         0 => t('Left'),
         1 => t('Right'),
       ],
-      '#description' => t('Select the alignment of this menu in the navbar region.'),
+      '#description' => t('Select the alignment of this menu in the UIkit navbar region.'),
       '#weight' => 0,
     );
 
@@ -174,10 +174,7 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
  * Entity builder for the block configuration entity.
  */
 function uikit_components_form_block_form_builder($entity_type, Drupal\block\Entity\Block $block, &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-  if ($form_state->getValue('navbar_alignment')) {
-    $block->setThirdPartySetting('uikit_components', 'navbar_alignment', $form_state->getValue('navbar_alignment'));
-    return;
+  if ($form_state->getValue('uikit_navbar_alignment')) {
+    $block->setThirdPartySetting('uikit_components', 'uikit_navbar_alignment', $form_state->getValue('uikit_navbar_alignment'));
   }
-
-  $block->unsetThirdPartySetting('uikit_components', 'navbar_alignment');
 }

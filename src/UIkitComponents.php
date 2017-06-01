@@ -136,7 +136,7 @@ class UIkitComponents {
       return $uikit_version[0];
     }
     else {
-      drupal_set_message(t('The UIkit base theme was not found. Please <a href="@download">download</a> and install UIkit.', array('@download' => 'https://www.drupal.org/project/uikit')), 'error');
+      drupal_set_message(t('The UIkit base theme is either not installed or could not be found. Please <a href="@download" target="_blank">download</a> and install UIkit.', array('@download' => 'https://www.drupal.org/project/uikit')), 'error');
       return FALSE;
     }
   }
