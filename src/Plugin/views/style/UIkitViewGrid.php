@@ -86,7 +86,7 @@ class UIkitViewGrid extends StylePluginBase {
         '#type' => 'select',
         '#title' => $this->t("uk-grid-width-${size}-*"),
         '#required' => TRUE,
-        '#default_value' => $this->options['column_widths']['container']["width_${size}"],
+        '#default_value' => $this->options["width_${size}"],
         '#options' => [
           "uk-grid-width-${size}-1-1" => 1,
           "uk-grid-width-${size}-1-2" => 2,
