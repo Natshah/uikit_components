@@ -4,7 +4,6 @@ namespace Drupal\uikit_components\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 use Drupal\uikit_components\UIkitComponents;
 
 class UIkitComponentsAdminForm extends ConfigFormBase {

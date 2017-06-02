@@ -61,7 +61,6 @@ class UIkitComponentsAdvancedForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('uikit_components.advanced');
     $config->save();
-    return parent::submitForm($form, $form_state);
   }
 
   /**
