@@ -9,7 +9,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 
 /**
- * Prepares variables for views grid templates.
+ * Prepares variables for UIkit Grid templates.
  *
  * Default template: uikit-view-grid.html.twig.
  *
@@ -48,7 +48,7 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 }
 
 /**
- * Prepares variables for views list templates.
+ * Prepares variables for UIkit List templates.
  *
  * Default template: uikit-view-list.html.twig.
  *
@@ -69,7 +69,7 @@ function template_preprocess_uikit_view_list(array &$variables) {
 }
 
 /**
- * Prepares variables for views table templates.
+ * Prepares variables for UIkit Table templates.
  *
  * Default template: uikit-view-table.html.twig.
  *

@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\Yaml\Yaml;
 
@@ -130,13 +131,20 @@ class UIkitComponents {
   public static function getUIkitLibraryVersion() {
     $theme_list = \Drupal::service('theme_handler')->listInfo();
 
+    // Translatable strings.
+    $t_args = [
+      ':uikit_project' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
+      ':themes_page' => Url::fromRoute('system.themes_page')->toString(),
+    ];
+
     if (isset($theme_list['uikit'])) {
       $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
       $uikit_version = explode('.', $uikit_libraries['uikit']['version']);
-      return $uikit_version[0];
+
+      return implode('.', $uikit_version);
     }
     else {
-      drupal_set_message(t('The UIkit base theme is either not installed or could not be found. Please <a href="@download" target="_blank">download</a> and install UIkit.', array('@download' => 'https://www.drupal.org/project/uikit')), 'error');
+      drupal_set_message(t('The UIkit base theme is either not installed or could not be found. Please <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit.', $t_args), 'error');
       return FALSE;
     }
   }

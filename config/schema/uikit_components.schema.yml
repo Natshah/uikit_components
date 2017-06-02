@@ -1,13 +1,10 @@
 uikit_components.settings:
-  type: config_object
+  type: mapping
   label: 'UIkit Components'
   mapping:
-    uikit_components:
-      type: mapping
-      mapping:
-        uikit_framework_version:
-          type: select
-          label: 'UIkit Framework'
+    uikit_framework_version:
+      type: string
+      label: 'UIkit Framework'
 
 uikit_components.core:
   type: config_object

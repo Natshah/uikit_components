@@ -1,5 +1,4 @@
-
-uikit2:
+uikit:
   remote: https://getuikit.com/v2/index.html
   version: 2.27.4
   license:
@@ -11,22 +10,6 @@ uikit2:
       //cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/css/uikit.min.css: { type: external, minified: true }
   js:
     //cdnjs.cloudflare.com/ajax/libs/uikit/2.27.4/js/uikit.min.js: { type: external, minified: true }
-  dependencies:
-    - core/drupal
-    - core/jquery
-uikit3:
-  remote: https://getuikit.com
-  version: 3.0.0-Beta.23
-  license:
-    name: MIT
-    url: https://github.com/uikit/uikit/blob/v3.0.0-beta.23/LICENSE.md
-    gpl-compatible: true
-  css:
-    base:
-      //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.23/css/uikit.min.css: { type: external, minified: true }
-  js:
-    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.23/js/uikit.min.js: { type: external, minified: true }
-    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.23/js/uikit-icons.min.js: { type: external, minified: true }
   dependencies:
     - core/drupal
     - core/jquery

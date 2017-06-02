@@ -8,6 +8,7 @@
  * functionality.
  */
 
+use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\uikit_components\UIkitComponents;
@@ -18,17 +19,21 @@ use Drupal\views\ViewExecutable;
  */
 function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   $output = '';
-  $args = [
-    '@grid' => 'https://getuikit.com/v2/docs/grid.html',
-    '@panel' => 'https://getuikit.com/v2/docs/panel.html',
-    '@block' => 'https://getuikit.com/v2/docs/block.html',
-    '@cover' => 'https://getuikit.com/v2/docs/cover.html',
-    '@nav' => 'https://getuikit.com/v2/docs/nav.html',
-    '@subnav' => 'https://getuikit.com/v2/docs/subnav.html',
-    '@list' => 'https://getuikit.com/v2/docs/list.html',
-    '@table' => 'https://getuikit.com/v2/docs/table.html',
-    '@slideshow' => 'https://getuikit.com/v2/docs/slideshow.html',
-    '@accordion' => 'https://getuikit.com/v2/docs/accordion.html',
+
+  // Setup translatable string arguments.
+  $t_args = [
+    ':grid' => Url::fromUri('https://getuikit.com/v2/docs/grid.html'),
+    ':list' => Url::fromUri('https://getuikit.com/v2/docs/list.html'),
+    ':table' => Url::fromUri('https://getuikit.com/v2/docs/table.html'),
+
+    // @todo Future plugin style components.
+    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html'),
+    ':block' => Url::fromUri('https://getuikit.com/v2/docs/block.html'),
+    ':cover' => Url::fromUri('https://getuikit.com/v2/docs/cover.html'),
+    ':nav' => Url::fromUri('https://getuikit.com/v2/docs/nav.html'),
+    ':panel' => Url::fromUri('https://getuikit.com/v2/docs/panel.html'),
+    ':slideshow' => Url::fromUri('https://getuikit.com/v2/docs/slideshow.html'),
+    ':subnav' => Url::fromUri('https://getuikit.com/v2/docs/subnav.html'),
   ];
 
   switch ($route_name) {
@@ -37,15 +42,15 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<h3>' . t('Views style plugins') . '</h3>';
       $output .= '<p>' . t('UIkit Components adds styles to Views to output the results of a view as several common UIkit components. The available views styles are:') . '</p>';
       $output .= '<ul>';
-      $output .= '<li>' . t('<a href="@grid" target="_blank">Grid</a>', $args) . '</li>';
-      $output .= '<li>' . t('<a href="@list" target="_blank">List</a>', $args) . '</li>';
-      $output .= '<li>' . t('<a href="@table" target="_blank">Table</a>', $args) . '</li>';
+      $output .= '<li>' . t('<a href=":grid" target="_blank">Grid</a>', $t_args) . '</li>';
+      $output .= '<li>' . t('<a href=":list" target="_blank">List</a>', $t_args) . '</li>';
+      $output .= '<li>' . t('<a href=":table" target="_blank">Table</a>', $t_args) . '</li>';
       $output .= '</ul>';
       $output .= '<p>' . t('<strong>Note</strong>: The 8.x-2.x branch of the UIkit theme is the only supported branch at this time. Once YOOtheme releases a fully-stable version for UIkit 3 we will provide views styles for the UIkit 8.x-3.x branch.') . '</p>';
       break;
 
     case 'uikit_components.admin':
-      $output = '<p>' . t('Admin') . '</p>';
+      $output = '<p>' . t('Configuration for the UIkit Components module.') . '</p>';
       break;
 
     case 'uikit_components.core':
@@ -76,6 +81,7 @@ function uikit_components_theme_registry_alter(&$theme_registry) {
   // Alter the path so we can put templates into separate directories.
   $theme_registry['uikit_view_grid']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_list']['path'] = $module_path . '/templates/views';
+  $theme_registry['uikit_view_slideshow']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_table']['path'] = $module_path . '/templates/views';
 }
 
@@ -85,6 +91,8 @@ function uikit_components_theme_registry_alter(&$theme_registry) {
 function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable $view) {
   $style = $view->getStyle();
   $plugin_id = $style->getPluginId();
+
+  // UIkit Components views plugin styles.
   $uikit_plugins = [
     'uikit_view_grid',
     'uikit_view_list',
@@ -92,8 +100,8 @@ function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable 
   ];
 
   if (in_array($plugin_id, $uikit_plugins)) {
-    $version = UIkitComponents::getUIkitLibraryVersion();
-    $view->element['#attached']['library'][] = "uikit_components/uikit$version";
+    // Attach the UIkit library so views previews are styled correctly.
+    $view->element['#attached']['library'][] = "uikit_components/uikit";
   }
 }
 
@@ -104,18 +112,22 @@ function uikit_components_form_menu_link_content_form_alter(&$form, FormStateInt
   $menu_link = $form_state->getFormObject()->getEntity();
   $menu_link_options = $menu_link->link->first()->options ?: [];
 
+  // Translatable string arguments.
+  $t_args = [
+    ':navbar' => Url::fromUri('https://getuikit.com/v2/docs/navbar.html')->toString(),
+  ];
+
+  // UIkit navbar component options.
   $form['menu_item_type'] = array(
-    '#type'          => 'select',
-    '#title'         => t('Menu item type'),
+    '#type' => 'select',
+    '#title' => t('Menu item type'),
     '#default_value' => !empty($menu_link_options['menu_item_type']) ? $menu_link_options['menu_item_type'] : 0,
     '#options' => [
       0 => t('Normal menu item'),
       'nav_header' => t('Navigation header'),
       'nav_divider' => t('Navigation divider'),
     ],
-    '#description' => t('Select the type of menu item this is. <em class="placeholder">Navigation header</em> and <em class="placeholder">Navigation divider</em> are special menu items from the <a href="@navbar" target="_blank">UIkit navbar component</a>.', array(
-      '@navbar' => 'https://getuikit.com/v2/docs/navbar.html',
-    )),
+    '#description' => t('Select the type of menu item this is. <em class="placeholder">Navigation header</em> and <em class="placeholder">Navigation divider</em> are special menu items from the <a href=":navbar" target="_blank">UIkit navbar component</a>.', $t_args),
   );
 
   $form['actions']['submit']['#submit'][] = 'uikit_components_menu_link_content_form_submit';
