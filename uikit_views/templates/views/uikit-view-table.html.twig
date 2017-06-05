@@ -38,14 +38,15 @@
     'uk-table',
     hover ? 'uk-table-hover',
     striped ? 'uk-table-striped',
-    condensed ? 'uk-table-condensed',
+    condensed ? 'uk-table-small',
+    justified ? 'uk-table-justify',
     'cols-' ~ header|length,
     responsive ? 'responsive-enabled',
     sticky ? 'sticky-enabled',
   ]
 %}
 {% if responsive_table %}
-  <div class="uk-overflow-container">
+  <div uk-overflow-auto>
 {% endif %}
 <table{{ attributes.addClass(classes) }}>
   {% if caption_needed %}

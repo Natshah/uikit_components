@@ -54,7 +54,7 @@ class UIkitViewList extends StylePluginBase {
     parent::buildOptionsForm($form, $form_state);
 
     $args = [
-      '@href' => 'https://getuikit.com/v2/docs/list.html',
+      '@href' => 'https://getuikit.com/docs/list',
       '@title' => 'List component - UIkit documentation',
     ];
 
@@ -72,9 +72,9 @@ class UIkitViewList extends StylePluginBase {
       '#default_value' => $this->options['class'],
       '#options' => [
         'default' => $this->t('Default'),
-        'uk-list-line' => $this->t('List line'),
+        'uk-list-divider' => $this->t('List divider'),
         'uk-list-striped' => $this->t('List striped'),
-        'uk-list-space' => $this->t('List space'),
+        'uk-list-large' => $this->t('List large'),
       ],
     ];
   }

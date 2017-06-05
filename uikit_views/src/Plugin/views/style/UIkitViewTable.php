@@ -85,6 +85,7 @@ class UIkitViewTable extends StylePluginBase implements CacheableDependencyInter
       'hover' => FALSE,
       'striped' => FALSE,
       'condensed' => FALSE,
+      'justified' => FALSE,
     ]];
 
     return $options;
@@ -213,7 +214,7 @@ class UIkitViewTable extends StylePluginBase implements CacheableDependencyInter
     parent::buildOptionsForm($form, $form_state);
 
     $args = [
-      '@href' => 'https://getuikit.com/v2/docs/table.html',
+      '@href' => 'https://getuikit.com/docs/table',
       '@title' => 'Table component - UIkit documentation',
     ];
 
@@ -293,6 +294,7 @@ class UIkitViewTable extends StylePluginBase implements CacheableDependencyInter
         'hover' => $this->t('Hover (displays a hover state on table rows)'),
         'striped' => $this->t('Striped (adds zebra-striping on table rows)'),
         'condensed' => $this->t('Condensed (compacts table rows to use less space)'),
+        'justified' => $this->t('Justified (removes the outer padding of the first and last column)'),
       ],
       '#fieldset' => 'uikit_table_options',
     ];

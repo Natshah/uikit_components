@@ -41,10 +41,10 @@ class UIkitViewGrid extends StylePluginBase {
     $options['alignment'] = ['default' => 'horizontal'];
 
     // UIkit grid view options.
-    $options['width_small'] = ['default' => 'uk-grid-width-small-1-1'];
-    $options['width_medium'] = ['default' => 'uk-grid-width-medium-1-2'];
-    $options['width_large'] = ['default' => 'uk-grid-width-large-1-3'];
-    $options['width_xlarge'] = ['default' => 'uk-grid-width-xlarge-1-4'];
+    $options['width_small'] = ['default' => 'uk-child-width-1-1@s'];
+    $options['width_medium'] = ['default' => 'uk-child-width-1-2@m'];
+    $options['width_large'] = ['default' => 'uk-child-width-1-3@l'];
+    $options['width_xlarge'] = ['default' => 'uk-child-width-1-4@xl'];
     $options['grid_divider'] = ['default' => TRUE];
     $options['grid_gutter'] = ['default' => 'default'];
 
@@ -58,7 +58,7 @@ class UIkitViewGrid extends StylePluginBase {
     parent::buildOptionsForm($form, $form_state);
 
     $args = [
-      '@href' => 'https://getuikit.com/v2/docs/grid.html#even-grid-columns',
+      '@href' => 'https://getuikit.com/docs/grid',
       '@title' => 'Grid component - UIkit documentation',
     ];
 
@@ -76,20 +76,20 @@ class UIkitViewGrid extends StylePluginBase {
       '#open' => TRUE,
     ];
 
-    foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
+    foreach (['@s', '@m', '@l', '@x'] as $size) {
       $form["width_${size}"] = [
         '#type' => 'select',
-        '#title' => $this->t("uk-grid-width-${size}-*"),
+        '#title' => $this->t("uk-child-width-*${size}"),
         '#required' => TRUE,
         '#default_value' => $this->options["width_${size}"],
         '#options' => [
-          "uk-grid-width-${size}-1-1" => 1,
-          "uk-grid-width-${size}-1-2" => 2,
-          "uk-grid-width-${size}-1-3" => 3,
-          "uk-grid-width-${size}-1-4" => 4,
-          "uk-grid-width-${size}-1-5" => 5,
-          "uk-grid-width-${size}-1-6" => 6,
-          "uk-grid-width-${size}-1-10" => 10,
+          "uk-child-width-1-1${size}" => 1,
+          "uk-child-width-1-2${size}" => 2,
+          "uk-child-width-1-3${size}" => 3,
+          "uk-child-width-1-4${size}" => 4,
+          "uk-child-width-1-5${size}" => 5,
+          "uk-child-width-1-6${size}" => 6,
+          "uk-child-width-1-10${size}" => 10,
         ],
         '#description' => $breakpoints[$size],
       ];

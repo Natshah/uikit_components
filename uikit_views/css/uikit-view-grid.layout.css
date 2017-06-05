@@ -3,13 +3,13 @@
  * Macro arrangement of a web page, including any grid systems.
  */
 @media (min-width: 480px) and (max-width: 767px) {
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-1>li:nth-child(n+2)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-2>li:nth-child(n+3)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-3>li:nth-child(n+4)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-4>li:nth-child(n+5)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-5>li:nth-child(n+6)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-6>li:nth-child(n+7)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-small-1-10>li:nth-child(n+11)>* {
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-1\@s>li:nth-child(n+2)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-2\@s>li:nth-child(n+3)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-3\@s>li:nth-child(n+4)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-4\@s>li:nth-child(n+5)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-5\@s>li:nth-child(n+6)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-6\@s>li:nth-child(n+7)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-10\@s>li:nth-child(n+11)>* {
     border-top: 1px solid #ddd;
     margin-top: 25px;
     padding-top: 25px;
@@ -17,13 +17,13 @@
 }
 
 @media (min-width: 768px) and (max-width: 959px) {
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-1>li:nth-child(n+2)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-2>li:nth-child(n+3)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-3>li:nth-child(n+4)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-4>li:nth-child(n+5)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-5>li:nth-child(n+6)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-6>li:nth-child(n+7)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-medium-1-10>li:nth-child(n+11)>* {
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-1\@m>li:nth-child(n+2)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-2\@m>li:nth-child(n+3)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-3\@m>li:nth-child(n+4)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-4\@m>li:nth-child(n+5)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-5\@m>li:nth-child(n+6)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-6\@m>li:nth-child(n+7)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-10\@m>li:nth-child(n+11)>* {
     border-top: 1px solid #ddd;
     margin-top: 25px;
     padding-top: 25px;
@@ -31,13 +31,13 @@
 }
 
 @media (min-width: 960px) and (max-width: 1219px) {
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-1>li:nth-child(n+2)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-2>li:nth-child(n+3)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-3>li:nth-child(n+4)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-4>li:nth-child(n+5)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-5>li:nth-child(n+6)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-6>li:nth-child(n+7)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-large-1-10>li:nth-child(n+11)>* {
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-1\@l>li:nth-child(n+2)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-2\@l>li:nth-child(n+3)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-3\@l>li:nth-child(n+4)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-4\@l>li:nth-child(n+5)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-5\@l>li:nth-child(n+6)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-6\@l>li:nth-child(n+7)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-10\@l>li:nth-child(n+11)>* {
     border-top: 1px solid #ddd;
     margin-top: 25px;
     padding-top: 25px;
@@ -45,13 +45,13 @@
 }
 
 @media (min-width: 1220px) {
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-1>li:nth-child(n+2)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-2>li:nth-child(n+3)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-3>li:nth-child(n+4)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-4>li:nth-child(n+5)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-5>li:nth-child(n+6)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-6>li:nth-child(n+7)>*,
-  .uikit-view-grid.uikit-view-grid-divider>.uk-grid-width-xlarge-1-10>li:nth-child(n+11)>* {
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-1\@xl>li:nth-child(n+2)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-2\@xl>li:nth-child(n+3)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-3\@xl>li:nth-child(n+4)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-4\@xl>li:nth-child(n+5)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-5\@xl>li:nth-child(n+6)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-6\@xl>li:nth-child(n+7)>*,
+  .uikit-view-grid.uikit-view-grid-divider>.uk-child-width-1-10\@xl>li:nth-child(n+11)>* {
     border-top: 1px solid #ddd;
     margin-top: 25px;
     padding-top: 25px;
