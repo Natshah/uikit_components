@@ -7,6 +7,7 @@
 
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
+use Drupal\uikit_views\UIkitViews;
 
 /**
  * Prepares variables for UIkit Grid templates.
@@ -42,7 +43,7 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 
   $variables['grid_classes'] = implode(' ', $grid_classes);
 
-  $variables['id'] = UIkitComponents::getUniqueId($view);
+  $variables['id'] = UIkitViews::getUniqueId($view);
   $variables['options'] = $options;
   $variables['uikit_version'] = UIkitComponents::getUIkitLibraryVersion();
 }

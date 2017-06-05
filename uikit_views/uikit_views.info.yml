@@ -1,0 +1,9 @@
+name: 'UIkit Views'
+type: module
+description: 'Provides Views plugins for the UIkit theme.'
+core: 8.x
+package: 'UIkit'
+
+dependencies:
+  - drupal:views
+  - uikit_components

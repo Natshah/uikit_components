@@ -11,8 +11,6 @@
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\uikit_components\UIkitComponents;
-use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
@@ -20,33 +18,9 @@ use Drupal\views\ViewExecutable;
 function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   $output = '';
 
-  // Setup translatable string arguments.
-  $t_args = [
-    ':grid' => Url::fromUri('https://getuikit.com/v2/docs/grid.html'),
-    ':list' => Url::fromUri('https://getuikit.com/v2/docs/list.html'),
-    ':table' => Url::fromUri('https://getuikit.com/v2/docs/table.html'),
-
-    // @todo Future plugin style components.
-    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html'),
-    ':block' => Url::fromUri('https://getuikit.com/v2/docs/block.html'),
-    ':cover' => Url::fromUri('https://getuikit.com/v2/docs/cover.html'),
-    ':nav' => Url::fromUri('https://getuikit.com/v2/docs/nav.html'),
-    ':panel' => Url::fromUri('https://getuikit.com/v2/docs/panel.html'),
-    ':slideshow' => Url::fromUri('https://getuikit.com/v2/docs/slideshow.html'),
-    ':subnav' => Url::fromUri('https://getuikit.com/v2/docs/subnav.html'),
-  ];
-
   switch ($route_name) {
     case 'help.page.uikit_components':
-      $output = '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme and various Drupal core modules, such as Views. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links and Views display styles. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
-      $output .= '<h3>' . t('Views style plugins') . '</h3>';
-      $output .= '<p>' . t('UIkit Components adds styles to Views to output the results of a view as several common UIkit components. The available views styles are:') . '</p>';
-      $output .= '<ul>';
-      $output .= '<li>' . t('<a href=":grid" target="_blank">Grid</a>', $t_args) . '</li>';
-      $output .= '<li>' . t('<a href=":list" target="_blank">List</a>', $t_args) . '</li>';
-      $output .= '<li>' . t('<a href=":table" target="_blank">Table</a>', $t_args) . '</li>';
-      $output .= '</ul>';
-      $output .= '<p>' . t('<strong>Note</strong>: The 8.x-2.x branch of the UIkit theme is the only supported branch at this time. Once YOOtheme releases a fully-stable version for UIkit 3 we will provide views styles for the UIkit 8.x-3.x branch.') . '</p>';
+      $output = '<p>' . t('The UIkit components module provides additional components and functionality to the UIkit base theme and various Drupal core modules. Some aspects of the frontend cannot be themed without going through the backend, such as empty navbar links. With this module we can add more functionality to the UIkit frontend through the Drupal backend without the need for contributed modules which may add more functionality than needed.') . '</p>';
       break;
 
     case 'uikit_components.admin':
@@ -63,46 +37,6 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   }
 
   return $output;
-}
-
-/**
- * Implements hook_theme().
- */
-function uikit_components_theme($existing, $type, $theme, $path) {
-  return UIkitComponents::getThemeHooks();
-}
-
-/**
- * Implements hook_theme_registry_alter().
- */
-function uikit_components_theme_registry_alter(&$theme_registry) {
-  $module_path = drupal_get_path('module', 'uikit_components');
-
-  // Alter the path so we can put templates into separate directories.
-  $theme_registry['uikit_view_grid']['path'] = $module_path . '/templates/views';
-  $theme_registry['uikit_view_list']['path'] = $module_path . '/templates/views';
-  $theme_registry['uikit_view_slideshow']['path'] = $module_path . '/templates/views';
-  $theme_registry['uikit_view_table']['path'] = $module_path . '/templates/views';
-}
-
-/**
- * Implements hook_views_preview_info_alter().
- */
-function uikit_components_views_preview_info_alter(array &$rows, ViewExecutable $view) {
-  $style = $view->getStyle();
-  $plugin_id = $style->getPluginId();
-
-  // UIkit Components views plugin styles.
-  $uikit_plugins = [
-    'uikit_view_grid',
-    'uikit_view_list',
-    'uikit_view_table',
-  ];
-
-  if (in_array($plugin_id, $uikit_plugins)) {
-    // Attach the UIkit library so views previews are styled correctly.
-    $view->element['#attached']['library'][] = "uikit_components/uikit";
-  }
 }
 
 /**

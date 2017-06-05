@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\uikit_components\Plugin\views\style;
+namespace Drupal\uikit_views\Plugin\views\style;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableDependencyInterface;
