@@ -19,32 +19,33 @@ function uikit_views_help($route_name, \Drupal\Core\Routing\RouteMatchInterface 
 
   // Setup translatable string arguments.
   $t_args = [
-    ':uikit_drupal' => Url::fromUri('https://www.drupal.org/project/uikit'),
-    ':grid' => Url::fromUri('https://getuikit.com/v2/docs/grid.html'),
-    ':list' => Url::fromUri('https://getuikit.com/v2/docs/list.html'),
-    ':table' => Url::fromUri('https://getuikit.com/v2/docs/table.html'),
+    ':uikit' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
+
+    // Current plugin style components.
+    ':grid' => Url::fromUri('https://getuikit.com/v2/docs/grid.html')->toString(),
+    ':list' => Url::fromUri('https://getuikit.com/v2/docs/list.html')->toString(),
+    ':table' => Url::fromUri('https://getuikit.com/v2/docs/table.html')->toString(),
 
     // @todo Future plugin style components.
-    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html'),
-    ':block' => Url::fromUri('https://getuikit.com/v2/docs/block.html'),
-    ':cover' => Url::fromUri('https://getuikit.com/v2/docs/cover.html'),
-    ':nav' => Url::fromUri('https://getuikit.com/v2/docs/nav.html'),
-    ':panel' => Url::fromUri('https://getuikit.com/v2/docs/panel.html'),
-    ':slideshow' => Url::fromUri('https://getuikit.com/v2/docs/slideshow.html'),
-    ':subnav' => Url::fromUri('https://getuikit.com/v2/docs/subnav.html'),
+    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html')->toString(),
+    ':block' => Url::fromUri('https://getuikit.com/v2/docs/block.html')->toString(),
+    ':cover' => Url::fromUri('https://getuikit.com/v2/docs/cover.html')->toString(),
+    ':nav' => Url::fromUri('https://getuikit.com/v2/docs/nav.html')->toString(),
+    ':panel' => Url::fromUri('https://getuikit.com/v2/docs/panel.html')->toString(),
+    ':slideshow' => Url::fromUri('https://getuikit.com/v2/docs/slideshow.html')->toString(),
+    ':subnav' => Url::fromUri('https://getuikit.com/v2/docs/subnav.html')->toString(),
   ];
 
   switch ($route_name) {
     case 'help.page.uikit_views':
-      $output = '<p>' . t('The UIkit Views module provides Views plugins for the <a href=":uikit_drupal" target="_blank">UIkit theme</a>.', $t_args) . '</p>';
+      $output = '<p>' . t('The UIkit Views module provides Views plugins for the <a href=":uikit" target="_blank">UIkit theme</a>.', $t_args) . '</p>';
       $output .= '<h3>' . t('Views plugins') . '</h3>';
-      $output .= '<p>' . t('UIkit Views style plugins control how a view is displayed. For the most part they are object wrappers around theme templates. Styles UIkit Views provides:') . '</p>';
+      $output .= '<p>' . t('<strong>Style</strong>: Style plugins control how a view is displayed. For the most part they are object wrappers around theme templates. Styles UIkit Views provides:') . '</p>';
       $output .= '<ul>';
       $output .= '<li>' . t('<a href=":grid" target="_blank">Grid</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":list" target="_blank">List</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":table" target="_blank">Table</a>', $t_args) . '</li>';
       $output .= '</ul>';
-      $output .= '<p>' . t('<strong>Note</strong>: The 8.x-2.x branch of the UIkit theme is the only supported branch at this time. Once YOOtheme releases a fully-stable version for UIkit 3 we will provide views styles for the UIkit 8.x-3.x branch.') . '</p>';
       break;
   }
 
