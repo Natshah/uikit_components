@@ -104,8 +104,9 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
       '#title' => t('UIkit navbar alignment'),
       '#default_value' => $block->getThirdPartySetting('uikit_components', 'uikit_navbar_alignment'),
       '#options' => [
-        0 => t('Left'),
-        1 => t('Right'),
+        'left' => t('Left'),
+        'center' => t('Center'),
+        'right' => t('Right'),
       ],
       '#description' => t('Select the alignment of this menu in the UIkit navbar region.'),
       '#weight' => 0,
