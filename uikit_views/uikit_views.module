@@ -1,15 +1,15 @@
 <?php
 
-use Drupal\Core\Url;
-use Drupal\uikit_views\UIkitViews;
-use Drupal\views\ViewExecutable;
-
 /**
  * @file
  * UIkit Views.
  *
  * Companion module to the UIkit base theme to provide Views plugins.
  */
+
+use Drupal\Core\Url;
+use Drupal\uikit_views\UIkitViews;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_help().
