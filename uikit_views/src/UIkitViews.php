@@ -7,8 +7,6 @@ use Drupal\views\ViewExecutable;
 
 /**
  * Class UIkitViews
- *
- * @package Drupal\uikit_views
  */
 class UIkitViews {
 
