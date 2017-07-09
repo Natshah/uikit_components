@@ -28,6 +28,7 @@ class UIkitViews {
     ];
     $hooks['uikit_view_table'] = [
       'preprocess functions' => [
+        'template_preprocess_views_view_table',
         'template_preprocess_uikit_view_table',
       ],
       'file' => 'includes/uikit_views.theme.inc',
