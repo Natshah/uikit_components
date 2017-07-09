@@ -33,12 +33,8 @@ function template_preprocess_uikit_view_grid(array &$variables) {
     $grid_classes[] = $options['grid_gutter'];
   }
 
-  foreach (['small', 'medium', 'large', 'xlarge'] as $size) {
+  foreach (['@s', '@m', '@l', '@xl'] as $size) {
     $grid_classes[] = $options["width_" . $size];
-  }
-
-  if ($options['row_class']) {
-    $grid_classes[] = $options['row_class'];
   }
 
   $variables['grid_classes'] = implode(' ', $grid_classes);
@@ -46,6 +42,16 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   $variables['id'] = UIkitViews::getUniqueId($view);
   $variables['options'] = $options;
   $variables['uikit_version'] = UIkitComponents::getUIkitLibraryVersion();
+
+  $items = [];
+
+  // Iterate over each rendered views result row.
+  foreach ($variables['rows'] as $result_index => $item) {
+    $items[$result_index]['content'] = $item;
+  }
+
+  // Add items to the variables array.
+  $variables['items'] = $items;
 }
 
 /**

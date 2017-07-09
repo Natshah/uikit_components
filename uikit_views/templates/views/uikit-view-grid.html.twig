@@ -21,7 +21,6 @@
  *     - attributes: HTML attributes for each row or column.
  *     - content: The row or column contents.
  *
- * @see template_preprocess_views_view_grid()
  * @see template_preprocess_uikit_view_grid()
  */
 #}
@@ -39,9 +38,7 @@
 <div id="{{ id }}" {{ attributes.addClass(classes) }}>
   <ul class="{{ grid_classes }}">
     {% for column in items %}
-      {% for row in column.content %}
-        <li>{{ row.content }}</li>
-      {% endfor %}
+      <li>{{ column.content }}</li>
     {% endfor %}
   </ul>
 </div>
