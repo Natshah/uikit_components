@@ -14,6 +14,12 @@ class UIkitViews {
    * Returns the theme hook definition information for UIkit Views.
    */
   public static function getThemeHooks() {
+    $hooks['uikit_view_accordion'] = [
+      'preprocess functions' => [
+        'template_preprocess_uikit_view_accordion',
+      ],
+      'file' => 'includes/uikit_views.theme.inc',
+    ];
     $hooks['uikit_view_grid'] = [
       'preprocess functions' => [
         'template_preprocess_uikit_view_grid',

@@ -22,12 +22,12 @@ function uikit_views_help($route_name, \Drupal\Core\Routing\RouteMatchInterface 
     ':uikit' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
 
     // Current plugin style components.
+    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html')->toString(),
     ':grid' => Url::fromUri('https://getuikit.com/v2/docs/grid.html')->toString(),
     ':list' => Url::fromUri('https://getuikit.com/v2/docs/list.html')->toString(),
     ':table' => Url::fromUri('https://getuikit.com/v2/docs/table.html')->toString(),
 
     // @todo Future plugin style components.
-    ':accordion' => Url::fromUri('https://getuikit.com/v2/docs/accordion.html')->toString(),
     ':block' => Url::fromUri('https://getuikit.com/v2/docs/block.html')->toString(),
     ':cover' => Url::fromUri('https://getuikit.com/v2/docs/cover.html')->toString(),
     ':nav' => Url::fromUri('https://getuikit.com/v2/docs/nav.html')->toString(),
@@ -42,6 +42,7 @@ function uikit_views_help($route_name, \Drupal\Core\Routing\RouteMatchInterface 
       $output .= '<h3>' . t('Views plugins') . '</h3>';
       $output .= '<p>' . t('<strong>Style</strong>: Style plugins control how a view is displayed. For the most part they are object wrappers around theme templates. Styles UIkit Views provides:') . '</p>';
       $output .= '<ul>';
+      $output .= '<li>' . t('<a href=":accordion" target="_blank">Accordion</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":grid" target="_blank">Grid</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":list" target="_blank">List</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":table" target="_blank">Table</a>', $t_args) . '</li>';
@@ -66,6 +67,7 @@ function uikit_views_theme_registry_alter(&$theme_registry) {
   $module_path = drupal_get_path('module', 'uikit_views');
 
   // Alter the path so we can put templates into separate directories.
+  $theme_registry['uikit_view_accordion']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_grid']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_list']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_slideshow']['path'] = $module_path . '/templates/views';
@@ -81,6 +83,7 @@ function uikit_views_views_preview_info_alter(array &$rows, ViewExecutable $view
 
   // UIkit Components views plugin styles.
   $uikit_plugins = [
+    'uikit_view_accordion',
     'uikit_view_grid',
     'uikit_view_list',
     'uikit_view_table',
