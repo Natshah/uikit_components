@@ -1,0 +1,18 @@
+UIkit Components 8.x-3.x, 06-10-2017 (development version)
+-----------------------
+
+Provide separate branches to support both UIkit 2.x.x and 3.x.x library versions
+ - In order to support current versions of the UIkit library (v2.x.x and 3.x.x),
+   UIkit Components now has different branches to apply the correct theme
+   implementations based on the library version.
+
+   * 7.x-2.x/8.x-2.x branches support UIkit 2.x.x
+   * 7.x-3.x/8.x-3.x branches support UIkit 3.x.x
+
+   Users will need to install the branch of Uikit Components that supports the
+   same UIkit library version of the UIkit theme they have installed. Since many
+   of the classes and attributes used by UIkit differ in the two library
+   versions, x.x-2.x branches are not compatible with the x.x-3.x branches of
+   UIkit Components and the UIkit theme.
+
+   https://www.drupal.org/node/2885120
