@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Template\Attribute;
-use Drupal\uikit_components\UIkitComponents;
 use Drupal\uikit_views\UIkitViews;
 
 /**
@@ -70,11 +69,6 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   $options = $view->style_plugin->options;
   $grid_classes = ['uk-grid'];
 
-  $variables['grid_divider'] = FALSE;
-  if ($options['grid_divider']) {
-    $variables['grid_divider'] = TRUE;
-  }
-
   if ($options['grid_gutter'] != 'default') {
     $grid_classes[] = $options['grid_gutter'];
   }
@@ -87,7 +81,6 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 
   $variables['id'] = UIkitViews::getUniqueId($view);
   $variables['options'] = $options;
-  $variables['uikit_version'] = UIkitComponents::getUIkitLibraryVersion();
 
   $items = [];
 

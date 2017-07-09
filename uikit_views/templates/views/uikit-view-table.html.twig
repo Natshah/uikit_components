@@ -24,8 +24,14 @@
  *     - content: The column content.
  *   - default_classes: A flag indicating whether default classes should be
  *     used.
- * - responsive: A flag indicating whether table is responsive.
+ * - responsive_table: A flag indicating whether table is responsive.
  * - sticky: A flag indicating whether table header is sticky.
+ * - hover: A flag indicating whether the table should have hover effects
+ *   applied.
+ * - striped: A flag indicating whether the table should have striped styling
+ *   applied.
+ * - condensed: A flag indicating whether the table should have condensed
+ *   styling applied.
  *
  * @see template_preprocess_views_view_table()
  * @see template_preprocess_uikit_view_table()
@@ -41,7 +47,6 @@
     condensed ? 'uk-table-small',
     justified ? 'uk-table-justify',
     'cols-' ~ header|length,
-    responsive ? 'responsive-enabled',
     sticky ? 'sticky-enabled',
   ]
 %}
