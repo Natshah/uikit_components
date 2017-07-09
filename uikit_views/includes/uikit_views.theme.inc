@@ -67,12 +67,30 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 function template_preprocess_uikit_view_list(array &$variables) {
   $view = $variables['view'];
   $options = $view->style_plugin->options;
+
+  // Set the wrapper attributes.
+  $variables['attributes'] = new Attribute();
+  if ($options['wrapper_class']) {
+    $variables['attributes']->addClass($options['wrapper_class']);
+  }
+
+  // Set the list attributes.
   $variables['list_attributes'] = new Attribute();
   $variables['list_attributes']['class'] = ['uk-list'];
 
   if ($options['class'] != 'default') {
     $variables['list_attributes']['class'][] = $options['class'];
   }
+
+  $items = [];
+
+  // Iterate over each rendered views result row.
+  foreach ($variables['rows'] as $result_index => $item) {
+    $items[$result_index]['content'] = $item;
+  }
+
+  // Add items to the variables array.
+  $variables['items'] = $items;
 }
 
 /**

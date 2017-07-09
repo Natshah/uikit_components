@@ -28,19 +28,11 @@ class UIkitViewList extends StylePluginBase {
   protected $usesRowPlugin = TRUE;
 
   /**
-   * Does the style plugin support custom css class for the rows.
-   *
-   * @var bool
-   */
-  protected $usesRowClass = TRUE;
-
-  /**
    * {@inheritdoc}
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
 
-    $options['type'] = ['default' => 'ul'];
     $options['class'] = ['default' => 'uk-list'];
     $options['wrapper_class'] = ['default' => 'uikit-view-list'];
 

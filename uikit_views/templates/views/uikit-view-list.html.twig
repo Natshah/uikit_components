@@ -15,22 +15,14 @@
  * @see template_preprocess_uikit_view_list()
  */
 #}
-{% if attributes -%}
-  <div{{ attributes }}>
-{% endif %}
+<div{{ attributes }}>
+  {% if title %}
+    <h3>{{ title }}</h3>
+  {% endif %}
 
-{% if title %}
-  <h3>{{ title }}</h3>
-{% endif %}
-
-<ul{{ list_attributes }}>
-
-  {% for row in rows %}
-    <li{{ row.attributes }}>{{ row.content }}</li>
-  {% endfor %}
-
-</ul>
-
-{% if attributes -%}
-  </div>
-{% endif %}
+  <ul{{ list_attributes }}>
+    {% for column in items %}
+      <li>{{ column.content }}</li>
+    {% endfor %}
+  </ul>
+</div>
