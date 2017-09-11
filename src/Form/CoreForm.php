@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
-class UIkitComponentsCoreForm extends ConfigFormBase {
+class CoreForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}

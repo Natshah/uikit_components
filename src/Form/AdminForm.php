@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\uikit_components\UIkitComponents;
 
-class UIkitComponentsAdminForm extends ConfigFormBase {
+class AdminForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}

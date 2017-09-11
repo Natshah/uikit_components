@@ -1,7 +1,7 @@
 uikit_components.admin:
   path: '/admin/config/user-interface/uikit_components'
   defaults:
-    _form: 'Drupal\uikit_components\Form\UIkitComponentsAdminForm'
+    _form: 'Drupal\uikit_components\Form\AdminForm'
     _title: 'UIkit Components'
   requirements:
     _permission: 'administer site configuration'
@@ -9,7 +9,7 @@ uikit_components.admin:
 uikit_components.core:
   path: '/admin/config/user-interface/uikit_components/core'
   defaults:
-    _form: 'Drupal\uikit_components\Form\UIkitComponentsCoreForm'
+    _form: 'Drupal\uikit_components\Form\CoreForm'
     _title: 'Core components'
   requirements:
     _permission: 'administer site configuration'
@@ -17,7 +17,7 @@ uikit_components.core:
 uikit_components.advanced:
   path: '/admin/config/user-interface/uikit_components/advanced'
   defaults:
-    _form: 'Drupal\uikit_components\Form\UIkitComponentsAdvancedForm'
+    _form: 'Drupal\uikit_components\Form\AdvancedForm'
     _title: 'Advanced components'
   requirements:
     _permission: 'administer site configuration'
