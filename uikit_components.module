@@ -14,6 +14,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 
+UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'alter', 'includes');
+
 /**
  * Implements hook_help().
  */
@@ -39,6 +41,29 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   }
 
   return $output;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function uikit_components_theme($existing, $type, $theme, $path) {
+  $path = drupal_get_path('module', 'uikit_components') . '/templates';
+
+  return [
+    'menu__default' => [
+      'path' => "$path/navigation",
+      'template' => 'menu--default',
+      'preprocess functions' => ['template_preprocess_menu__default'],
+    ],
+    'menu__uk_menu' => [
+      'path' => "$path/navigation",
+      'template' => 'menu--uk-menu',
+    ],
+    'menu__uk_nav' => [
+      'path' => "$path/navigation",
+      'template' => 'menu--uk-nav',
+    ],
+  ];
 }
 
 /**
@@ -144,47 +169,147 @@ function uikit_components_form_block_form_builder($entity_type, Drupal\block\Ent
 }
 
 /**
- * Implements hook_preprocess_menu().
+ * Implements template_preprocess_HOOK().
  */
-function uikit_components_preprocess_menu(&$variables) {
-  $menu_name = isset($variables['menu_name']) ? $variables['menu_name'] : FALSE;
-  $config = \Drupal::config('uikit_components.settings');
+function template_preprocess_menu__default(&$variables) {
+  $menu_name = $variables['menu_name'];
+  $nav_width_classes = UIkitComponents::getNavWidthClasses($menu_name);
+  $variables['wrapper_attributes'] = FALSE;
 
-  if ($menu_name && $config->get('additional_menu_styles')) {
-    $menu_style = UIkitComponents::getMenuStyle($menu_name);
+  if ($nav_width_classes) {
+    $wrapper_attributes = new Attribute();
+    $classes = explode(' ', $nav_width_classes);
 
-    if ($menu_style) {
-      $lists = [
-        'uk-list',
-        'uk-list-bullet',
-        'uk-list-divider',
-        'uk-list-striped',
-      ];
-
-      $subnavs = [
-        'uk-subnav',
-        'uk-subnav-divider',
-        'uk-subnav-pill',
-      ];
-
-      $attributes = new Attribute();
-      $attributes->setAttribute('id', 'menu--' . str_replace('_', '-', $menu_name));
-
-      if (in_array($menu_style, $lists)) {
-        $attributes->addClass('uk-list');
-      }
-
-      if (in_array($menu_style, $subnavs)) {
-        $attributes->addClass('uk-subnav');
-      }
-
-      $attributes->addClass($menu_style);
-
-      if (in_array($menu_style, $lists) && UIkitComponents::getLargeList($menu_name)) {
-        $attributes->addClass('uk-list-large');
-      }
-
-      $variables['attributes'] = $attributes;
+    foreach ($classes as $class) {
+      $wrapper_attributes->addClass($class);
     }
+
+    $variables['wrapper_attributes'] = $wrapper_attributes;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function template_preprocess_menu__uk_menu(&$variables) {
+  $menu_name = $variables['menu_name'];
+  $menu_style = UIkitComponents::getMenuStyle($menu_name);
+  $large_list = UIkitComponents::getLargeList($menu_name);
+
+  if ($menu_style) {
+    $attributes = new Attribute();
+
+    switch ($menu_style) {
+      case 'uk-list':
+      case 'uk-list-bullet':
+      case 'uk-list-divider':
+      case 'uk-list-striped':
+        $attributes->addClass('uk-list');
+        break;
+
+      case 'uk-nav':
+        $attributes->addClass('uk-nav');
+        break;
+
+      case 'uk-subnav':
+      case 'uk-subnav-divider':
+      case 'uk-subnav-pill':
+        $attributes->addClass('uk-subnav');
+        break;
+    }
+
+    if ($menu_style != 'uk-list' && $menu_style != 'uk-nav' && $menu_style != 'uk-subnav') {
+      $attributes->addClass($menu_style);
+    }
+    elseif ($menu_style == 'uk-nav') {
+      $nav_accordion = UIkitComponents::getNavAccordion($menu_name);
+      $nav_style_modifier = UIkitComponents::getNavStyleModifier($menu_name);
+      $nav_center = UIkitComponents::getNavCenterModifier($menu_name);
+
+      if ($nav_accordion) {
+        $attributes->addClass('uk-nav-parent-icon');
+        $attributes->setAttribute('uk-nav', '');
+      }
+
+      if ($nav_style_modifier) {
+        $attributes->addClass($nav_style_modifier);
+      }
+
+      if ($nav_center) {
+        $attributes->addClass('uk-nav-center');
+      }
+
+      foreach ($variables['items'] as $index => $item) {
+        if ($item['below']) {
+          $variables['items'][$index]['attributes']->addClass('uk-parent');
+        }
+      }
+    }
+
+    if ($large_list) {
+      $attributes->addClass('uk-list-large');
+    }
+
+    $variables['attributes'] = $attributes;
+  }
+
+  $nav_width_classes = UIkitComponents::getNavWidthClasses($menu_name);
+  $variables['wrapper_attributes'] = FALSE;
+
+  if ($nav_width_classes) {
+    $wrapper_attributes = new Attribute();
+    $classes = explode(' ', $nav_width_classes);
+
+    foreach ($classes as $class) {
+      $wrapper_attributes->addClass($class);
+    }
+
+    $variables['wrapper_attributes'] = $wrapper_attributes;
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK().
+ */
+function template_preprocess_menu__uk_nav(&$variables) {
+  $menu_name = $variables['menu_name'];
+  $menu_style = UIkitComponents::getMenuStyle($menu_name);
+
+  if ($menu_style) {
+    $attributes = new Attribute();
+    $attributes->addClass('uk-nav');
+
+    $nav_style_modifier = UIkitComponents::getNavStyleModifier($menu_name);
+    $nav_center = UIkitComponents::getNavCenterModifier($menu_name);
+
+    if ($nav_style_modifier) {
+      $attributes->addClass($nav_style_modifier);
+    }
+
+    if ($nav_center) {
+      $attributes->addClass('uk-nav-center');
+    }
+
+    foreach ($variables['items'] as $index => $item) {
+      if ($item['below']) {
+        $variables['items'][$index]['attributes']->addClass('uk-parent');
+      }
+    }
+
+    $variables['attributes'] = $attributes;
+  }
+
+  $nav_width_classes = UIkitComponents::getNavWidthClasses($menu_name);
+  $variables['wrapper_attributes'] = FALSE;
+
+  if ($nav_width_classes) {
+    $wrapper_attributes = new Attribute();
+    $classes = explode(' ', $nav_width_classes);
+
+    foreach ($classes as $class) {
+      $wrapper_attributes->addClass($class);
+    }
+
+    $variables['wrapper_attributes'] = $wrapper_attributes;
   }
 }

@@ -22,10 +22,11 @@ class UIkitComponents {
    *
    * Examples:
    * @code
-   *   // Load includes/uikit_subtheme.admin.inc from the node module.
-   *   uikit_theme_load_include('inc', 'uikit_subtheme', 'uikit_subtheme.admin', 'includes');
-   *   // Load preprocess.inc from the uikit_subtheme theme.
-   *   uikit_theme_load_include('inc', 'uikit_subtheme', 'preprocess');
+   *   // Load node.admin.inc from the node module.
+   *   UIkitComponents::loadIncludeFile('inc', 'node', 'module', 'node.admin');
+   *
+   *   // Load includes/alter.inc from the uikit theme.
+   *   UIkitComponents::loadIncludeFile('inc', 'uikit', 'theme', 'preprocess', 'includes');
    * @endcode
    *
    * Do not use this function in a global context since it requires Drupal to be
@@ -33,8 +34,11 @@ class UIkitComponents {
    *
    * @param string $type
    *   The include file's type (file extension).
-   * @param string $theme
-   *   The theme to which the include file belongs.
+   * @param string $project
+   *   The project to which the include file belongs.
+   * @param string $project_type
+   *   The project type to which the include file belongs, either "theme" or
+   *   "module". Defaults to "module".
    * @param string $name
    *   (optional) The base file name (without the $type extension). If omitted,
    *   $theme is used; i.e., resulting in "$theme.$type" by default.
@@ -44,7 +48,7 @@ class UIkitComponents {
    * @return string
    *   The name of the included file, if successful; FALSE otherwise.
    */
-  public static function uikit_theme_load_include($type, $theme, $name = NULL, $sub_directory = '') {
+  public static function loadIncludeFile($type, $project, $project_type = 'module', $name = NULL, $sub_directory = '') {
     static $files = [];
 
     if (isset($sub_directory)) {
@@ -52,17 +56,17 @@ class UIkitComponents {
     }
 
     if (!isset($name)) {
-      $name = $theme;
+      $name = $project;
     }
 
-    $key = $type . ':' . $theme . ':' . $name . ':' . $sub_directory;
+    $key = $type . ':' . $project . ':' . $name . ':' . $sub_directory;
 
     if (isset($files[$key])) {
       return $files[$key];
     }
 
     if (function_exists('drupal_get_path')) {
-      $file = DRUPAL_ROOT . '/' . drupal_get_path('theme', $theme) . "$sub_directory/$name.$type";
+      $file = DRUPAL_ROOT . '/' . drupal_get_path($project_type, $project) . "$sub_directory/$name.$type";
       if (is_file($file)) {
         require_once $file;
         $files[$key] = $file;
@@ -223,6 +227,32 @@ class UIkitComponents {
    */
   public static function setNavCenterModifier($menu, $value) {
     \Drupal::state()->set($menu . '_menu_style_nav_center_modifier', $value);
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @return bool
+   *   Returns menu style if already set, FALSE otherwise.
+   */
+  public static function getNavWidthClasses($menu) {
+    return \Drupal::state()->get($menu . '_menu_style_wrapper_widths') ?: 0;
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @param string $style
+   *   The style value to set for the menu.
+   */
+  public static function setNavWidthClasses($menu, $value) {
+    \Drupal::state()->set($menu . '_menu_style_wrapper_widths', $value);
   }
 
 }
