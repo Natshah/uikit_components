@@ -18,7 +18,6 @@ class MenuEditForm extends MenuForm {
     $form = parent::form($form, $form_state);
 
     $t_args = [
-      ':accordion' => UIkitComponents::getComponentURL('accordion'),
       ':list' => UIkitComponents::getComponentURL('list'),
       ':nav' => UIkitComponents::getComponentURL('nav'),
       ':subnav' => UIkitComponents::getComponentURL('subnav'),
@@ -26,7 +25,6 @@ class MenuEditForm extends MenuForm {
     ];
 
     $description_links = [
-      $this->t('<a href=":accordion" target="_blank">Accordion</a>', $t_args),
       $this->t('<a href=":list" target="_blank">List</a>', $t_args),
       $this->t('<a href=":nav" target="_blank">Nav</a>', $t_args),
       $this->t('<a href=":subnav" target="_blank">Subnav</a>', $t_args),
