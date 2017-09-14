@@ -100,4 +100,129 @@ class UIkitComponents {
       return FALSE;
     }
   }
+
+  /**
+   * Get the UIkit documentation URL for the given component.
+   *
+   * @param string $component
+   *   The component to return a URL for.
+   *
+   * @return string
+   *   Returns a URL for the given component.
+   */
+  public static function getComponentURL($component) {
+    if (!$component) {
+      drupal_set_message(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'), 'warning');
+      return;
+    }
+    else {
+      $uri = 'https://getuikit.com/docs/' . $component;
+      return Url::fromUri($uri)->toString();
+    }
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @return bool
+   *   Returns menu style if already set, FALSE otherwise.
+   */
+  public static function getMenuStyle($menu) {
+    return \Drupal::state()->get($menu . '_menu_style') ?: 0;
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @param string $style
+   *   The style value to set for the menu.
+   */
+  public static function setMenuStyle($menu, $value) {
+    \Drupal::state()->set($menu . '_menu_style', $value);
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @return bool
+   *   Returns menu style if already set, FALSE otherwise.
+   */
+  public static function getLargeList($menu) {
+    return \Drupal::state()->get($menu . '_menu_style_list_large') ?: 0;
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @param string $style
+   *   The style value to set for the menu.
+   */
+  public static function setLargeList($menu, $value) {
+    \Drupal::state()->set($menu . '_menu_style_list_large', $value);
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @return bool
+   *   Returns menu style if already set, FALSE otherwise.
+   */
+  public static function getNavStyleModifier($menu) {
+    return \Drupal::state()->get($menu . '_menu_style_nav_style_modifiers') ?: 0;
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @param string $style
+   *   The style value to set for the menu.
+   */
+  public static function setNavStyleModifier($menu, $value) {
+    \Drupal::state()->set($menu . '_menu_style_nav_style_modifiers', $value);
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @return bool
+   *   Returns menu style if already set, FALSE otherwise.
+   */
+  public static function getNavCenterModifier($menu) {
+    return \Drupal::state()->get($menu . '_menu_style_nav_center_modifier') ?: 0;
+  }
+
+  /**
+   * Returns the menu style, if already set.
+   *
+   * @param string $menu
+   *   The name of the menu.
+   *
+   * @param string $style
+   *   The style value to set for the menu.
+   */
+  public static function setNavCenterModifier($menu, $value) {
+    \Drupal::state()->set($menu . '_menu_style_nav_center_modifier', $value);
+  }
+
 }
