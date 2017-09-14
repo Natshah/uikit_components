@@ -1,0 +1,5 @@
+services:
+  uikit_components.route_subscriber:
+    class: Drupal\uikit_components\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
