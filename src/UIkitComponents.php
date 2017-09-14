@@ -13,7 +13,7 @@ use Symfony\Component\Yaml\Yaml;
 class UIkitComponents {
 
   /**
-   * Loads a theme include file.
+   * Loads a project's include file.
    *
    * This function essentially does the same as Drupal core's
    * module_load_include() function, except targeting theme include files. It also
@@ -113,12 +113,12 @@ class UIkitComponents {
    *   The component to return a URL for.
    *
    * @return string
-   *   Returns a URL for the given component.
+   *   Returns a URL for the given component if set, FALSE otherwise.
    */
   public static function getComponentURL($component) {
     if (!$component) {
       drupal_set_message(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'), 'warning');
-      return;
+      return FALSE;
     }
     else {
       $uri = 'https://getuikit.com/docs/' . $component;
@@ -127,25 +127,25 @@ class UIkitComponents {
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Returns the menu style.
    *
    * @param string $menu
    *   The name of the menu.
    *
    * @return bool
-   *   Returns menu style if already set, FALSE otherwise.
+   *   Returns menu style, FALSE otherwise.
    */
   public static function getMenuStyle($menu) {
     return \Drupal::state()->get($menu . '_menu_style') ?: 0;
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Sets the menu style.
    *
    * @param string $menu
    *   The name of the menu.
    *
-   * @param string $style
+   * @param string $value
    *   The style value to set for the menu.
    */
   public static function setMenuStyle($menu, $value) {
@@ -153,104 +153,104 @@ class UIkitComponents {
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Returns the large modifier.
    *
    * @param string $menu
    *   The name of the menu.
    *
    * @return bool
-   *   Returns menu style if already set, FALSE otherwise.
+   *   Returns TRUE if the large modifier is set, FALSE otherwise.
    */
   public static function getLargeList($menu) {
     return \Drupal::state()->get($menu . '_menu_style_list_large') ?: 0;
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Sets the large modifier setting.
    *
    * @param string $menu
    *   The name of the menu.
    *
-   * @param string $style
-   *   The style value to set for the menu.
+   * @param string $value
+   *   The large modifier value to set for the menu.
    */
   public static function setLargeList($menu, $value) {
     \Drupal::state()->set($menu . '_menu_style_list_large', $value);
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Returns the nav style modifier.
    *
    * @param string $menu
    *   The name of the menu.
    *
    * @return bool
-   *   Returns menu style if already set, FALSE otherwise.
+   *   Returns TRUE if nav style modifier is set, FALSE otherwise.
    */
   public static function getNavStyleModifier($menu) {
     return \Drupal::state()->get($menu . '_menu_style_nav_style_modifiers') ?: 0;
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Sets the nav style modifier.
    *
    * @param string $menu
    *   The name of the menu.
    *
-   * @param string $style
-   *   The style value to set for the menu.
+   * @param string $value
+   *   The nav style modifier value to set for the menu.
    */
   public static function setNavStyleModifier($menu, $value) {
     \Drupal::state()->set($menu . '_menu_style_nav_style_modifiers', $value);
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Returns the nav center modifier setting.
    *
    * @param string $menu
    *   The name of the menu.
    *
    * @return bool
-   *   Returns menu style if already set, FALSE otherwise.
+   *   Returns TRUE if nav center modifier is set, FALSE otherwise.
    */
   public static function getNavCenterModifier($menu) {
     return \Drupal::state()->get($menu . '_menu_style_nav_center_modifier') ?: 0;
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Sets the nav center modifier.
    *
    * @param string $menu
    *   The name of the menu.
    *
-   * @param string $style
-   *   The style value to set for the menu.
+   * @param string $value
+   *   The nav center modifier value to set for the menu.
    */
   public static function setNavCenterModifier($menu, $value) {
     \Drupal::state()->set($menu . '_menu_style_nav_center_modifier', $value);
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Returns the menu nav width classes.
    *
    * @param string $menu
    *   The name of the menu.
    *
    * @return bool
-   *   Returns menu style if already set, FALSE otherwise.
+   *   Returns TRUE if the nav width classes are set, FALSE otherwise.
    */
   public static function getNavWidthClasses($menu) {
     return \Drupal::state()->get($menu . '_menu_style_wrapper_widths') ?: 0;
   }
 
   /**
-   * Returns the menu style, if already set.
+   * Sets the nav center modifier.
    *
    * @param string $menu
    *   The name of the menu.
    *
-   * @param string $style
-   *   The style value to set for the menu.
+   * @param string $value
+   *   The nav center modifier value to set for the menu.
    */
   public static function setNavWidthClasses($menu, $value) {
     \Drupal::state()->set($menu . '_menu_style_wrapper_widths', $value);
