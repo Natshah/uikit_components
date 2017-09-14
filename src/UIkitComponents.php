@@ -92,9 +92,8 @@ class UIkitComponents {
 
     if (isset($theme_list['uikit'])) {
       $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
-      $uikit_version = explode('.', $uikit_libraries['uikit']['version']);
 
-      return implode('.', $uikit_version);
+      return $uikit_libraries['uikit']['version'];
     }
     else {
       drupal_set_message(t('The UIkit base theme is either not installed or could not be found. Please <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit.', $t_args), 'error');
