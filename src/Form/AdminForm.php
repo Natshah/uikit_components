@@ -26,21 +26,23 @@ class AdminForm extends ConfigFormBase {
     $config = $this->config('uikit_components.settings');
 
     // Get UIkit framework version from UIkit base theme.
-    $uikit_version = UIkitComponents::getUIkitLibraryVersion() ? UIkitComponents::getUIkitLibraryVersion() : $this->t('The UIkit base theme is not installed.');
+    $uikit_version = UIkitComponents::getUIkitLibraryVersion();
 
     // UIkit framework version field.
-    $form['uikit_framework_version'] = [
-      '#type' => 'item',
-      '#title' => $this->t('UIkit Framework Version'),
-      '#markup' => $uikit_version,
-    ];
+    if ($uikit_version) {
+      $form['uikit_framework_version'] = [
+        '#type' => 'item',
+        '#title' => $this->t('UIkit Framework Version'),
+        '#markup' => $uikit_version ? $uikit_version : $this->t('The UIkit base theme is not installed.'),
+      ];
 
-    $form['additional_menu_styles'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable configurable menu styles'),
-      '#description' => $this->t('Enable selecting menu styles when adding and editing <a href="/admin/structure/menu">menus</a>. This works for all menus using the <em class="placeholder">menu.html.twig</em> template and menu templates you have overriden in your theme, i.e. <em class="placeholder">menu--tools.html.twig</em>, <em class="placeholder">menu--admin.html.twig</em>, etc.'),
-      '#default_value' => $config->get('additional_menu_styles'),
-    ];
+      $form['additional_menu_styles'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable configurable menu styles'),
+        '#description' => $this->t('Enable selecting menu styles when adding and editing <a href="/admin/structure/menu">menus</a>. This provides three new menu templates: <em class="placeholder">menu--default.html.twig</em> as a default, <em class="placeholder">menu--uk-menu.html.twig</em> for uk-list and uk-subnav menus and <em class="placeholder">menu--uk-nav.html.twig</em> for uk-nav menus. This also ignores the admin toolbar and devel module menus so they can be rendered correctly.'),
+        '#default_value' => $config->get('additional_menu_styles'),
+      ];
+    }
 
     return $form;
   }

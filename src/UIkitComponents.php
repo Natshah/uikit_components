@@ -90,8 +90,9 @@ class UIkitComponents {
 
     // Translatable strings.
     $t_args = [
-      ':uikit_project' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
+      ':clear_cache' => Url::fromRoute('system.performance_settings')->toString(),
       ':themes_page' => Url::fromRoute('system.themes_page')->toString(),
+      ':uikit_project' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
     ];
 
     if (isset($theme_list['uikit'])) {
@@ -100,7 +101,7 @@ class UIkitComponents {
       return $uikit_libraries['uikit']['version'];
     }
     else {
-      drupal_set_message(t('The UIkit base theme is either not installed or could not be found. Please <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit.', $t_args), 'error');
+      drupal_set_message(t('The UIkit base theme is either not installed or enabled. Please <a href=":themes_page">enable</a>, or <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit. If UIkit is installed and enabled, try <a href=":clear_cache">clearing all caches</a>.', $t_args), 'error');
       return FALSE;
     }
   }
