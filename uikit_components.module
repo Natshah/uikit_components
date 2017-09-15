@@ -48,18 +48,17 @@ function uikit_components_theme($existing, $type, $theme, $path) {
   $path = drupal_get_path('module', 'uikit_components') . '/templates';
 
   return [
-    'menu__default' => [
+    'menu__uk_list' => [
       'path' => "$path/navigation",
-      'template' => 'menu--default',
-      'preprocess functions' => ['template_preprocess_menu__default'],
-    ],
-    'menu__uk_menu' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uk-menu',
+      'template' => 'menu--uk-list',
     ],
     'menu__uk_nav' => [
       'path' => "$path/navigation",
       'template' => 'menu--uk-nav',
+    ],
+    'menu__uk_subnav' => [
+      'path' => "$path/navigation",
+      'template' => 'menu--uk-subnav',
     ],
   ];
 }

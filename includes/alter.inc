@@ -36,19 +36,22 @@ function uikit_components_theme_suggestions_menu_alter(array &$suggestions, arra
         case 'uk-list-bullet':
         case 'uk-list-divider':
         case 'uk-list-striped':
-        case 'uk-subnav':
-        case 'uk-subnav-divider':
-        case 'uk-subnav-pill':
-          $suggestions[] = 'menu__uk_menu';
+          $suggestions[] = 'menu__uk_list';
+          $suggestions[] = 'menu__uk_list__' . $menu_name;
           break;
 
         case 'uk-nav':
           $suggestions[] = 'menu__uk_nav';
+          $suggestions[] = 'menu__uk_nav__' . $menu_name;
+          break;
+
+        case 'uk-subnav':
+        case 'uk-subnav-divider':
+        case 'uk-subnav-pill':
+          $suggestions[] = 'menu__uk_subnav';
+          $suggestions[] = 'menu__uk_subnav__' . $menu_name;
           break;
       }
-    }
-    elseif ($menu_name != 'admin' && $menu_name != 'devel') {
-      $suggestions[] = 'menu__default';
     }
   }
 }
