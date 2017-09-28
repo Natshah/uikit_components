@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Breadcrumb.
+ *
+ * Available variables:
+ * - items: Breadcrumb trail items. Each item contains:
+ *   - url (optional): The URL for the item.
+ *   - text: The text to display for the item.
+ *   - item_attributes: HTML attributes to apply to the item.
+ * - attributes: HTML attributes to apply to the breadcrumb wrapper.
+ *
+ * @see template_preprocess_uk_breadcrumb()
+ */
+#}
+{%- if items -%}
+  <nav role="navigation" aria-labelledby="uikit-components-breadcrumb">
+    <h2 id="uikit-components-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+    <ul{{ attributes }}>
+    {%- for item in items -%}
+      <li{{ item.attributes }}>
+        {% if item.url %}
+          <a href="{{ item.url }}">{{ item.text }}</a>
+        {% else %}
+          <span>{{ item.text }}</span>
+        {% endif %}
+      </li>
+    {%- endfor -%}
+    </ul>
+  </nav>
+{%- endif -%}

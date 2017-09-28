@@ -13,6 +13,7 @@ use Drupal\uikit_components\UIkitComponents;
 
 UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'alter', 'includes');
 UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'preprocess', 'includes');
+UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'theme', 'includes');
 
 /**
  * Implements hook_help().
@@ -39,26 +40,4 @@ function uikit_components_help($route_name, RouteMatchInterface $route_match) {
   }
 
   return $output;
-}
-
-/**
- * Implements hook_theme().
- */
-function uikit_components_theme($existing, $type, $theme, $path) {
-  $path = drupal_get_path('module', 'uikit_components') . '/templates';
-
-  return [
-    'menu__uk_list' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uk-list',
-    ],
-    'menu__uk_nav' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uk-nav',
-    ],
-    'menu__uk_subnav' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uk-subnav',
-    ],
-  ];
 }

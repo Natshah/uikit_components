@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Card.
+ *
+ * Available variables:
+ * - title: The title of the card.
+ * - content: The content of the card.
+ * - attributes: HTML attributes to be applied to the card wrapper.
+ * - body_attributes: HTML attributes to be applied to the default body wrapper.
+ * - header: The header content to display above the default body content.
+ * - footer: The footer content to display below the default body content.
+ *
+ * @see template_preprocess_uk_card()
+ */
+#}
+{% if content %}
+  <div{{ attributes }}>
+    {% if header %}
+      <div class="uk-card-header">
+        {{ header }}
+      </div>
+    {% endif %}
+
+    {% if title %}
+      <h3 class="uk-card-title">{{ title }}</h3>
+    {% endif %}
+
+    <div{{ body_attributes }}>
+      {{ content }}
+    </div>
+
+    {% if footer %}
+      <div class="uk-card-footer">
+        {{ footer }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

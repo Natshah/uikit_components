@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Article.
+ *
+ * Available variables:
+ * - title: The title of the article.
+ * - meta: The metadata of the article.
+ * - lead: The leading paragraph of the article.
+ * - content: The content of the article.
+ * - attributes: HTML attributes to be applied to the article.
+ *
+ * @see template_preprocess_uk_article()
+ */
+#}
+<article{{ attributes }}>
+  {% if title %}
+    <h1 class="uk-article-title">{{ title }}</h1>
+  {% endif %}
+
+  {% if meta %}
+    <p class="uk-article-meta">{{ meta }}</p>
+  {% endif %}
+
+  {% if lead %}
+    <p class="uk-text-lead">{{ lead }}</p>
+  {% endif %}
+
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</article>

@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Countdown.
+ *
+ * Available variables:
+ * - attributes: HTML attributes to be applied to the countdown.
+ * - separators: An associative array to insert a separator between each number,
+     containing:
+ *   - days_hours: The separator to insert between the days and hours.
+ *   - hours_minutes: The separator to insert between hours and minutes.
+ *   - minutes_seconds: The separator to insert between minutes and seconds.
+ * - labels: An associative array for labels to display below each number,
+ *   containing:
+ *   - days: The label to display for days.
+ *   - hours: The label to display for hours.
+ *   - minutes: The label to display for minutes.
+ *   - seconds: The label to display for seconds.
+ *
+ * @see template_preprocess_uk_countdown()
+ */
+#}
+<div{{ attributes }}>
+  <div>
+    <div class="uk-countdown-number uk-countdown-days"></div>
+    {% if labels.days %}
+      <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">{{ labels.days }}</div>
+    {% endif %}
+  </div>
+
+  {% if separators.days_hours %}
+    <div class="uk-countdown-separator">{{ separators.days_hours }}</div>
+  {% endif %}
+
+  <div>
+    <div class="uk-countdown-number uk-countdown-hours"></div>
+    {% if labels.hours %}
+      <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">{{ labels.hours }}</div>
+    {% endif %}
+  </div>
+
+  {% if separators.hours_minutes %}
+    <div class="uk-countdown-separator">{{ separators.hours_minutes }}</div>
+  {% endif %}
+
+  <div>
+    <div class="uk-countdown-number uk-countdown-minutes"></div>
+    {% if labels.minutes %}
+      <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">{{ labels.minutes }}</div>
+    {% endif %}
+  </div>
+
+  {% if separators.minutes_seconds %}
+    <div class="uk-countdown-separator">{{ separators.minutes_seconds }}</div>
+  {% endif %}
+
+  <div>
+    <div class="uk-countdown-number uk-countdown-seconds"></div>
+    {% if labels.seconds %}
+      <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">{{ labels.seconds }}</div>
+    {% endif %}
+  </div>
+</div>

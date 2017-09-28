@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Badge.
+ *
+ * Available variables:
+ * - content: The content of the badge.
+ * - attributes: HTML attributes to be applied to the badge.
+ *
+ * @see template_preprocess_uk_badge()
+ */
+#}
+{% if content %}
+  <span{{ attributes }}>{{ content }}</span>
+{% endif %}
