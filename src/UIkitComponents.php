@@ -96,7 +96,7 @@ class UIkitComponents {
     ];
 
     if (isset($theme_list['uikit'])) {
-      $uikit_libraries = Yaml::parse(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml');
+      $uikit_libraries = Yaml::parse(file_get_contents(drupal_get_path('theme', 'uikit') . '/uikit.libraries.yml'));
 
       return $uikit_libraries['uikit']['version'];
     }
