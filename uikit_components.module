@@ -11,9 +11,9 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\uikit_components\UIkitComponents;
 
-UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'alter', 'includes');
-UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'preprocess', 'includes');
-UIkitComponents::loadIncludeFile('inc', 'uikit_components', 'module', 'theme', 'includes');
+module_load_include('inc', 'uikit_components', 'includes/alter');
+module_load_include('inc', 'uikit_components', 'includes/preprocess');
+module_load_include('inc', 'uikit_components', 'includes/theme');
 
 /**
  * Implements hook_help().
