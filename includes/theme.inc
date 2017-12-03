@@ -18,17 +18,15 @@ function uikit_components_theme($existing, $type, $theme, $path) {
     // UIkit framework component theme implementations.
     'uikit_accordion' => [
       'render element' => 'element',
-      'path' => "$path/dataset",
+      'path' => "$path/components",
     ],
     'uikit_article' => [
       'render element' => 'element',
-      'path' => "$path/dataset",
+      'path' => "$path/components",
     ],
-    'uk_badge' => [
-      'variables' => [
-        'items' => NULL,
-      ],
-      'path' => "$path/dataset",
+    'uikit_badge' => [
+      'render element' => 'element',
+      'path' => "$path/components",
     ],
     'uk_breadcrumb' => [
       'variables' => [

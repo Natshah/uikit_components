@@ -75,7 +75,7 @@ function template_preprocess_uikit_accordion(&$variables) {
 }
 
 /**
- * Prrpares variables for UIkit Article templates.
+ * Prepares variables for UIkit Article templates.
  *
  * @param $variables
  *   An associative array containing:
@@ -126,16 +126,24 @@ function template_preprocess_uikit_article(&$variables) {
 /**
  * Prrpares variables for UIkit Badge templates.
  *
- * Default template: uk-badge.html.twig.
+ * Default template: uikit-badge.html.twig.
  *
  * @param $variables:
  *   An associative array containing:
- *   - content: The content of the article.
+ *   - value: The value of the article.
  */
-function template_preprocess_uk_badge(&$variables) {
+function template_preprocess_uikit_badge(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the badge.
   $attributes = new Attribute();
   $attributes->addClass('uk-badge');
   $variables['attributes'] = $attributes;
+
+  // Set the value for the badge, if not empty.
+  if (!empty($element['#value'])) {
+    $variables['value'] = $element['#value'];
+  }
 }
 
 /**
