@@ -20,13 +20,8 @@ function uikit_components_theme($existing, $type, $theme, $path) {
       'render element' => 'element',
       'path' => "$path/dataset",
     ],
-    'uk_article' => [
-      'variables' => [
-        'title' => NULL,
-        'meta' => NULL,
-        'lead' => NULL,
-        'content' => NULL,
-      ],
+    'uikit_article' => [
+      'render element' => 'element',
       'path' => "$path/dataset",
     ],
     'uk_badge' => [

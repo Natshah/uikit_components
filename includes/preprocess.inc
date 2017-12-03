@@ -87,7 +87,24 @@ function template_preprocess_uikit_accordion(&$variables) {
   *   - lead (optional): The leading paragraph of the article.
   *   - content: The content of the article.
  */
-function template_preprocess_uk_article(&$variables) {
+function template_preprocess_uikit_article(&$variables) {
+  $element = $variables['element'];
+
+  // Set the title, meta, lead and content variables, if they are not empty.
+  if (!empty($element['#title'])) {
+    $variables['title'] = $element['#title'];
+  }
+  if (!empty($element['#meta'])) {
+    $variables['meta'] = $element['#meta'];
+  }
+  if (!empty($element['#lead'])) {
+    $variables['lead'] = $element['#lead'];
+  }
+  if (!empty($element['#content'])) {
+    $variables['content'] = $element['#content'];
+  }
+
+  // Set the attributes for the article outer element.
   $attributes = new Attribute();
   $attributes->addClass('uk-article');
   $variables['attributes'] = $attributes;
