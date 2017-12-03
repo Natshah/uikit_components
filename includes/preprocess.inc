@@ -77,15 +77,28 @@ function template_preprocess_uikit_accordion(&$variables) {
 /**
  * Prrpares variables for UIkit Article templates.
  *
- * Default template: uk-article.html.twig.
- *
- * @param $variables:
+ * @param $variables
  *   An associative array containing:
-  *   - title (optional): The title of the article.
-  *   - meta (optional): The metadata of the article, such as the author and
-  *     created date.
-  *   - lead (optional): The leading paragraph of the article.
-  *   - content: The content of the article.
+ *     - element: An associative array containing:
+ *       - #title (optional): The title of the article.
+ *       - #meta (optional): The metadata of the article, such as the author and
+ *         created date.
+ *       - #lead (optional): The leading paragraph of the article.
+ *       - #content: The content of the article.
+ *
+ * Usage example:
+ * @code
+ * $build['article'] = [
+ *   '#type' => 'uikit_article',
+ *   '#title' => $this->t('Heading'),
+ *   '#meta' => Markup::create($meta),
+ *   '#lead' => $this->t('Lorem ipsum dolor sit amet'),
+ *   '#content' => Markup::create($content),
+ * ];
+ * @endcode
+ *
+ * @see \Drupal\uikit_components\Element\UIkitArticle
+ * @see https://getuikit.com/docs/article
  */
 function template_preprocess_uikit_article(&$variables) {
   $element = $variables['element'];
