@@ -16,10 +16,8 @@ function uikit_components_theme($existing, $type, $theme, $path) {
 
   return [
     // UIkit framework component theme implementations.
-    'uk_accordion' => [
-      'variables' => [
-        'items' => NULL,
-      ],
+    'uikit_accordion' => [
+      'render element' => 'element',
       'path' => "$path/dataset",
     ],
     'uk_article' => [

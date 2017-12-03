@@ -15,21 +15,63 @@ use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 
 /**
- * Prepares variables for UIkit Accordion templates.
- *
- * Default template: uk-accordion.html.twig.
+ * Prepares variables for UIkit Accordion components.
  *
  * @param $variables
  *   An associative array containing:
- *   - items: An array of items to be displayed in the accordion. Each item must
- *     contain the #title and #content properties. The #title property can only
- *     be a string, whereas the #content property can contain any valid HTML.
+ *   - element: An associative array containing:
+ *     - #items: An array of items to be displayed in the accordion. Each item
+ *       must contain the title and content properties.
+ *     - #component_options: An array containing the component options to apply
+ *       to the accordion. These must be in the form of "option: value" in order
+ *       to work correctly.
+ *
+ * Usage example:
+ * @code
+ * $form['author'] = array(
+ *   '#type' => 'uikit_accordion',
+ *   '#items' => array(
+ *     array(
+ *       'title' => $this->t('Item 1'),
+ *       'content' => Markup::create($markup),
+ *     ),
+ *     array(
+ *       'title' => $this->t('Item 2'),
+ *       'content' => Markup::create($markup),
+ *     ),
+ *     array(
+ *       'title' => $this->t('Item 3'),
+ *       'content' => Markup::create($markup),
+ *     ),
+ *   ),
+ *   '#component_options' => array(
+ *     'multiple: false',
+ *     'duration: 500',
+ *   ),
+ * );
+ * @endcode
+ *
+ * @see \Drupal\uikit_components\Element\UIkitAccordion
+ * @see https://getuikit.com/docs/accordion#component-options
  */
-function template_preprocess_uk_accordion(&$variables) {
-  $attributes = new Attribute();
-  $attributes->addClass('uk-accordion');
-  $attributes->setAttribute('uk-accordion', '');
-  $variables['attributes'] = $attributes;
+function template_preprocess_uikit_accordion(&$variables) {
+  $element = $variables['element'];
+
+  // Set the items variable, if items is not empty.
+  if (!empty($element['#items'])) {
+    $variables['items'] = $element['#items'];
+  }
+
+  // Prepare the component options for the accordion.
+  $component_options = '';
+  if (!empty($element['#component_options'])) {
+    $component_options = implode('; ', $element['#component_options']);
+  }
+
+  // Set the attributes for the accordion outer element.
+  $variables['attributes'] = new Attribute();
+  $variables['attributes']->addClass('uk-accordion');
+  $variables['attributes']->setAttribute('uk-accordion', $component_options);
 }
 
 /**
