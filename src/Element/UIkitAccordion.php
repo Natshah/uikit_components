@@ -16,27 +16,27 @@ use Drupal\Core\Render\Element\RenderElement;
  *
  * Usage example:
  * @code
- * $form['author'] = array(
+ * $form['author'] = [
  *   '#type' => 'uikit_accordion',
- *   '#items' => array(
- *     array(
+ *   '#items' => [
+ *     [
  *       'title' => $this->t('Item 1'),
- *       'content' => Markup::create($markup),
- *     ),
- *     array(
+ *       'content' => Markup::create($item_one),
+ *     ],
+ *     [
  *       'title' => $this->t('Item 2'),
- *       'content' => Markup::create($markup),
- *     ),
- *     array(
+ *       'content' => Markup::create($item_two),
+ *     ],
+ *     [
  *       'title' => $this->t('Item 3'),
- *       'content' => Markup::create($markup),
- *     ),
- *   ),
- *   '#component_options' => array(
+ *       'content' => Markup::create($item_three),
+ *     ],
+ *   ],
+ *   '#component_options' => [
  *     'multiple: false',
  *     'duration: 500',
- *   ),
- * );
+ *   ],
+ * ];
  * @endcode
  *
  * @see template_preprocess_uikit_accordion()
