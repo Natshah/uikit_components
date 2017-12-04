@@ -343,9 +343,9 @@ function template_preprocess_uk_countdown(&$variables) {
 }
 
 /**
- * Implements template_preprocess_HOOK() for menu--uk-list.html.twig.
+ * Implements template_preprocess_HOOK() for menu--uikit-list.html.twig.
  */
-function template_preprocess_menu__uk_list(&$variables) {
+function template_preprocess_menu__uikit_list(&$variables) {
   $menu_name = $variables['menu_name'];
 
   $menu_style = UIkitComponents::getMenuStyle($menu_name);
@@ -378,9 +378,9 @@ function template_preprocess_menu__uk_list(&$variables) {
 }
 
 /**
- * Implements template_preprocess_HOOK() for menu--uk-nav.html.twig.
+ * Implements template_preprocess_HOOK() for menu--uikit-nav.html.twig.
  */
-function template_preprocess_menu__uk_nav(&$variables) {
+function template_preprocess_menu__uikit_nav(&$variables) {
   $menu_name = $variables['menu_name'];
 
   $menu_style = UIkitComponents::getMenuStyle($menu_name);
@@ -422,9 +422,9 @@ function template_preprocess_menu__uk_nav(&$variables) {
 }
 
 /**
- * Implements template_preprocess_HOOK() for menu--uk-subnav.html.twig.
+ * Implements template_preprocess_HOOK() for menu--uikit-subnav.html.twig.
  */
-function template_preprocess_menu__uk_subnav(&$variables) {
+function template_preprocess_menu__uikit_subnav(&$variables) {
   $menu_name = $variables['menu_name'];
 
   $menu_style = UIkitComponents::getMenuStyle($menu_name);

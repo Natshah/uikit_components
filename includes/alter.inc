@@ -36,20 +36,20 @@ function uikit_components_theme_suggestions_menu_alter(array &$suggestions, arra
         case 'uk-list-bullet':
         case 'uk-list-divider':
         case 'uk-list-striped':
-          $suggestions[] = 'menu__uk_list';
-          $suggestions[] = 'menu__uk_list__' . $menu_name;
+          $suggestions[] = 'menu__uikit_list';
+          $suggestions[] = 'menu__uikit_list__' . $menu_name;
           break;
 
         case 'uk-nav':
-          $suggestions[] = 'menu__uk_nav';
-          $suggestions[] = 'menu__uk_nav__' . $menu_name;
+          $suggestions[] = 'menu__uikit_nav';
+          $suggestions[] = 'menu__uikit_nav__' . $menu_name;
           break;
 
         case 'uk-subnav':
         case 'uk-subnav-divider':
         case 'uk-subnav-pill':
-          $suggestions[] = 'menu__uk_subnav';
-          $suggestions[] = 'menu__uk_subnav__' . $menu_name;
+          $suggestions[] = 'menu__uikit_subnav';
+          $suggestions[] = 'menu__uikit_subnav__' . $menu_name;
           break;
       }
     }
@@ -80,7 +80,7 @@ function uikit_components_form_menu_link_content_form_alter(&$form, FormStateInt
 
   // Translatable string arguments.
   $t_args = [
-    ':navbar' => Url::fromUri('https://getuikit.com/v2/docs/navbar.html')->toString(),
+    ':navbar' => Url::fromUri('https://getuikit.com/docs/navbar')->toString(),
   ];
 
   // UIkit navbar component options.

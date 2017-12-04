@@ -46,17 +46,17 @@ function uikit_components_theme($existing, $type, $theme, $path) {
     ],
 
     // Theme implementations which extend an existing core theme implementation.
-    'menu__uk_list' => [
+    'menu__uikit_list' => [
       'path' => "$path/navigation",
-      'template' => 'menu--uk-list',
+      'template' => 'menu--uikit-list',
     ],
-    'menu__uk_nav' => [
+    'menu__uikit_nav' => [
       'path' => "$path/navigation",
-      'template' => 'menu--uk-nav',
+      'template' => 'menu--uikit-nav',
     ],
-    'menu__uk_subnav' => [
+    'menu__uikit_subnav' => [
       'path' => "$path/navigation",
-      'template' => 'menu--uk-subnav',
+      'template' => 'menu--uikit-subnav',
     ],
   ];
 }
