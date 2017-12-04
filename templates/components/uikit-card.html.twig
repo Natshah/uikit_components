@@ -16,21 +16,37 @@
 #}
 {% if content %}
   <div{{ attributes }}>
-    {% if header %}
+    {% if media and media.alignment == 'top' %}
+      <div class="uk-card-media-{{ media.alignment }}">
+        <img src="{{ media.image_url }}" />
+      </div>
+    {% endif %}
+
+    {% if not media and header %}
       <div class="uk-card-header">
         {{ header }}
       </div>
     {% endif %}
 
-    {% if title %}
-      <h3 class="uk-card-title">{{ title }}</h3>
-    {% endif %}
+    <div class="uk-card-body">
+      {% if badge %}
+        <div class="uk-card-badge uk-label">{{ badge }}</div>
+      {% endif %}
 
-    <div{{ body_attributes }}>
+      {% if title and not header %}
+        <h3 class="uk-card-title">{{ title }}</h3>
+      {% endif %}
+
       {{ content }}
     </div>
 
-    {% if footer %}
+    {% if media and media.alignment == 'bottom' %}
+      <div class="uk-card-media-{{ media.alignment }}">
+        <img src="{{ media.image_url }}" />
+      </div>
+    {% endif %}
+
+    {% if not media and footer %}
       <div class="uk-card-footer">
         {{ footer }}
       </div>

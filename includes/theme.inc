@@ -28,25 +28,15 @@ function uikit_components_theme($existing, $type, $theme, $path) {
       'render element' => 'element',
       'path' => "$path/components",
     ],
+    'uikit_card' => [
+      'render element' => 'element',
+      'path' => "$path/components",
+    ],
     'uk_breadcrumb' => [
       'variables' => [
         'items' => NULL,
       ],
       'path' => "$path/navigation",
-    ],
-    'uk_card' => [
-      'variables' => [
-        'title' => NULL,
-        'content' => NULL,
-        'modifiers' => [
-          'style' => 'default',
-          'hover' => FALSE,
-          'size' => NULL,
-        ],
-        'header' => NULL,
-        'footer' => NULL,
-      ],
-      'path' => "$path/dataset",
     ],
     'uk_countdown' => [
       'variables' => [

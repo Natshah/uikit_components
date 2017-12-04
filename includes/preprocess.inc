@@ -17,6 +17,8 @@ use Drupal\uikit_components\UIkitComponents;
 /**
  * Prepares variables for UIkit Accordion components.
  *
+ * Default template: uikit-accordion.html.twig.
+ *
  * @param $variables
  *   An associative array containing:
  *   - element: An associative array containing:
@@ -77,14 +79,16 @@ function template_preprocess_uikit_accordion(&$variables) {
 /**
  * Prepares variables for UIkit Article templates.
  *
+ * Default template: uikit-article.html.twig.
+ *
  * @param $variables
  *   An associative array containing:
- *     - element: An associative array containing:
- *       - #title (optional): The title of the article.
- *       - #meta (optional): The metadata of the article, such as the author and
- *         created date.
- *       - #lead (optional): The leading paragraph of the article.
- *       - #content: The content of the article.
+ *   - element: An associative array containing:
+ *     - #title (optional): The title of the article.
+ *     - #meta (optional): The metadata of the article, such as the author and
+ *       created date.
+ *     - #lead (optional): The leading paragraph of the article.
+ *     - #content: The content of the article.
  *
  * Usage example:
  * @code
@@ -130,7 +134,16 @@ function template_preprocess_uikit_article(&$variables) {
  *
  * @param $variables:
  *   An associative array containing:
- *   - value: The value of the article.
+ *   - element: An associative array containing:
+ *     - #value: The value of the article.
+ *
+ * Usage example:
+ * @code
+ * $build['badge'] = [
+ *   '#type' => 'uikit_badge',
+ *   '#value' => '100',
+ * ];
+ * @endcode
  */
 function template_preprocess_uikit_badge(&$variables) {
   $element = $variables['element'];
@@ -144,6 +157,93 @@ function template_preprocess_uikit_badge(&$variables) {
   if (!empty($element['#value'])) {
     $variables['value'] = $element['#value'];
   }
+}
+
+/**
+ * Prepares variables for UIkit Article templates.
+ *
+ * Default template: uikit-card.html.twig.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #content: The content of the article.
+ *     - #title (optional): The title of the card.
+ *     - #style (optional): The style of the card. Defaults to "default".
+ *     - #hover (optional): Add hover effect to card. Defaults to FALSE.
+ *     - #size (optional): The padding to apply to the card.
+ *     - #badge (optional): The badge to apply to the card.
+ *     - #header (optional): The heading to add to the card.
+ *     - #footer (optional): The footer to add to the card.
+ *     - #media (optional): An associative array containing:
+ *       - alignment: Where the media is aligned in the card. Possible values
+ *         are top or bottom. Left and right alignment is not currently
+ *         available.
+ *       - image_url: The URL for the image to display in the card.
+ *
+ * If #media is set, #header and #footer will be ignored. This prevents the
+ * layout from being disrupted when #media is set. Since left and right media
+ * layouts are too complex, left and right alignment values are currently
+ * unavailable. See the documentation link below for more information.
+ *
+ * Usage example:
+ * @code
+ * $build['card'] = [
+ *   '#type' => 'uikit_card',
+ *   '#title' => $this->t('Title'),
+ *   '#content' => Markup::create($content),
+ *   '#style' => 'default',
+ *   '#hover' => TRUE,
+ *   '#size' => 'large',
+ *   '#badge' => $this->t('Badge'),
+ *   '#header' => Markup::create($header),
+ *   '#footer' => Markup::create($footer),
+ * ];
+ * @endcode
+ *
+ * @see \Drupal\uikit_components\Element\UIkitCard
+ * @see https://getuikit.com/docs/card
+ */
+function template_preprocess_uikit_card(&$variables) {
+  $element = $variables['element'];
+
+  // Set the title, content, badge, header, footer and media variables, if they
+  // are not empty.
+  if (!empty($element['#title'])) {
+    $variables['title'] = $element['#title'];
+  }
+  if (!empty($element['#content'])) {
+    $variables['content'] = $element['#content'];
+  }
+  if (!empty($element['#badge'])) {
+    $variables['badge'] = $element['#badge'];
+  }
+  if (!empty($element['#header'])) {
+    $variables['header'] = $element['#header'];
+  }
+  if (!empty($element['#footer'])) {
+    $variables['footer'] = $element['#footer'];
+  }
+  if (!empty($element['#media'])) {
+    $variables['media'] = $element['#media'];
+  }
+
+  // Set the attributes for the card.
+  $attributes = new Attribute();
+  $attributes->addClass('uk-card');
+  $attributes->addClass('uk-card-' . $element['#style']);
+
+  if ($element['#hover']) {
+    $attributes->addClass('uk-card-hover');
+  }
+  if (!empty($element['#size'])) {
+    $attributes->addClass('uk-card-' . $element['#size']);
+  }
+  if (!empty($element['#badge'])) {
+    $variables['badge'] = $element['#badge'];
+  }
+
+  $variables['attributes'] = $attributes;
 }
 
 /**
@@ -171,58 +271,6 @@ function template_preprocess_uk_breadcrumb(&$variables) {
 
     $variables['items'][$key]['attributes'] = $item_attributes;
   }
-}
-
-/**
- * Prepares variables for UIkit Card templates.
- *
- * Default template: uk-card.html.twig.
- *
- * @param $variables
- *   An associative array containing:
- *   - title (optional): The title to display in the card.
- *   - content: The content of the card.
- *   - modifiers: An associative array of UIkit card modifiers containing:
- *     - style (optional): Adds a specific style to cards. Can be one of
- *       following:
- *       - default (Default): Creates a visually styled box.
- *       - primary: Emphasize the card with a primary color.
- *       - secondary: Gives the card a secondary background color.
- *     - hover (optional): Set to TRUE to create a hover effect on the card.
- *     - size (optional): Applies different size modifiers to cards that will
- *       decrease or increase the padding. Can be one of the following:
- *       - small: Applies a smaller padding.
- *       - large: Applies a larger padding.
- *   - header (optional): Content to display above the default card body.
- *   - footer (optional): Content to display below the default card body.
- */
-function template_preprocess_uk_card(&$variables) {
-  $modifiers = $variables['modifiers'];
-  $style = $modifiers['style'];
-  $hover = isset($modifiers['hover']) && $modifiers['hover'];
-  $size = isset($modifiers['size']) ? $modifiers['size'] : FALSE;
-
-  $attributes = new Attribute($variables['attributes']);
-  $body_attributes = new Attribute();
-  $attributes->addClass('uk-card');
-  $attributes->addClass("uk-card-$style");
-
-  if ($variables['header'] || $variables['footer']) {
-    $body_attributes->addClass('uk-card-body');
-  }
-  else {
-    $attributes->addClass('uk-card-body');
-  }
-
-  if ($hover) {
-    $attributes->addClass('uk-card-hover');
-  }
-  if ($size) {
-    $attributes->addClass("uk-card-$size");
-  }
-
-  $variables['attributes'] = $attributes;
-  $variables['body_attributes'] = $body_attributes;
 }
 
 /**
