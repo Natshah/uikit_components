@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for a group of form elements.
+ * Provides a render element for the Accordion component.
  *
  * Available properties:
  * - #items: An array of items to be displayed in the accordion. Each item must
@@ -38,6 +38,8 @@ use Drupal\Core\Render\Element\RenderElement;
  *   ],
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see template_preprocess_uikit_accordion()
  * @see https://getuikit.com/docs/accordion#component-options

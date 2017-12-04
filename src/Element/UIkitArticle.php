@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for an Article component.
+ * Provides a render element for the Article component.
  *
  * Available properties:
  * - #content: The content of the article.
@@ -20,6 +20,8 @@ use Drupal\Core\Render\Element\RenderElement;
  *   '#content' => Markup::create($content),
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see template_preprocess_uikit_article()
  * @see https://getuikit.com/docs/article

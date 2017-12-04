@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for a Card component.
+ * Provides a render element for the Card component.
  *
  * Available properties:
  * - #content: The content of the card.
@@ -40,6 +40,8 @@ use Drupal\Core\Render\Element\RenderElement;
  *   '#footer' => Markup::create($footer),
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see template_preprocess_uikit_card()
  * @see https://getuikit.com/docs/card

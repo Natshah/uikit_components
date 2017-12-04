@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for a breadcrumb.
+ * Provides a render element for the Breadcrumb component.
  *
  * Available properties:
  * - #items: An array of items to be displayed in the breadcrumb. Each item must
@@ -37,6 +37,8 @@ use Drupal\Core\Render\Element\RenderElement;
  *   ],
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see template_preprocess_uikit_breadcrumb()
  * @see https://getuikit.com/docs/breadcrumb

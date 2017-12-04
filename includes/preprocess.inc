@@ -15,7 +15,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 
 /**
- * Prepares variables for UIkit Accordion components.
+ * Prepares variables for UIkit Accordion templates.
  *
  * Default template: uikit-accordion.html.twig.
  *
@@ -52,6 +52,8 @@ use Drupal\uikit_components\UIkitComponents;
  *   ),
  * );
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see \Drupal\uikit_components\Element\UIkitAccordion
  * @see https://getuikit.com/docs/accordion#component-options
@@ -101,6 +103,8 @@ function template_preprocess_uikit_accordion(&$variables) {
  * ];
  * @endcode
  *
+ * @ingroup uikit_components_theme_render
+ *
  * @see \Drupal\uikit_components\Element\UIkitArticle
  * @see https://getuikit.com/docs/article
  */
@@ -144,6 +148,11 @@ function template_preprocess_uikit_article(&$variables) {
  *   '#value' => '100',
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
+ *
+ * @see \Drupal\uikit_components\Element\UIkitBadge
+ * @see https://getuikit.com/docs/badge
  */
 function template_preprocess_uikit_badge(&$variables) {
   $element = $variables['element'];
@@ -160,7 +169,73 @@ function template_preprocess_uikit_badge(&$variables) {
 }
 
 /**
- * Prepares variables for UIkit Article templates.
+ * Prepares variables for UIkit Breadcrumb templates.
+ *
+ * Default template: uikit-breadcrumb.html.twig.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #items: An array of items to be displayed in the breadcrumb. Each item
+ *       must contain the text property and can optionally contain the url
+ *       property to display the item as a link. Each item can also contain a
+ *       disabled property to set the item as disabled using 'disabled' => TRUE.
+ *
+ * Usage example:
+ * @code
+ * $build['breadcrumb'] = [
+ *   '#type' => 'uikit_breadcrumb',
+ *   '#items' => [
+ *     [
+ *       'text' => t('Item 1'),
+ *       'url' => Url::fromRoute('<front>'),
+ *     ],
+ *     [
+ *       'text' => t('Item 2'),
+ *       'url' => Url::fromRoute($route_two),
+ *     ],
+ *     [
+ *       'text' => t('Disabled'),
+ *       'url' => Url::fromRoute($route_three),
+ *       'disabled' => TRUE,
+ *     ],
+ *     [
+ *       'text' => t('Active'),
+ *     ],
+ *   ],
+ * ];
+ * @endcode
+ *
+ * @ingroup uikit_components_theme_render
+ *
+ * @see \Drupal\uikit_components\Element\UIkitBreadcrumb
+ * @see https://getuikit.com/docs/breadcrumb
+ */
+function template_preprocess_uikit_breadcrumb(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the breadcrumb.
+  $attributes = new Attribute();
+  $attributes->addClass('uk-breadcrumb');
+  $variables['attributes'] = $attributes;
+
+  // Set the items property.
+  $variables['items'] = $element['#items'];
+
+  foreach ($variables['items'] as $key => $item) {
+    // Set the item attributes.
+    $item_attributes = new Attribute();
+
+    if (isset($item['disabled']) && $item['disabled']) {
+      $item_attributes->addClass('uk-disabled');
+    }
+
+    $variables['items'][$key]['attributes'] = $item_attributes;
+  }
+}
+
+/**
+ * Prepares variables for UIkit Card templates.
  *
  * Default template: uikit-card.html.twig.
  *
@@ -200,6 +275,8 @@ function template_preprocess_uikit_badge(&$variables) {
  *   '#footer' => Markup::create($footer),
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see \Drupal\uikit_components\Element\UIkitCard
  * @see https://getuikit.com/docs/card
@@ -244,70 +321,6 @@ function template_preprocess_uikit_card(&$variables) {
   }
 
   $variables['attributes'] = $attributes;
-}
-
-/**
- * Prepares variables for UIkit Breadcrumb templates.
- *
- * Default template: uikit-breadcrumb.html.twig.
- *
- * @param $variables
- *   An associative array containing:
- *   - element: An associative array containing:
- *     - #items: An array of items to be displayed in the breadcrumb. Each item
- *       must contain the text property and can optionally contain the url
- *       property to display the item as a link. Each item can also contain a
- *       disabled property to set the item as disabled using 'disabled' => TRUE.
- *
- * Usage example:
- * @code
- * $build['breadcrumb'] = [
- *   '#type' => 'uikit_breadcrumb',
- *   '#items' => [
- *     [
- *       'text' => t('Item 1'),
- *       'url' => Url::fromRoute('<front>'),
- *     ],
- *     [
- *       'text' => t('Item 2'),
- *       'url' => Url::fromRoute($route_two),
- *     ],
- *     [
- *       'text' => t('Disabled'),
- *       'url' => Url::fromRoute($route_three),
- *       'disabled' => TRUE,
- *     ],
- *     [
- *       'text' => t('Active'),
- *     ],
- *   ],
- * ];
- * @endcode
- *
- * @see \Drupal\uikit_components\Element\UIkitBreadcrumb
- * @see https://getuikit.com/docs/breadcrumb
- */
-function template_preprocess_uikit_breadcrumb(&$variables) {
-  $element = $variables['element'];
-
-  // Set the attributes for the breadcrumb.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-breadcrumb');
-  $variables['attributes'] = $attributes;
-
-  // Set the items property.
-  $variables['items'] = $element['#items'];
-
-  foreach ($variables['items'] as $key => $item) {
-    // Set the item attributes.
-    $item_attributes = new Attribute();
-
-    if (isset($item['disabled']) && $item['disabled']) {
-      $item_attributes->addClass('uk-disabled');
-    }
-
-    $variables['items'][$key]['attributes'] = $item_attributes;
-  }
 }
 
 /**

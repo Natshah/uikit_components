@@ -5,7 +5,7 @@ namespace Drupal\uikit_components\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for a Badge component.
+ * Provides a render element for the Badge component.
  *
  * Available properties:
  * - #value: The value of the badge.
@@ -17,6 +17,8 @@ use Drupal\Core\Render\Element\RenderElement;
  *   '#value' => '100,
  * ];
  * @endcode
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @see template_preprocess_uikit_badge()
  * @see https://getuikit.com/docs/badge
