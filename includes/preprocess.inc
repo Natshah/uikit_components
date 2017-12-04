@@ -249,20 +249,57 @@ function template_preprocess_uikit_card(&$variables) {
 /**
  * Prepares variables for UIkit Breadcrumb templates.
  *
- * Default template: uk-breadcrumb.html.twig.
+ * Default template: uikit-breadcrumb.html.twig.
  *
  * @param $variables
  *   An associative array containing:
- *   - items: An array of items to be displayed in the breadcrumb. Each item
- *     must contain the #text property and can optionally contain the #url
- *     property to display the item as a link.
+ *   - element: An associative array containing:
+ *     - #items: An array of items to be displayed in the breadcrumb. Each item
+ *       must contain the text property and can optionally contain the url
+ *       property to display the item as a link. Each item can also contain a
+ *       disabled property to set the item as disabled using 'disabled' => TRUE.
+ *
+ * Usage example:
+ * @code
+ * $build['breadcrumb'] = [
+ *   '#type' => 'uikit_breadcrumb',
+ *   '#items' => [
+ *     [
+ *       'text' => t('Item 1'),
+ *       'url' => Url::fromRoute('<front>'),
+ *     ],
+ *     [
+ *       'text' => t('Item 2'),
+ *       'url' => Url::fromRoute($route_two),
+ *     ],
+ *     [
+ *       'text' => t('Disabled'),
+ *       'url' => Url::fromRoute($route_three),
+ *       'disabled' => TRUE,
+ *     ],
+ *     [
+ *       'text' => t('Active'),
+ *     ],
+ *   ],
+ * ];
+ * @endcode
+ *
+ * @see \Drupal\uikit_components\Element\UIkitBreadcrumb
+ * @see https://getuikit.com/docs/breadcrumb
  */
-function template_preprocess_uk_breadcrumb(&$variables) {
+function template_preprocess_uikit_breadcrumb(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the breadcrumb.
   $attributes = new Attribute();
   $attributes->addClass('uk-breadcrumb');
   $variables['attributes'] = $attributes;
 
+  // Set the items property.
+  $variables['items'] = $element['#items'];
+
   foreach ($variables['items'] as $key => $item) {
+    // Set the item attributes.
     $item_attributes = new Attribute();
 
     if (isset($item['disabled']) && $item['disabled']) {

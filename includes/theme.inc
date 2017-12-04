@@ -32,11 +32,9 @@ function uikit_components_theme($existing, $type, $theme, $path) {
       'render element' => 'element',
       'path' => "$path/components",
     ],
-    'uk_breadcrumb' => [
-      'variables' => [
-        'items' => NULL,
-      ],
-      'path' => "$path/navigation",
+    'uikit_breadcrumb' => [
+      'render element' => 'element',
+      'path' => "$path/components",
     ],
     'uk_countdown' => [
       'variables' => [
