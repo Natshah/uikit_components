@@ -8,7 +8,7 @@ use Drupal\Core\Render\Element\RenderElement;
  * Provides a render element for an Article component.
  *
  * Available properties:
- *   - #content: The content of the article.
+ * - #content: The content of the article.
  *
  * Usage example:
  * @code

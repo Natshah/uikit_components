@@ -7,11 +7,17 @@
  * - title: The title of the card.
  * - content: The content of the card.
  * - attributes: HTML attributes to be applied to the card wrapper.
- * - body_attributes: HTML attributes to be applied to the default body wrapper.
- * - header: The header content to display above the default body content.
- * - footer: The footer content to display below the default body content.
+ * - badge: The badge to display in the card.
+ * - header: The header content to display above the default body content, or
+ *   NULL if not set.
+ * - footer: The footer content to display below the default body content, or
+ *   NULL if not set.
+ * - media: The image media to display in the card, or NULL if not set. If set,
+ *   available variables in media include media.alignment for the alignment of
+ *   of the media, and media.image_url for the image URL of the media.
  *
- * @see template_preprocess_uk_card()
+ * @see \Drupal\uikit_components\Element\UIkitCard
+ * @see template_preprocess_uikit_card()
  */
 #}
 {% if content %}

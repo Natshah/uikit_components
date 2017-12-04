@@ -8,7 +8,7 @@ use Drupal\Core\Render\Element\RenderElement;
  * Provides a render element for a Badge component.
  *
  * Available properties:
- *   - #value: The value of the badge.
+ * - #value: The value of the badge.
  *
  * Usage example:
  * @code

@@ -8,11 +8,11 @@ use Drupal\Core\Render\Element\RenderElement;
  * Provides a render element for a group of form elements.
  *
  * Available properties:
- *   - #items: An array of items to be displayed in the accordion. Each item
- *     must contain the title and content properties.
- *   - #component_options: An array containing the component options to apply to
- *     the accordion. These must be in the form of "option: value" in order to
- *     work correctly.
+ * - #items: An array of items to be displayed in the accordion. Each item must
+ *   contain the title and content properties.
+ * - #component_options: An array containing the component options to apply to
+ *   the accordion. These must be in the form of "option: value" in order to
+ *   work correctly.
  *
  * Usage example:
  * @code
