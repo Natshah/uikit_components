@@ -7,7 +7,10 @@ use Drupal\Core\Render\Element\RenderElement;
 /**
  * Provides a render element for the Article component.
  *
- * Available properties:
+ * Properties:
+ * - #title: The title of the article.
+ * - #meta: The metadata of the article, such as author and created date.
+ * - #lead: The lead to display before the article content.
  * - #content: The content of the article.
  *
  * Usage example:
@@ -21,10 +24,10 @@ use Drupal\Core\Render\Element\RenderElement;
  * ];
  * @endcode
  *
- * @ingroup uikit_components_theme_render
- *
  * @see template_preprocess_uikit_article()
  * @see https://getuikit.com/docs/article
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @RenderElement("uikit_article")
  */

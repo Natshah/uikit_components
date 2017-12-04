@@ -7,7 +7,7 @@ use Drupal\Core\Render\Element\RenderElement;
 /**
  * Provides a render element for the Badge component.
  *
- * Available properties:
+ * Properties:
  * - #value: The value of the badge.
  *
  * Usage example:
@@ -18,10 +18,10 @@ use Drupal\Core\Render\Element\RenderElement;
  * ];
  * @endcode
  *
- * @ingroup uikit_components_theme_render
- *
  * @see template_preprocess_uikit_badge()
  * @see https://getuikit.com/docs/badge
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @RenderElement("uikit_badge")
  */

@@ -7,7 +7,7 @@ use Drupal\Core\Render\Element\RenderElement;
 /**
  * Provides a render element for the Accordion component.
  *
- * Available properties:
+ * Properties:
  * - #items: An array of items to be displayed in the accordion. Each item must
  *   contain the title and content properties.
  * - #component_options: An array containing the component options to apply to
@@ -39,10 +39,10 @@ use Drupal\Core\Render\Element\RenderElement;
  * ];
  * @endcode
  *
- * @ingroup uikit_components_theme_render
- *
  * @see template_preprocess_uikit_accordion()
  * @see https://getuikit.com/docs/accordion#component-options
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @RenderElement("uikit_accordion")
  */

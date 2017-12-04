@@ -41,10 +41,10 @@ use Drupal\Core\Render\Element\RenderElement;
  * ];
  * @endcode
  *
- * @ingroup uikit_components_theme_render
- *
  * @see template_preprocess_uikit_card()
  * @see https://getuikit.com/docs/card
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @RenderElement("uikit_card")
  */

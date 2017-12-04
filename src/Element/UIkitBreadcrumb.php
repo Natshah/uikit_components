@@ -38,10 +38,10 @@ use Drupal\Core\Render\Element\RenderElement;
  * ];
  * @endcode
  *
- * @ingroup uikit_components_theme_render
- *
  * @see template_preprocess_uikit_breadcrumb()
  * @see https://getuikit.com/docs/breadcrumb
+ *
+ * @ingroup uikit_components_theme_render
  *
  * @RenderElement("uikit_breadcrumb")
  */

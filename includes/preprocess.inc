@@ -28,35 +28,10 @@ use Drupal\uikit_components\UIkitComponents;
  *       to the accordion. These must be in the form of "option: value" in order
  *       to work correctly.
  *
- * Usage example:
- * @code
- * $form['author'] = array(
- *   '#type' => 'uikit_accordion',
- *   '#items' => array(
- *     array(
- *       'title' => $this->t('Item 1'),
- *       'content' => Markup::create($markup),
- *     ),
- *     array(
- *       'title' => $this->t('Item 2'),
- *       'content' => Markup::create($markup),
- *     ),
- *     array(
- *       'title' => $this->t('Item 3'),
- *       'content' => Markup::create($markup),
- *     ),
- *   ),
- *   '#component_options' => array(
- *     'multiple: false',
- *     'duration: 500',
- *   ),
- * );
- * @endcode
- *
- * @ingroup uikit_components_theme_render
- *
  * @see \Drupal\uikit_components\Element\UIkitAccordion
  * @see https://getuikit.com/docs/accordion#component-options
+ *
+ * @ingroup uikit_components_theme_render
  */
 function template_preprocess_uikit_accordion(&$variables) {
   $element = $variables['element'];
@@ -92,21 +67,10 @@ function template_preprocess_uikit_accordion(&$variables) {
  *     - #lead (optional): The leading paragraph of the article.
  *     - #content: The content of the article.
  *
- * Usage example:
- * @code
- * $build['article'] = [
- *   '#type' => 'uikit_article',
- *   '#title' => $this->t('Heading'),
- *   '#meta' => Markup::create($meta),
- *   '#lead' => $this->t('Lorem ipsum dolor sit amet'),
- *   '#content' => Markup::create($content),
- * ];
- * @endcode
- *
- * @ingroup uikit_components_theme_render
- *
  * @see \Drupal\uikit_components\Element\UIkitArticle
  * @see https://getuikit.com/docs/article
+ *
+ * @ingroup uikit_components_theme_render
  */
 function template_preprocess_uikit_article(&$variables) {
   $element = $variables['element'];
@@ -141,18 +105,10 @@ function template_preprocess_uikit_article(&$variables) {
  *   - element: An associative array containing:
  *     - #value: The value of the article.
  *
- * Usage example:
- * @code
- * $build['badge'] = [
- *   '#type' => 'uikit_badge',
- *   '#value' => '100',
- * ];
- * @endcode
- *
- * @ingroup uikit_components_theme_render
- *
  * @see \Drupal\uikit_components\Element\UIkitBadge
  * @see https://getuikit.com/docs/badge
+ *
+ * @ingroup uikit_components_theme_render
  */
 function template_preprocess_uikit_badge(&$variables) {
   $element = $variables['element'];
@@ -181,35 +137,10 @@ function template_preprocess_uikit_badge(&$variables) {
  *       property to display the item as a link. Each item can also contain a
  *       disabled property to set the item as disabled using 'disabled' => TRUE.
  *
- * Usage example:
- * @code
- * $build['breadcrumb'] = [
- *   '#type' => 'uikit_breadcrumb',
- *   '#items' => [
- *     [
- *       'text' => t('Item 1'),
- *       'url' => Url::fromRoute('<front>'),
- *     ],
- *     [
- *       'text' => t('Item 2'),
- *       'url' => Url::fromRoute($route_two),
- *     ],
- *     [
- *       'text' => t('Disabled'),
- *       'url' => Url::fromRoute($route_three),
- *       'disabled' => TRUE,
- *     ],
- *     [
- *       'text' => t('Active'),
- *     ],
- *   ],
- * ];
- * @endcode
- *
- * @ingroup uikit_components_theme_render
- *
  * @see \Drupal\uikit_components\Element\UIkitBreadcrumb
  * @see https://getuikit.com/docs/breadcrumb
+ *
+ * @ingroup uikit_components_theme_render
  */
 function template_preprocess_uikit_breadcrumb(&$variables) {
   $element = $variables['element'];
@@ -261,25 +192,10 @@ function template_preprocess_uikit_breadcrumb(&$variables) {
  * layouts are too complex, left and right alignment values are currently
  * unavailable. See the documentation link below for more information.
  *
- * Usage example:
- * @code
- * $build['card'] = [
- *   '#type' => 'uikit_card',
- *   '#title' => $this->t('Title'),
- *   '#content' => Markup::create($content),
- *   '#style' => 'default',
- *   '#hover' => TRUE,
- *   '#size' => 'large',
- *   '#badge' => $this->t('Badge'),
- *   '#header' => Markup::create($header),
- *   '#footer' => Markup::create($footer),
- * ];
- * @endcode
- *
- * @ingroup uikit_components_theme_render
- *
  * @see \Drupal\uikit_components\Element\UIkitCard
  * @see https://getuikit.com/docs/card
+ *
+ * @ingroup uikit_components_theme_render
  */
 function template_preprocess_uikit_card(&$variables) {
   $element = $variables['element'];
