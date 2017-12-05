@@ -242,27 +242,41 @@ function template_preprocess_uikit_card(&$variables) {
 /**
  * Prepares variables for UIkit Countdown templates.
  *
- * Default template: uk-countdown.html.twig.
+ * Default template: uikit-countdown.html.twig.
  *
  * @param $variables
  *   An associative array containing:
- *   - expire_date: The date when the countdown should expire using the ISO
- *     8601 format, e.g. 2017-12-04T22:00:00+00:00 (UTC time).
- *   - separators: An associative array to insert a separator between each
- *     number, containing:
- *     - days_hours: The separator to insert between the days and hours.
- *     - hours_minutes: The separator to insert between hours and minutes.
- *     - minutes_seconds: The separator to insert between minutes and seconds.
- *   - labels: An associative array for labels to display below each number,
- *     containing:
- *     - days: The label to display for days.
- *     - hours: The label to display for hours.
- *     - minutes: The label to display for minutes.
- *     - seconds: The label to display for seconds.
+ *   - element: An associative array containing:
+ *     - #expire_date: The date when the countdown should expire using the ISO
+ *       8601 format, e.g. 2017-12-04T22:00:00+00:00 (UTC time).
+ *     - #separators: An associative array to insert a separator between each
+ *       number, containing:
+ *       - days_hours: The separator to insert between the days and hours.
+ *       - hours_minutes: The separator to insert between hours and minutes.
+ *       - minutes_seconds: The separator to insert between minutes and seconds.
+ *     - #labels: An associative array for labels to display below each number,
+ *       containing:
+ *       - days: The label to display for days.
+ *       - hours: The label to display for hours.
+ *       - minutes: The label to display for minutes.
+ *       - seconds: The label to display for seconds.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitCountdown
+ * @see https://getuikit.com/docs/countdown
+ *
+ * @ingroup uikit_components_theme_render
  */
-function template_preprocess_uk_countdown(&$variables) {
-  $date = $variables['expire_date'];
+function template_preprocess_uikit_countdown(&$variables) {
+  $element = $variables['element'];
 
+  // Set the separators and labels.
+  $variables['separators'] = $element['#separators'];
+  $variables['labels'] = $element['#labels'];
+
+  // Get the expire date.
+  $date = $element['#expire_date'];
+
+  // Set the attributes for the countdown.
   $attributes = new Attribute();
   $attributes->addClass('uk-grid-small');
   $attributes->addClass('uk-child-width-auto');

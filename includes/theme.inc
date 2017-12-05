@@ -36,13 +36,9 @@ function uikit_components_theme($existing, $type, $theme, $path) {
       'render element' => 'element',
       'path' => "$path/components",
     ],
-    'uk_countdown' => [
-      'variables' => [
-        'expire_date' => NULL,
-        'separators' => NULL,
-        'labels' => NULL,
-      ],
-      'path' => "$path/dataset",
+    'uikit_countdown' => [
+      'render element' => 'element',
+      'path' => "$path/components",
     ],
 
     // Theme implementations which extend an existing core theme implementation.
