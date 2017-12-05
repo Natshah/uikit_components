@@ -16,7 +16,7 @@ use Drupal\Core\Render\Element\RenderElement;
  *
  * Usage example:
  * @code
- * $form['author'] = [
+ * $form['accordion'] = [
  *   '#type' => 'uikit_accordion',
  *   '#items' => [
  *     [

@@ -7,7 +7,7 @@ use Drupal\Core\Render\Element\RenderElement;
 /**
  * Provides a render element for the Card component.
  *
- * Available properties:
+ * Properties:
  * - #content: The content of the card.
  * - #title (optional): The title of the card.
  * - #style (optional): The style of the card. Defaults to "default".

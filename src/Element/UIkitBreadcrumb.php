@@ -7,7 +7,7 @@ use Drupal\Core\Render\Element\RenderElement;
 /**
  * Provides a render element for the Breadcrumb component.
  *
- * Available properties:
+ * Properties:
  * - #items: An array of items to be displayed in the breadcrumb. Each item must
  *   contain the text property and can optionally contain the url property to
  *   display the item as a link. Each item can also contain a disabled property
