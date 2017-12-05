@@ -56,6 +56,7 @@
  * they are available as we are currently working on their development.
  *
  * Below you will find the various classes, functions and templates for render
- * elements UIkit Components currently provides.
+ * elements UIkit Components currently provides. The classes provide usage
+ * examples for each render element.
  * @}
  */
