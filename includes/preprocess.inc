@@ -54,6 +54,44 @@ function template_preprocess_uikit_accordion(&$variables) {
 }
 
 /**
+ * Prrpares variables for UIkit Alert templates.
+ *
+ * Default template: uikit-alert.html.twig.
+ *
+ * @param $variables:
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #message: The message to display in the alert.
+ *     - #style: The style of the alert. Possible values:
+ *       - primary: Give the message a prominent styling.
+ *       - success: Indicates success or a positive message.
+ *       - warning: Indicates a message containing a warning.
+ *       - danger: Indicates an important or error message.
+ *       Defaults to "primary".
+ *     - #close_button: Boolean indicating whether to include a close button in
+ *       the alert. Defaults to FALSE.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitAlert
+ * @see https://getuikit.com/docs/alert
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_alert(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the badge.
+  $attributes = new Attribute();
+  $attributes->addClass('uk-alert');
+  $attributes->setAttribute('uk-alert', '');
+  $variables['attributes'] = $attributes;
+
+  // Set the properties for the alert.
+  $variables['message'] = $element['#message'];
+  $variables['style'] = $element['#style'];
+  $variables['close_button'] = $element['#close_button'];
+}
+
+/**
  * Prepares variables for UIkit Article templates.
  *
  * Default template: uikit-article.html.twig.
