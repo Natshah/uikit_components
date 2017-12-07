@@ -14,7 +14,7 @@ use Drupal\Core\Render\Element\RenderElement;
  * @code
  * $build['badge'] = [
  *   '#type' => 'uikit_badge',
- *   '#value' => '100,
+ *   '#value' => '100',
  * ];
  * @endcode
  *
