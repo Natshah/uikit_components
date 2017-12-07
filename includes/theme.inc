@@ -8,51 +8,37 @@
  * customized.
  */
 
+use Drupal\uikit_components\UIkitComponents;
+
 /**
  * Implements hook_theme().
  */
 function uikit_components_theme($existing, $type, $theme, $path) {
   $path = drupal_get_path('module', 'uikit_components') . '/templates';
+  $components = UIkitComponents::getRenderElementList();
+  $items = [];
 
-  return [
-    // UIkit framework component theme implementations.
-    'uikit_accordion' => [
+  foreach ($components as $component) {
+    // UIkit components render elements.
+    $items["uikit_$component"] = [
       'render element' => 'element',
       'path' => "$path/components",
-    ],
-    'uikit_article' => [
-      'render element' => 'element',
-      'path' => "$path/components",
-    ],
-    'uikit_badge' => [
-      'render element' => 'element',
-      'path' => "$path/components",
-    ],
-    'uikit_card' => [
-      'render element' => 'element',
-      'path' => "$path/components",
-    ],
-    'uikit_breadcrumb' => [
-      'render element' => 'element',
-      'path' => "$path/components",
-    ],
-    'uikit_countdown' => [
-      'render element' => 'element',
-      'path' => "$path/components",
-    ],
+    ];
+  }
 
-    // Theme implementations which extend an existing core theme implementation.
-    'menu__uikit_list' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uikit-list',
-    ],
-    'menu__uikit_nav' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uikit-nav',
-    ],
-    'menu__uikit_subnav' => [
-      'path' => "$path/navigation",
-      'template' => 'menu--uikit-subnav',
-    ],
+  // Theme implementations which extend an existing core theme implementation.
+  $items['menu__uikit_list'] = [
+    'path' => "$path/navigation",
+    'template' => 'menu--uikit-list',
   ];
+  $items['menu__uikit_nav'] = [
+    'path' => "$path/navigation",
+    'template' => 'menu--uikit-nav',
+  ];
+  $items['menu__uikit_subnav'] = [
+    'path' => "$path/navigation",
+    'template' => 'menu--uikit-subnav',
+  ];
+
+  return $items;
 }

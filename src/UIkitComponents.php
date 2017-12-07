@@ -107,6 +107,57 @@ class UIkitComponents {
   }
 
   /**
+   * Get the UIkit list of components to define as render elements.
+   *
+   * Since UIkit Components will not define all UIkit components as render
+   * elements, this list serves as the list of components defined as render
+   * elements using the Render API.
+   *
+   * @return array
+   *   Returns an array of UIkit component short-names for render elements.
+   */
+  public static function getRenderElementList() {
+    return [
+      'accordion',
+      'alert',
+      'article',
+      'badge',
+      'breadcrumb',
+      'button',
+      'card',
+      'comment',
+      'countdown',
+      'cover',
+      'description-list',
+      'dotnav',
+      'drop',
+      'dropdown',
+      'icon',
+      'iconnav',
+      'lightbox',
+      'list',
+      'modal',
+      'nav',
+      'navbar',
+      'notification',
+      'overlay',
+      'pagination',
+      'progress',
+      'section',
+      'slidenav',
+      'slideshow',
+      'spinner',
+      'subnav',
+      'switcher',
+      'tab',
+      'table',
+      'thumbnav',
+      'tile',
+      'tooltip',
+    ];
+  }
+
+  /**
    * Get the UIkit documentation URL for the given component.
    *
    * @param string $component
