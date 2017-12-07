@@ -22,7 +22,7 @@ use Drupal\Core\Render\Element\RenderElement;
  * @code
  * $build['alert'] = [
  *   '#type' => 'uikit_alert',
- *   '#message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+ *   '#message' => $this->t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.'),
  *   '#style' => 'warning',
  *   '#close_button' => TRUE,
  * ];
