@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a render element for the Accordion component.
@@ -54,17 +55,38 @@ class UIkitAccordion extends RenderElement {
   public function getInfo() {
     $class = get_class($this);
     return [
-      '#items' => NULL,
-      '#component_options' => NULL,
-      '#process' => [
-        [$class, 'processGroup'],
-        [$class, 'processAjaxForm'],
-      ],
+      '#items' => [],
+      '#component_options' => [],
+      '#attributes' => new Attribute(),
       '#pre_render' => [
-        [$class, 'preRenderGroup'],
+        [$class, 'preRenderUIkitAccordion'],
       ],
       '#theme_wrappers' => ['uikit_accordion'],
     ];
   }
 
+  /**
+   * Pre-render callback: Sets the accordion options and attributes.
+   *
+   * Doing so during pre_render gives modules a chance to alter the accordion.
+   *
+   * @param array $element
+   *   A renderable array.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public static function preRenderUIkitAccordion($element) {
+    // Prepare the component options for the accordion.
+    $component_options = '';
+    if (!empty($element['#component_options'])) {
+      $component_options = implode('; ', $element['#component_options']);
+    }
+
+    // Set the attributes for the accordion outer element.
+    $element['#attributes']->addClass('uk-accordion');
+    $element['#attributes']->setAttribute('uk-accordion', $component_options);
+
+    return $element;
+  }
 }

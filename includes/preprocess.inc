@@ -41,16 +41,8 @@ function template_preprocess_uikit_accordion(&$variables) {
     $variables['items'] = $element['#items'];
   }
 
-  // Prepare the component options for the accordion.
-  $component_options = '';
-  if (!empty($element['#component_options'])) {
-    $component_options = implode('; ', $element['#component_options']);
-  }
-
-  // Set the attributes for the accordion outer element.
-  $variables['attributes'] = new Attribute();
-  $variables['attributes']->addClass('uk-accordion');
-  $variables['attributes']->setAttribute('uk-accordion', $component_options);
+  // Set the attributes variable.
+  $variables['attributes'] = $element['#attributes'];
 }
 
 /**
@@ -79,11 +71,8 @@ function template_preprocess_uikit_accordion(&$variables) {
 function template_preprocess_uikit_alert(&$variables) {
   $element = $variables['element'];
 
-  // Set the attributes for the badge.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-alert');
-  $attributes->setAttribute('uk-alert', '');
-  $variables['attributes'] = $attributes;
+  // Set the attributes for the alert.
+  $variables['attributes'] = $element['#attributes'];
 
   // Set the properties for the alert.
   $variables['message'] = $element['#message'];
@@ -128,9 +117,7 @@ function template_preprocess_uikit_article(&$variables) {
   }
 
   // Set the attributes for the article outer element.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-article');
-  $variables['attributes'] = $attributes;
+  $variables['attributes'] = $element['#attributes'];
 }
 
 /**
@@ -152,9 +139,7 @@ function template_preprocess_uikit_badge(&$variables) {
   $element = $variables['element'];
 
   // Set the attributes for the badge.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-badge');
-  $variables['attributes'] = $attributes;
+  $variables['attributes'] = $element['#attributes'];
 
   // Set the value for the badge, if not empty.
   if (!empty($element['#value'])) {
@@ -184,22 +169,13 @@ function template_preprocess_uikit_breadcrumb(&$variables) {
   $element = $variables['element'];
 
   // Set the attributes for the breadcrumb.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-breadcrumb');
-  $variables['attributes'] = $attributes;
+  $variables['attributes'] = $element['#attributes'];
 
   // Set the items property.
-  $variables['items'] = $element['#items'];
+  $variables['items'] = [];
 
-  foreach ($variables['items'] as $key => $item) {
-    // Set the item attributes.
-    $item_attributes = new Attribute();
-
-    if (isset($item['disabled']) && $item['disabled']) {
-      $item_attributes->addClass('uk-disabled');
-    }
-
-    $variables['items'][$key]['attributes'] = $item_attributes;
+  foreach ($element['#items'] as $key => $item) {
+    $variables['items'][$key] = $item;
   }
 }
 
@@ -259,22 +235,8 @@ function template_preprocess_uikit_card(&$variables) {
     $variables['media'] = $element['#media'];
   }
 
-  // Set the attributes for the card.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-card');
-  $attributes->addClass('uk-card-' . $element['#style']);
-
-  if ($element['#hover']) {
-    $attributes->addClass('uk-card-hover');
-  }
-  if (!empty($element['#size'])) {
-    $attributes->addClass('uk-card-' . $element['#size']);
-  }
-  if (!empty($element['#badge'])) {
-    $variables['badge'] = $element['#badge'];
-  }
-
-  $variables['attributes'] = $attributes;
+  // Set the attributes variable.
+  $variables['attributes'] = $element['#attributes'];
 }
 
 /**
@@ -311,16 +273,8 @@ function template_preprocess_uikit_countdown(&$variables) {
   $variables['separators'] = $element['#separators'];
   $variables['labels'] = $element['#labels'];
 
-  // Get the expire date.
-  $date = $element['#expire_date'];
-
   // Set the attributes for the countdown.
-  $attributes = new Attribute();
-  $attributes->addClass('uk-grid-small');
-  $attributes->addClass('uk-child-width-auto');
-  $attributes->setAttribute('uk-grid', '');
-  $attributes->setAttribute('uk-countdown', "date: $date");
-  $variables['attributes'] = $attributes;
+  $variables['attributes'] = $element['#attributes'];
 }
 
 /**

@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a render element for the Article component.
@@ -37,13 +38,36 @@ class UIkitArticle extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+    $class = get_class($this);
     return [
       '#title' => NULL,
       '#meta' => NULL,
       '#lead' => NULL,
       '#content' => NULL,
+      '#attributes' => new Attribute(),
+      '#pre_render' => [
+        [$class, 'preRenderUIkitArticle'],
+      ],
       '#theme_wrappers' => ['uikit_article'],
     ];
+  }
+
+  /**
+   * Pre-render callback: Sets the article attributes.
+   *
+   * Doing so during pre_render gives modules a chance to alter the article.
+   *
+   * @param array $element
+   *   A renderable array.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public static function preRenderUIkitArticle($element) {
+    // Set the attributes for the article outer element.
+    $element['#attributes']->addClass('uk-article');
+
+    return $element;
   }
 
 }

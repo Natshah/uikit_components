@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a render element for the Card component.
@@ -54,9 +55,11 @@ class UIkitCard extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+    $class = get_class($this);
     return [
       '#title' => NULL,
       '#content' => NULL,
+      '#attributes' => new Attribute(),
       '#style' => 'default',
       '#hover' => FALSE,
       '#size' => NULL,
@@ -64,8 +67,37 @@ class UIkitCard extends RenderElement {
       '#header' => NULL,
       '#footer' => NULL,
       '#media' => NULL,
+      '#pre_render' => [
+        [$class, 'preRenderUIkitCard'],
+      ],
       '#theme_wrappers' => ['uikit_card'],
     ];
+  }
+
+  /**
+   * Pre-render callback: Sets the card attributes.
+   *
+   * Doing so during pre_render gives modules a chance to alter the card.
+   *
+   * @param array $element
+   *   A renderable array.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public static function preRenderUIkitCard($element) {
+    // Set the attributes for the card outer element.
+    $element['#attributes']->addClass('uk-card');
+    $element['#attributes']->addClass('uk-card-' . $element['#style']);
+
+    if ($element['#hover']) {
+      $element['#attributes']->addClass('uk-card-hover');
+    }
+    if (!empty($element['#size'])) {
+      $element['#attributes']->addClass('uk-card-' . $element['#size']);
+    }
+
+    return $element;
   }
 
 }

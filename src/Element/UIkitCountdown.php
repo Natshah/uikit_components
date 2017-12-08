@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a render element for the Countdown component.
@@ -54,12 +55,41 @@ class UIkitCountdown extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+    $class = get_class($this);
     return [
       '#expire_date' => NULL,
       '#separators' => NULL,
       '#labels' => NULL,
+      '#attributes' => new Attribute(),
+      '#pre_render' => [
+        [$class, 'preRenderUIkitCountdown'],
+      ],
       '#theme_wrappers' => ['uikit_countdown'],
     ];
+  }
+
+  /**
+   * Pre-render callback: Sets the countdown attributes.
+   *
+   * Doing so during pre_render gives modules a chance to alter the countdown.
+   *
+   * @param array $element
+   *   A renderable array.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public static function preRenderUIkitCountdown($element) {
+    // Get the expire date.
+    $date = $element['#expire_date'];
+
+    // Set the attributes for the countdown outer element.
+    $element['#attributes']->addClass('uk-grid-small');
+    $element['#attributes']->addClass('uk-child-width-auto');
+    $element['#attributes']->setAttribute('uk-grid', '');
+    $element['#attributes']->setAttribute('uk-countdown', "date: $date");
+
+    return $element;
   }
 
 }

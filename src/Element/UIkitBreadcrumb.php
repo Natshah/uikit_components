@@ -3,6 +3,7 @@
 namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a render element for the Breadcrumb component.
@@ -51,10 +52,44 @@ class UIkitBreadcrumb extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+    $class = get_class($this);
     return [
       '#items' => NULL,
+      '#attributes' => new Attribute(),
+      '#pre_render' => [
+        [$class, 'preRenderUIkitBreadcrumb'],
+      ],
       '#theme_wrappers' => ['uikit_breadcrumb'],
     ];
+  }
+
+  /**
+   * Pre-render callback: Sets the breadcrumb attributes.
+   *
+   * Doing so during pre_render gives modules a chance to alter the breadcrumb.
+   *
+   * @param array $element
+   *   A renderable array.
+   *
+   * @return array
+   *   A renderable array.
+   */
+  public static function preRenderUIkitBreadcrumb($element) {
+    // Set the attributes for the breadcrumb outer element.
+    $element['#attributes']->addClass('uk-breadcrumb');
+
+    foreach ($element['#items'] as $key => $item) {
+      // Set the item attributes.
+      $item_attributes = new Attribute();
+
+      if (isset($item['disabled']) && $item['disabled']) {
+        $item_attributes->addClass('uk-disabled');
+      }
+
+      $element['#items'][$key]['attributes'] = $item_attributes;
+    }
+
+    return $element;
   }
 
 }
