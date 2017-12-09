@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Button.
+ *
+ * Available variables:
+ * - value: The value of the badge.
+ * - attributes: HTML attributes to be applied to the badge.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitButton
+ * @see template_preprocess_uikit_button()
+ * @see https://getuikit.com/docs/button
+ *
+ * @ingroup uikit_components_theme_render
+ */
+#}
+{% if text %}
+  <{{ button_type }}{{ attributes }}>{{ text }}</{{ button_type }}>
+{% endif %}

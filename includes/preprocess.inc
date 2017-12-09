@@ -180,6 +180,54 @@ function template_preprocess_uikit_breadcrumb(&$variables) {
 }
 
 /**
+ * Prrpares variables for UIkit Button templates.
+ *
+ * Default template: uikit-button.html.twig.
+ *
+ * @param $variables:
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #text: The text to display in the button.
+ *     - #url: The url to use in the button, if the button should be rendered in
+ *       an @code <a> @endcode element. If omitted, the button will be rendered
+ *       in a @code <button> @endcode element.
+ *     - #style: The style of the button. Possible values:
+ *       - default: Default button style.
+ *       - primary: Indicates the primary action.
+ *       - secondary: Indicates an important action.
+ *       - danger: Indicates a dangerous or negative action.
+ *       - text: Applies an alternative, typographic style.
+ *       - link: Makes a @code <button> @endcode look like an @code <a> @endcode
+ *         element.
+ *       Defaults to "default".
+ *     - #size: The size of the button. Possible values are "small" and "large".
+ *     - #full_width: A boolean indicating if the button will take up the full
+ *       width of the parent element. Defaults to FALSE.
+ *     - #disabled: A boolean indicating whether the button is disabled or not.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitButton
+ * @see https://getuikit.com/docs/button
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_button(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the badge.
+  $variables['attributes'] = $element['#attributes'];
+
+  if ($element['#text']) {
+    $variables['text'] = $element['#text'];
+  }
+  if ($element['#url']) {
+    $variables['button_type'] = 'a';
+  }
+  else {
+    $variables['button_type'] = 'button';
+  }
+}
+
+/**
  * Prepares variables for UIkit Card templates.
  *
  * Default template: uikit-card.html.twig.
