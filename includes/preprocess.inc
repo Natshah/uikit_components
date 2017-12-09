@@ -288,6 +288,66 @@ function template_preprocess_uikit_card(&$variables) {
 }
 
 /**
+ * Prrpares variables for UIkit Comment templates.
+ *
+ * Default template: uikit-comment.html.twig.
+ *
+ * @param $variables:
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #avatar: An assocative array containing:
+ *       - style_name: The name of the image style to be applied.
+ *       - uri: URI of the source image before styling.
+ *       - height: The height of the image.
+ *       - width: The width of the image.
+ *       - alt: The alternative text for text-based browsers. HTML 4 and XHTML
+ *         1.0 always require an alt attribute. The HTML 5 draft allows the alt
+ *         attribute to be omitted in some cases. Therefore, this variable
+ *         defaults to an empty string, but can be set to NULL for the attribute
+ *         to be omitted. Usually, neither omission nor an empty string
+ *         satisfies accessibility requirements, so it is strongly encouraged
+ *         for code using '#theme' => 'image_style' to pass a meaningful value
+ *         for this variable.
+ *         - http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.8
+ *         - http://www.w3.org/TR/xhtml1/dtds.html
+ *         - http://dev.w3.org/html5/spec/Overview.html#alt
+ *       - title: The title text is displayed when the image is hovered in some
+ *         popular browsers.
+ *       - attributes: Associative array of attributes to be placed in the img
+ *         tag.
+ *     - #title: The title to display in the comment header.
+ *     - #meta: An array containing the metadata to display in the comment
+ *       header.
+ *     - #comment: The content to display for the comment body.
+ *
+ * @see template_preprocess_image_style()
+ * @see \Drupal\uikit_components\Element\UIkitComment
+ * @see https://getuikit.com/docs/comment
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_comment(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the comment.
+  $variables['attributes'] = $element['#attributes'];
+
+  // Set the avatar, title, metadata and comment variables, if not empty.
+  if (!empty($element['#avatar'])) {
+    $variables['avatar'] = $element['#avatar'];
+  }
+  if (!empty($element['#title'])) {
+    $variables['title'] = $element['#title'];
+  }
+  if (!empty($element['#meta'])) {
+    $variables['meta'] = $element['#meta'];
+  }
+  if (!empty($element['#comment'])) {
+    $variables['comment'] = $element['#comment'];
+  }
+}
+
+/**
  * Prepares variables for UIkit Countdown templates.
  *
  * Default template: uikit-countdown.html.twig.

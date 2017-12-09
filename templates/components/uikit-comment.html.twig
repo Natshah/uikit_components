@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Comment.
+ *
+ * Available variables:
+ * - attributes: HTML attributes to be applied to the comment.
+ * - avatar: An assocative array containing:
+ *   - style_name: The name of the image style to be applied.
+ *   - uri: URI of the source image before styling.
+ *   - height: The height of the image.
+ *   - width: The width of the image.
+ *   - alt: The alternative text for text-based browsers. HTML 4 and XHTML 1.0
+ *     always require an alt attribute. The HTML 5 draft allows the alt
+ *     attribute to be omitted in some cases. Therefore, this variable defaults
+ *     to an empty string, but can be set to NULL for the attribute to be
+ *     omitted. Usually, neither omission nor an empty string satisfies
+ *     accessibility requirements, so it is strongly encouraged for code using
+ *     '#theme' => 'image_style' to pass a meaningful value for this variable.
+ *     - http://www.w3.org/TR/REC-html40/struct/objects.html#h-13.8
+ *     - http://www.w3.org/TR/xhtml1/dtds.html
+ *     - http://dev.w3.org/html5/spec/Overview.html#alt
+ *   - title: The title text is displayed when the image is hovered in some
+ *     popular browsers.
+ *   - attributes: Associative array of attributes to be placed in the img tag.
+ * - title: The title to display in the comment header.
+ * - meta: An array containing the metadata to display in the comment header.
+ * - comment: The content to display for the comment body.
+ *
+ * @see template_preprocess_image_style()
+ * @see \Drupal\uikit_components\Element\UIkitComment
+ * @see template_preprocess_uikit_comment()
+ * @see https://getuikit.com/docs/comment
+ *
+ * @ingroup uikit_components_theme_render
+ */
+#}
+{% if comment %}
+  <article{{ attributes }}>
+    {% if avatar or title or meta %}
+      <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+          {% if avatar %}
+            {{ avatar }}
+          {% endif %}
+        </div>
+        <div class="uk-width-expand">
+          {% if title %}
+            <h4 class="uk-comment-title uk-margin-remove">{{ title }}</h4>
+          {% endif %}
+
+          {% if meta %}
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+              {% for item in meta %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </header>
+    {% endif %}
+
+    {{ comment }}
+  </article>
+{% endif %}
