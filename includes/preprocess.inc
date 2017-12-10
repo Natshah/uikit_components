@@ -11,7 +11,6 @@
  * @see process.inc
  */
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
 use Drupal\uikit_components\MimeStreamWrapper;
