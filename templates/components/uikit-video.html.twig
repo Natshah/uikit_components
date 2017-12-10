@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Video.
+ *
+ * Available variables:
+ * - attributes: HTML attributes to be applied to the video.
+ * - embed_iframe: A boolean indicating whether to display an iframe for the
+ *   video.
+ * - sources: An array of video sources to display. Each video source contains
+ *   the attributes using the source.attributes variable.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitVideo
+ * @see template_preprocess_uikit_video()
+ * @see https://getuikit.com/docs/utility#video
+ *
+ * @ingroup uikit_components_theme_render
+ */
+#}
+{% if embed_iframe %}
+  <iframe{{ attributes }}></iframe>
+{% elseif sources %}
+  <video{{ attributes }}>
+    {% for source in sources %}
+      <source{{ source.attributes }}>
+    {% endfor %}
+  </video>
+{% endif %}

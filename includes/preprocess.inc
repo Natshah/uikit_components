@@ -11,8 +11,10 @@
  * @see process.inc
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_components\UIkitComponents;
+use Drupal\uikit_components\MimeStreamWrapper;
 
 /**
  * Prepares variables for UIkit Accordion templates.
@@ -383,6 +385,106 @@ function template_preprocess_uikit_countdown(&$variables) {
 
   // Set the attributes for the countdown.
   $variables['attributes'] = $element['#attributes'];
+}
+
+/**
+ * Prrpares variables for UIkit Cover templates.
+ *
+ * Default template: uikit-cover.html.twig.
+ *
+ * @param $variables:
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *
+ * @see \Drupal\uikit_components\Element\UIkitCover
+ * @see https://getuikit.com/docs/cover
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_cover(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the cover.
+  $variables['attributes'] = $element['#attributes'];
+}
+
+/**
+ * Prrpares variables for UIkit Video templates.
+ *
+ * Default template: uikit-video.html.twig.
+ *
+ * @param $variables:
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #embed_iframe: The embed code to display the video. This should be the
+ *       the full embed code from the video's source and contain the
+ *       @code <iframe> @endcode element. The various embed options, such as
+ *       displaying the video controls, should also be included. If this is set,
+ *       do not set the #video_sources property.
+ *     - #video_sources: An array of full-qualified URLs to the video sources.
+ *       Each source should have a different video extension to provide a
+ *       fallback source for browser compatibility. If only one source is
+ *       provided and the browser does not support the video's file extension,
+ *       the video will not display. If this is set, do not set the
+ *       #embed_iframe property.
+ *     - #display_controls: A boolean indicating whether to display the controls
+ *       when the #video_sources property is set. This is ignored if the
+ *       #embed_iframe property is set.
+ *     - #component_options: An array containing the component options to apply
+ *       to the video. These must be in the form of "option: value" in order to
+ *       work correctly.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitVideo
+ * @see https://getuikit.com/docs/utility#video
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_video(&$variables) {
+  $element = $variables['element'];
+  $variables['embed_iframe'] = $element['#embed_iframe'];
+
+  // Set the attributes for the video.
+  $variables['attributes'] = $element['#attributes'];
+
+  // Set the type of content to display for the video.
+  if (!empty($element['#embed_iframe'])) {
+    // Create a new DomDocument so we can extract the attributes from the
+    // user-defined embed code.
+    $dom = new DOMDocument();
+    $dom->loadHTML($element['#embed_iframe']);
+    $iframe = $dom->getElementsByTagName('iframe')->item(0);
+
+    if ($iframe->hasAttributes()) {
+      foreach ($iframe->attributes as $attribute) {
+        // Add each attribute to the attributes variable.
+        $name = $attribute->nodeName;
+        $value = $attribute->nodeValue;
+        $variables['attributes']->setAttribute($name, $value);
+      }
+    }
+  }
+  elseif (!empty($element['#video_sources'])) {
+    // Multiple sources are in an array so the user-defined sources can have a
+    // fallback video extension for better user experience.
+    foreach ($element['#video_sources'] as $source) {
+      // Set the src attribute for the video.
+      $attributes = new Attribute();
+      $attributes->setAttribute('src', $source);
+
+      // Use the mime stream wrapper class to retrieve the mime type for the
+      // source.
+      $wrapper = new MimeStreamWrapper();
+      $wrapper->setPath($source);
+      $file_info = new finfo(FILEINFO_MIME);
+      $mime_type = $file_info->file($wrapper->getStreamPath(), FILEINFO_MIME_TYPE, $wrapper->getContext());
+
+      // Set the type attribute to use the mime type for the source.
+      $attributes->setAttribute('type', $mime_type);
+
+      // Set the source's attributes variable.
+      $variables['sources'][] = ['attributes' => $attributes];
+    }
+  }
 }
 
 /**

@@ -154,6 +154,7 @@ class UIkitComponents {
       'thumbnav',
       'tile',
       'tooltip',
+      'video',
     ];
   }
 
