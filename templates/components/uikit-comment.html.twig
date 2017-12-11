@@ -39,11 +39,11 @@
   <article{{ attributes }}>
     {% if avatar or title or meta %}
       <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
-        <div class="uk-width-auto">
-          {% if avatar %}
+        {% if avatar %}
+          <div class="uk-width-auto">
             {{ avatar }}
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
         <div class="uk-width-expand">
           {% if title %}
             <h4 class="uk-comment-title uk-margin-remove">{{ title }}</h4>

@@ -4,6 +4,7 @@ namespace Drupal\uikit_components\Element;
 
 use Drupal\Core\Render\Element\RenderElement;
 use Drupal\Core\Template\Attribute;
+use Drupal\uikit_components\ImageStyleRenderer;
 
 /**
  * Provides a render element for the Comment component.
@@ -74,9 +75,6 @@ class UIkitComment extends RenderElement {
       '#avatar' => [
         'style_name' => NULL,
         'uri' => NULL,
-        'attributes' => [
-          'class' => ['uk-comment-avatar'],
-        ],
       ],
       '#title' => NULL,
       '#meta' => NULL,
@@ -112,35 +110,48 @@ class UIkitComment extends RenderElement {
     if (!empty($element['#avatar'])) {
       $avatar = $element['#avatar'];
 
-      // Set the #avatar variable to render the image using the given image
-      // style.
-      $element['#avatar'] = [
-        '#theme' => 'image_style',
-        '#style_name' => 'thumbnail',
-        '#uri' => $avatar['uri'],
-        '#attributes' => [
-          'class' => ['uk-comment-avatar'],
-        ],
-      ];
+      // Check if the file exists before continuing.
+      if (file_exists($avatar['uri'])) {
+        // Set the #avatar variable to render the image using the given image
+        // style.
+        $managed_file = ImageStyleRenderer::loadImageManagedFile($avatar);
+        if ($managed_file) {
+          // First check if this is a managed file and set the #avatar variable
+          // using our image style rendering class.
+          $element['#avatar'] = $managed_file;
+        }
+        else {
+          // Otherwise build the avatar using a simpler method, with less
+          // information being added to the #avatar variable.
+          $element['#avatar'] = ImageStyleRenderer::loadImageFile($avatar);
+        }
 
-      // Recursively merge the user-defined attributes with the avatar
-      // attributes, if the user assigned additional attributes.
-      if (isset($avatar['attributes'])) {
-        $element['#avatar']['#attributes'] = array_merge_recursive($element['#avatar']['#attributes'], $avatar['attributes']);
-      }
+        // Set the attributes to the avatar.
+        $element['#avatar']['#attributes'] = new Attribute();
+        $element['#avatar']['#attributes']->addClass('uk-comment-avatar');
 
-      // Add the alt, title, height and width attributes, if they are set.
-      if (isset($avatar['alt'])) {
-        $element['#avatar']['#alt'] = $avatar['alt'];
+        // Recursively merge the user-defined attributes with the avatar
+        // attributes, if the user assigned additional attributes.
+        if (isset($avatar['attributes'])) {
+          $element['#avatar']['#attributes'] = array_merge_recursive($element['#avatar']['#attributes'], $avatar['attributes']);
+        }
+
+        // Add the alt, title, height and width attributes, if they are set.
+        if (isset($avatar['alt'])) {
+          $element['#avatar']['#alt'] = $avatar['alt'];
+        }
+        if (isset($avatar['title'])) {
+          $element['#avatar']['#title'] = $avatar['title'];
+        }
+        if (isset($avatar['height'])) {
+          $element['#avatar']['#height'] = $avatar['height'];
+        }
+        if (isset($avatar['width'])) {
+          $element['#avatar']['#width'] = $avatar['width'];
+        }
       }
-      if (isset($avatar['title'])) {
-        $element['#avatar']['#title'] = $avatar['title'];
-      }
-      if (isset($avatar['height'])) {
-        $element['#avatar']['#height'] = $avatar['height'];
-      }
-      if (isset($avatar['width'])) {
-        $element['#avatar']['#width'] = $avatar['width'];
+      else {
+        $element['#avatar'] = [];
       }
     }
 
