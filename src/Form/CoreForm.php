@@ -7,8 +7,6 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Form builder for the UIkit Components administration core form.
- *
- * @package Drupal\uikit_components\Form
  */
 class CoreForm extends ConfigFormBase {
 

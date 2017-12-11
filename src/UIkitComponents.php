@@ -7,8 +7,6 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Provides helper functions for the UIkit Components module.
- *
- * @package Drupal\uikit_components
  */
 class UIkitComponents {
 

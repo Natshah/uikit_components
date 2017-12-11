@@ -8,8 +8,6 @@ use Drupal\uikit_components\UIkitComponents;
 
 /**
  * Extends the MenuForm form builder for the menu edit forms.
- *
- * @package Drupal\uikit_components\Form
  */
 class MenuEditForm extends MenuForm {
 

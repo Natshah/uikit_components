@@ -9,8 +9,6 @@ use Drupal\file\Entity\File;
  *
  * Provides methods to automatically return an array for image styles ready to
  * be processed by Drupal's render service.
- *
- * @package Drupal\uikit_components
  */
 class ImageStyleRenderer {
 

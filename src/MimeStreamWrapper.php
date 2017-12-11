@@ -9,8 +9,6 @@ namespace Drupal\uikit_components;
  * or external file. This steam wrapper allows us to retrieve the correct mime
  * type from external sources without requiring a third-party extension or
  * library, such as cURL, which may not be available to all hosts.
- *
- * @package Drupal\uikit_components
  */
 class MimeStreamWrapper {
 
