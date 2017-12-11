@@ -7,7 +7,9 @@ use Drupal\menu_ui\MenuForm;
 use Drupal\uikit_components\UIkitComponents;
 
 /**
- * Base form for menu edit forms.
+ * Extends the MenuForm form builder for the menu edit forms.
+ *
+ * @package Drupal\uikit_components\Form
  */
 class MenuEditForm extends MenuForm {
 

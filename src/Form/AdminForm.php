@@ -6,6 +6,11 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\uikit_components\UIkitComponents;
 
+/**
+ * Form builder for the UIkit Components administration form.
+ *
+ * @package Drupal\uikit_components\Form
+ */
 class AdminForm extends ConfigFormBase {
 
   /**

@@ -3,12 +3,14 @@
 namespace Drupal\uikit_components;
 
 /**
- * Class MimeStreamWrapper
+ * Provides a stream wrapper to retrieve mime type information from any source.
  *
- * Provides a stream wrapper to retrieve mime type information from any source,
- * local or external. This steam wrapper allows us to retrieve the correct mime
+ * The source of the file to retrieve the mime type for can either be a  local
+ * or external file. This steam wrapper allows us to retrieve the correct mime
  * type from external sources without requiring a third-party extension or
  * library, such as cURL, which may not be available to all hosts.
+ *
+ * @package Drupal\uikit_components
  */
 class MimeStreamWrapper {
 

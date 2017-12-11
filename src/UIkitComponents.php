@@ -6,9 +6,9 @@ use Drupal\Core\Url;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class UIkitComponents
- *
  * Provides helper functions for the UIkit Components module.
+ *
+ * @package Drupal\uikit_components
  */
 class UIkitComponents {
 

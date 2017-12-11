@@ -5,10 +5,12 @@ namespace Drupal\uikit_components;
 use Drupal\file\Entity\File;
 
 /**
- * Class ImageStyleRenderer
+ * Builds render arrays for image styles.
  *
- * Provides methods to automatically return an array for imamge styles ready to
+ * Provides methods to automatically return an array for image styles ready to
  * be processed by Drupal's render service.
+ *
+ * @package Drupal\uikit_components
  */
 class ImageStyleRenderer {
 

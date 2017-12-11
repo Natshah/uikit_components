@@ -5,6 +5,11 @@ namespace Drupal\uikit_components\Form;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Form builder for the UIkit Components administration advanced form.
+ *
+ * @package Drupal\uikit_components\Form
+ */
 class AdvancedForm extends ConfigFormBase {
 
   /**
