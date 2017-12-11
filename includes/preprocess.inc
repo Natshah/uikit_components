@@ -387,27 +387,6 @@ function template_preprocess_uikit_countdown(&$variables) {
 }
 
 /**
- * Prrpares variables for UIkit Cover templates.
- *
- * Default template: uikit-cover.html.twig.
- *
- * @param $variables:
- *   An associative array containing:
- *   - element: An associative array containing:
- *
- * @see \Drupal\uikit_components\Element\UIkitCover
- * @see https://getuikit.com/docs/cover
- *
- * @ingroup uikit_components_theme_render
- */
-function template_preprocess_uikit_cover(&$variables) {
-  $element = $variables['element'];
-
-  // Set the attributes for the cover.
-  $variables['attributes'] = $element['#attributes'];
-}
-
-/**
  * Prrpares variables for UIkit Video templates.
  *
  * Default template: uikit-video.html.twig.
