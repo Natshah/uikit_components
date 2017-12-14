@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a UIkit Description List.
+ *
+ * Available variables:
+ * - items: An array of items to be displayed in the description list. Each item
+ *   can be an associative array with the properties "term" and "description",
+ *   or be a string if the definition should be displayed with the previous
+ *   item's term.
+ * - attributes: HTML attributes to apply to the defintion list.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitDefinitionList
+ * @see template_preprocess_uikit_definition_list()
+ * @see https://getuikit.com/docs/definition-list
+ *
+ * @ingroup uikit_components_theme_render
+ */
+#}
+{%- if items -%}
+  <dl{{ attributes }}>
+  {%- for item in items -%}
+    {% if item is iterable %}
+      <dt>{{ item.term }}</dt>
+      <dd>{{ item.description }}</dd>
+    {% else %}
+      <dd>{{ item }}</dd>
+    {% endif %}
+  {%- endfor -%}
+  </dl>
+{%- endif -%}

@@ -387,6 +387,40 @@ function template_preprocess_uikit_countdown(&$variables) {
 }
 
 /**
+ * Prepares variables for UIkit Description List templates.
+ *
+ * Default template: uikit-description.html.twig.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: An associative array containing:
+ *     - #items: An array of items to be displayed in the description list. Each
+ *       item can be an associative array with the properties "term" and
+ *       "description", or be a string if the definition should be displayed
+ *       with the previous item's term.
+ *     - #divider: A boolean indicating whether to add a horizontal line between
+ *       list items. Defaults to FALSE.
+ *
+ * @see \Drupal\uikit_components\Element\UIkitDescriptionList
+ * @see https://getuikit.com/docs/description-list
+ *
+ * @ingroup uikit_components_theme_render
+ */
+function template_preprocess_uikit_description_list(&$variables) {
+  $element = $variables['element'];
+
+  // Set the attributes for the description list.
+  $variables['attributes'] = $element['#attributes'];
+
+  // Set the items property.
+  $variables['items'] = [];
+
+  foreach ($element['#items'] as $key => $item) {
+    $variables['items'][$key] = $item;
+  }
+}
+
+/**
  * Prrpares variables for UIkit Video templates.
  *
  * Default template: uikit-video.html.twig.

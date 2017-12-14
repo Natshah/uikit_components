@@ -126,7 +126,7 @@ class UIkitComponents {
       'comment',
       'countdown',
       'cover',
-      'description-list',
+      'description_list',
       'dotnav',
       'drop',
       'dropdown',
