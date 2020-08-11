@@ -1,0 +1,62 @@
+diff --git a/includes/alter.inc b/includes/alter.inc
+index dd7dd43..ae820df 100644
+--- a/includes/alter.inc
++++ b/includes/alter.inc
+@@ -1,5 +1,6 @@
+ <?php
+ 
++use Drupal\block\Entity\Block;
+ /**
+  * @file
+  * Modify structured content arrays.
+@@ -152,7 +153,7 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
+ /**
+  * Entity builder for the block configuration entity.
+  */
+-function uikit_components_form_block_form_builder($entity_type, Drupal\block\Entity\Block $block, &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
++function uikit_components_form_block_form_builder($entity_type, Block $block, &$form, FormStateInterface $form_state) {
+   if ($form_state->getValue('uikit_navbar_alignment')) {
+     $block->setThirdPartySetting('uikit_components', 'uikit_navbar_alignment', $form_state->getValue('uikit_navbar_alignment'));
+   }
+diff --git a/src/UIkitComponents.php b/src/UIkitComponents.php
+index 9af3b77..c9e71be 100644
+--- a/src/UIkitComponents.php
++++ b/src/UIkitComponents.php
+@@ -99,7 +99,7 @@ class UIkitComponents {
+       return $uikit_libraries['uikit']['version'];
+     }
+     else {
+-      drupal_set_message(t('The UIkit base theme is either not installed or enabled. Please <a href=":themes_page">enable</a>, or <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit. If UIkit is installed and enabled, try <a href=":clear_cache">clearing all caches</a>.', $t_args), 'error');
++      \Drupal::messenger()->addError(t('The UIkit base theme is either not installed or enabled. Please <a href=":themes_page">enable</a>, or <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit. If UIkit is installed and enabled, try <a href=":clear_cache">clearing all caches</a>.', $t_args));
+       return FALSE;
+     }
+   }
+@@ -167,7 +167,7 @@ class UIkitComponents {
+    */
+   public static function getComponentURL($component) {
+     if (!$component) {
+-      drupal_set_message(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'), 'warning');
++      \Drupal::messenger()->addWarning(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'));
+       return FALSE;
+     }
+     else {
+diff --git a/uikit_views/uikit_views.module b/uikit_views/uikit_views.module
+index 58635f6..e3e689a 100644
+--- a/uikit_views/uikit_views.module
++++ b/uikit_views/uikit_views.module
+@@ -1,5 +1,6 @@
+ <?php
+ 
++use Drupal\Core\Routing\RouteMatchInterface;
+ /**
+  * @file
+  * UIkit Views.
+@@ -14,7 +15,7 @@ use Drupal\views\ViewExecutable;
+ /**
+  * Implements hook_help().
+  */
+-function uikit_views_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
++function uikit_views_help($route_name, RouteMatchInterface $route_match) {
+   $output = '';
+ 
+   // Setup translatable string arguments.

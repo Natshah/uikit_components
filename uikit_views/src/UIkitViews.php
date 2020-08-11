@@ -32,6 +32,18 @@ class UIkitViews {
       ],
       'file' => 'includes/uikit_views.theme.inc',
     ];
+    $hooks['uikit_view_slider'] = [
+      'preprocess functions' => [
+        'template_preprocess_uikit_view_slider',
+      ],
+      'file' => 'includes/uikit_views.theme.inc',
+    ];
+    $hooks['uikit_view_slideshow'] = [
+      'preprocess functions' => [
+        'template_preprocess_uikit_view_slideshow',
+      ],
+      'file' => 'includes/uikit_views.theme.inc',
+    ];
     $hooks['uikit_view_table'] = [
       'preprocess functions' => [
         'template_preprocess_views_view_table',

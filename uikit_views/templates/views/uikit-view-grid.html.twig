@@ -12,28 +12,20 @@
  * - options: The view plugin style options.
  *   - grid_divider: A flag indicating whether default classes should be
  *     used on rows.
- * - grid_classes: HTML classes for the grid container element.
+ * - grid_attributes_: HTML attributes for the grid container element.
  * - items: A list of grid items. Each item contains:
  *   - content: The columns's contents.
  *
  * @see template_preprocess_uikit_view_grid()
  */
 #}
-{{ attach_library('uikit_views/uikit-view-grid') }}
-{%
-  set classes = [
-    'views-view-grid',
-    'uikit-view-grid',
-    options.grid_divider ? 'uikit-view-grid-divider',
-  ]
-%}
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-<div id="{{ id }}" {{ attributes.addClass(classes) }}>
-  <ul class="{{ grid_classes }}">
+<div id="{{ id }}" {{ attributes }}>
+  <div{{ grid_attributes }}>
     {% for column in items %}
-      <li>{{ column.content }}</li>
+      <div>{{ column.content }}</div>
     {% endfor %}
-  </ul>
+  </div>
 </div>

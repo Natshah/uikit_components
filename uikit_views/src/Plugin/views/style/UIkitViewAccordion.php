@@ -45,7 +45,7 @@ class UIkitViewAccordion extends StylePluginBase {
     $options['active'] = ['default' => 0];
     $options['collapsible'] = ['default' => TRUE];
     $options['multiple'] = ['default' => FALSE];
-    $options['animation'] = ['default' => TRUE];
+    $options['animation'] = ['default' => 'TRUE'];
     $options['transition'] = ['default' => 'ease'];
     $options['duration'] = ['default' => 200];
 

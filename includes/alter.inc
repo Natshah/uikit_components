@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\block\Entity\Block;
 /**
  * @file
  * Modify structured content arrays.
@@ -152,7 +153,7 @@ function uikit_components_form_block_form_alter(&$form, FormStateInterface $form
 /**
  * Entity builder for the block configuration entity.
  */
-function uikit_components_form_block_form_builder($entity_type, Drupal\block\Entity\Block $block, &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+function uikit_components_form_block_form_builder($entity_type, Block $block, &$form, FormStateInterface $form_state) {
   if ($form_state->getValue('uikit_navbar_alignment')) {
     $block->setThirdPartySetting('uikit_components', 'uikit_navbar_alignment', $form_state->getValue('uikit_navbar_alignment'));
   }

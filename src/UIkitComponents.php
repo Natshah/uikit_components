@@ -99,7 +99,7 @@ class UIkitComponents {
       return $uikit_libraries['uikit']['version'];
     }
     else {
-      drupal_set_message(t('The UIkit base theme is either not installed or enabled. Please <a href=":themes_page">enable</a>, or <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit. If UIkit is installed and enabled, try <a href=":clear_cache">clearing all caches</a>.', $t_args), 'error');
+      \Drupal::messenger()->addError(t('The UIkit base theme is either not installed or enabled. Please <a href=":themes_page">enable</a>, or <a href=":uikit_project" target="_blank">download</a> and <a href=":themes_page">install</a> UIkit. If UIkit is installed and enabled, try <a href=":clear_cache">clearing all caches</a>.', $t_args));
       return FALSE;
     }
   }
@@ -167,7 +167,7 @@ class UIkitComponents {
    */
   public static function getComponentURL($component) {
     if (!$component) {
-      drupal_set_message(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'), 'warning');
+      \Drupal::messenger()->addWarning(t('URL cannot be returned, no component was given in <em class="placeholder">UIkitComponents::getComponentURL()</em>.'));
       return FALSE;
     }
     else {

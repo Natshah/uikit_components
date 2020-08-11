@@ -1,22 +1,16 @@
 uikit:
   remote: https://getuikit.com/
-  version: v3.0.0-beta.24
+  version: v3.0.0-rc.14
   license:
     name: MIT
-    url: https://github.com/uikit/uikit/blob/v3.0.0-beta.24/LICENSE.md
+    url: https://github.com/uikit/uikit/blob/v3.0.0-rc.14/LICENSE.md
     gpl-compatible: true
   css:
     base:
-      //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/css/uikit.min.css: { type: external, minified: true }
+      //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/css/uikit.min.css: { type: external, minified: true }
   js:
-    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/js/uikit.min.js: { type: external, minified: true }
-    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.24/js/uikit-icons.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit.min.js: { type: external, minified: true }
+    //cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.14/js/uikit-icons.min.js: { type: external, minified: true }
   dependencies:
     - core/drupal
     - core/jquery
-
-uikit-view-grid:
-  version: VERSION
-  css:
-    layout:
-      css/uikit-view-grid.layout.css: {}

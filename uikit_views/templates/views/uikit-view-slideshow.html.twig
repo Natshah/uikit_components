@@ -1,0 +1,120 @@
+{#
+/**
+ * @file
+ * Theme override for a view template to display an slideshow of rows.
+ *
+ * Available variables:
+ * - slideshow_attributes: HTML attributes for the container.
+ * - items: A list of rows for this slideshow.
+ *   - title: The row's title.
+ *   - content: The row's contents.
+ * - title: The title of this group of rows. May be empty.
+ *
+ * @see template_preprocess_uikit_view_slideshow()
+ */
+#}
+{% set slideshow_classes = [
+    'uk-slideshow',
+    light ? 'uk-light': '',
+    slidenav_outside ? '': 'uk-slideshow-container',
+    slidenav_outside ? '': 'uk-position-relative',
+    slidenav_outside ? '': 'uk-visible-toggle',
+  ]
+%}
+
+{% set panel_classes = [
+    'uk-panel',
+    caption_toggle ? 'uk-transition-toggle',
+  ]
+%}
+
+{% if caption_toggle == TRUE %}
+  {% set panel_attributes = panel_attributes.setAttribute('tabindex', 0) %}
+{% endif  %}
+
+{% set caption_classes = [
+    'uk-overlay',
+    'uk-text-center',
+    caption_background,
+    caption_transition,
+    caption_position,
+    (caption_position == 'uk-position-cover') ? 'uk-flex',
+    (caption_position == 'uk-position-cover') ? 'uk-flex-center',
+    (caption_position == 'uk-position-cover') ? 'uk-flex-middle',
+    caption_modifier,
+  ]
+%}
+
+{% set slidenav_classes = [
+  'uk-position-medium',
+  'uk-hidden-hover',
+  slidenav_big ? 'uk-slidenav-large',
+  ]
+%}
+
+{% set slidenav_left_classes = [
+  slidenav_outside ? 'uk-position-center-left-out': 'uk-position-center-left',
+  ]
+%}
+
+{% set slidenav_right_classes = [
+  slidenav_outside ? 'uk-position-center-right-out': 'uk-position-center-right',
+  ]
+%}
+
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<div{{ slideshow_attributes.addClass(slideshow_classes) }}>
+
+  {% if slidenav_outside %}
+    <div class="uk-position-relative">
+      <div class="uk-slideshow-container">
+  {% endif %}
+
+        {# Items #}
+        <ul class="uk-slideshow-items">
+          {% for row in items %}
+              <li>
+                <div{{ panel_attributes.addClass(panel_classes) }}>
+                  {{ row.image }}
+                  {% if row.title or row.caption %}
+                  <div {{ caption_attributes.addClass(caption_classes) }}>
+                      <h3 class="uk-margin-remove">{{ row.title }}</h3>
+                      <p class="uk-margin-remove">{{ row.caption }}</p>
+                  </div>
+                  {% endif %}
+                </div>
+              </li>
+          {% endfor %}
+        </ul>
+
+    {% if slidenav_outside %}
+      </div>
+    {% endif %}
+
+    {# Slidenav #}
+    {% if slidenav %}
+      <a href="#" {{ slidenav_left_attributes.addClass(slidenav_classes).addClass(slidenav_left_classes) }}></a>
+      <a href="#" {{ slidenav_right_attributes.addClass(slidenav_classes).addClass(slidenav_right_classes) }}></a>
+    {% endif %}
+
+  {% if slidenav_outside %}
+    </div>
+  {% endif %}
+
+  {# Dotnav #}
+  {% if dotnav %}
+    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
+  {% endif %}
+
+  {# Thumbnav #}
+  {% if thumbnav %}
+  <ul class="uk-thumbnav">
+    {% for row in items %}
+        <li uk-slideshow-item="{{ loop.index0 }}"><a href="#">{{ row.thumbnail }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</div>
