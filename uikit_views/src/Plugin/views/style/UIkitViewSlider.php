@@ -282,7 +282,7 @@ class UIkitViewSlider extends StylePluginBase {
     $form['dotnav'] = [
       '#title' => $this->t('Display dotnav buttons (pager)'),
       '#type' => 'checkbox',
-      '#default_value' => $this->options['slidenav'],
+      '#default_value' => $this->options['dotnav'],
       '#fieldset' => 'slider_options',
     ];
     $form['thumbnav'] = [
