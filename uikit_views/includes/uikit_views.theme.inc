@@ -82,6 +82,8 @@ function template_preprocess_uikit_view_grid(array &$variables) {
     $grid_attributes->setAttribute('uk-grid', 'masonry: true');
   }
 
+  $grid_classes = [];
+
   if ($options['grid_behavior'] == 'match' && $options['grid_match_height_selector'] == NULL) {
     $grid_classes[] = 'uk-grid-match';
   }
@@ -90,10 +92,8 @@ function template_preprocess_uikit_view_grid(array &$variables) {
     $grid_attributes->setAttribute('uk-height-match', 'target: ' . $options['grid_match_height_selector']);
   }
 
-  $grid_classes = [];
-
   if ($options['flex_classes'] != NULL) {
-    $grid_classes = explode (' ', $options['flex_classes']);
+    $grid_classes += explode (' ', $options['flex_classes']);
   }
 
   if ($options['grid_gutter'] != 'default') {
