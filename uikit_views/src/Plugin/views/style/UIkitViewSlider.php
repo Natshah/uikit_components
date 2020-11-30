@@ -51,7 +51,7 @@ class UIkitViewSlider extends StylePluginBase {
     $options['width_@l'] = ['default' => 'uk-child-width-1-3@l'];
     $options['width_@xl'] = ['default' => 'uk-child-width-1-4@xl'];
     $options['grid_gutter'] = ['default' => NULL];
-    $options['caption_backgound'] = ['default' => NULL];
+    $options['caption_background'] = ['default' => NULL];
     $options['caption_transition'] = ['default' => NULL];
     $options['caption_position'] = ['default' => 'uk-position-bottom'];
     $options['caption_modifier'] = ['default' => NULL];
