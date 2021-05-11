@@ -44,7 +44,7 @@ class UIkitViewSlideshow extends StylePluginBase {
     $options['title_field'] = ['default' => NULL];
     $options['caption_field'] = ['default' => NULL];
     $options['thumbnav_field'] = ['default' => NULL];
-    $options['caption_backgound'] = ['default' => NULL];
+    $options['caption_background'] = ['default' => NULL];
     $options['caption_transition'] = ['default' => NULL];
     $options['caption_position'] = ['default' => 'uk-position-bottom'];
     $options['caption_modifier'] = ['default' => NULL];
