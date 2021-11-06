@@ -328,6 +328,47 @@ function template_preprocess_uikit_view_slideshow(array &$variables) {
 }
 
 /**
+ * Prepares variables for UIkit Accordion templates.
+ *
+ * Default template: uikit-view-accordion.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_uikit_view_switcher(array &$variables) {
+  $view = $variables['view'];
+  $options = $view->style_plugin->options;
+  $title_field = $options['title_field'];
+  $switcher_data = [];
+  $items = [];
+
+  if ($title_field) {
+    foreach ($variables['rows'] as $result_index => $item) {
+      $title = $view->style_plugin->getFieldValue($result_index, $title_field);
+      $items[$result_index]['content'] = $item;
+      $items[$result_index]['title'] = $title;
+    }
+  }
+
+  // Set items array for twig template.
+  $variables['items'] = $items;
+
+  // Create attributes for accordion.
+  $switcher_data[] = 'connect: ' . $options['targets'];
+  $switcher_data[] = 'animation: ' . $options['animation'];
+  $switcher_data[] = 'duration: ' . $options['duration'];
+  $switcher_accordion = implode('; ', $switcher_data);
+
+  $switcher_attributes = new Attribute();
+  $switcher_attributes->setAttribute('uk-switcher', $switcher_accordion);
+
+  // Set switcher attributes for twig template.
+  $variables['switcher_attributes'] = $switcher_attributes;
+}
+
+/**
  * Prepares variables for UIkit Table templates.
  *
  * Default template: uikit-view-table.html.twig.

@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for a view template to display an accordion of rows.
+ *
+ * Available variables:
+ * - accordion_attributes: HTML attributes for the container.
+ * - items: A list of rows for this accordion.
+ *   - title: The row's title.
+ *   - content: The row's contents.
+ * - title: The title of this group of rows. May be empty.
+ *
+ * @see template_preprocess_uikit_view_accordion()
+ */
+#}
+{% set switcher_classes = [
+    'uk-subnav',
+    'uk-subnav-pill',
+    'uk-flex',
+    'uk-flex-center',
+  ]
+%}
+
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<ul{{ switcher_attributes.addClass(switcher_classes) }}>
+  {% for row in items %}
+    <li><a href="#" class="uk-border-pill">{{ row.title }}</a></li>
+  {% endfor %}
+</ul>
+
+<ul class="uk-switcher uk-margin">
+  {% for row in items %}
+    <li>{{ row.content }}</li>
+  {% endfor %}
+</ul>

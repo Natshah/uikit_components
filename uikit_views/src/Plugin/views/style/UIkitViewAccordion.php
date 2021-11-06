@@ -106,9 +106,8 @@ class UIkitViewAccordion extends StylePluginBase {
       ];
       $form['transition'] = [
         '#type' => 'select',
-        '#title' => $this->t('Css selector for toggles'),
+        '#title' => $this->t('Transition effect'),
         '#default_value' => $this->options['transition'],
-        '#description' => $this->t('Uses a keyword from <a href="@transition" target="_blank">easing functions</a>.', array('@transition' => 'https://developer.mozilla.org/en-US/docs/Web/CSS/single-transition-timing-function#Keywords_for_common_timing-functions')),
         '#options' => array(
           'linear' => 'linear',
           'ease' => 'ease',

@@ -23,12 +23,13 @@ function uikit_views_help($route_name, RouteMatchInterface $route_match) {
     ':uikit' => Url::fromUri('https://www.drupal.org/project/uikit')->toString(),
 
     // Current plugin style components.
-    ':accordion' => Url::fromUri('https://getuikit.com/docs/accordion.html')->toString(),
-    ':grid' => Url::fromUri('https://getuikit.com/docs/grid.html')->toString(),
-    ':list' => Url::fromUri('https://getuikit.com/docs/list.html')->toString(),
-    ':slider' => Url::fromUri('https://getuikit.com/docs/slider.html')->toString(),
-    ':slideshow' => Url::fromUri('https://getuikit.com/docs/slideshow.html')->toString(),
-    ':table' => Url::fromUri('https://getuikit.com/docs/table.html')->toString(),
+    ':accordion' => Url::fromUri('https://getuikit.com/docs/accordion')->toString(),
+    ':grid' => Url::fromUri('https://getuikit.com/docs/grid')->toString(),
+    ':list' => Url::fromUri('https://getuikit.com/docs/list')->toString(),
+    ':slider' => Url::fromUri('https://getuikit.com/docs/slider')->toString(),
+    ':slideshow' => Url::fromUri('https://getuikit.com/docs/slideshow')->toString(),
+    ':switcher' => Url::fromUri('https://getuikit.com/docs/switcher')->toString(),
+    ':table' => Url::fromUri('https://getuikit.com/docs/table')->toString(),
   ];
 
   switch ($route_name) {
@@ -42,6 +43,7 @@ function uikit_views_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<li>' . t('<a href=":list" target="_blank">List</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":slider" target="_blank">Slider</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":slideshow" target="_blank">Slideshow</a>', $t_args) . '</li>';
+      $output .= '<li>' . t('<a href=":switcher" target="_blank">Switcher</a>', $t_args) . '</li>';
       $output .= '<li>' . t('<a href=":table" target="_blank">Table</a>', $t_args) . '</li>';
       $output .= '</ul>';
       break;
@@ -69,6 +71,7 @@ function uikit_views_theme_registry_alter(&$theme_registry) {
   $theme_registry['uikit_view_list']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_slider']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_slideshow']['path'] = $module_path . '/templates/views';
+  $theme_registry['uikit_view_switcher']['path'] = $module_path . '/templates/views';
   $theme_registry['uikit_view_table']['path'] = $module_path . '/templates/views';
 }
 
@@ -86,6 +89,7 @@ function uikit_views_views_preview_info_alter(array &$rows, ViewExecutable $view
     'uikit_view_list',
     'uikit_view_slider',
     'uikit_view_slideshow',
+    'uikit_view_switcher',
     'uikit_view_table',
   ];
 
