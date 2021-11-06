@@ -69,7 +69,7 @@ class UIkitAlert extends RenderElement {
   public static function preRenderUIkitAlert($element) {
     // Set the attributes for the alert outer element.
     $element['#attributes']->addClass('uk-alert');
-    $element['#attributes']->setAttribute('uk-alert', '');
+    $element['#attributes']->setAttribute('data-uk-alert', '');
 
     return $element;
   }

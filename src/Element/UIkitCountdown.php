@@ -86,8 +86,8 @@ class UIkitCountdown extends RenderElement {
     // Set the attributes for the countdown outer element.
     $element['#attributes']->addClass('uk-grid-small');
     $element['#attributes']->addClass('uk-child-width-auto');
-    $element['#attributes']->setAttribute('uk-grid', '');
-    $element['#attributes']->setAttribute('uk-countdown', "date: $date");
+    $element['#attributes']->setAttribute('data-uk-grid', '');
+    $element['#attributes']->setAttribute('data-uk-countdown', "date: $date");
 
     return $element;
   }

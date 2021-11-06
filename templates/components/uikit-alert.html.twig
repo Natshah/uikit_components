@@ -24,7 +24,7 @@
 {% if message %}
   <div{{ attributes.addClass('uk-alert-' ~ style|clean_class) }}>
     {% if close_button %}
-      <a class="uk-alert-close" uk-close></a>
+      <a class="uk-alert-close" data-uk-close></a>
     {% endif %}
 
     <p>{{ message }}</p>

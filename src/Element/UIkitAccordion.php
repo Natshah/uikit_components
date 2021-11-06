@@ -85,7 +85,7 @@ class UIkitAccordion extends RenderElement {
 
     // Set the attributes for the accordion outer element.
     $element['#attributes']->addClass('uk-accordion');
-    $element['#attributes']->setAttribute('uk-accordion', $component_options);
+    $element['#attributes']->setAttribute('data-uk-accordion', $component_options);
 
     return $element;
   }

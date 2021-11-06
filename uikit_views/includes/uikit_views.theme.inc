@@ -48,7 +48,7 @@ function template_preprocess_uikit_view_accordion(array &$variables) {
 
   $accordion_attributes = new Attribute();
   $accordion_attributes->addClass('uk-accordion');
-  $accordion_attributes->setAttribute('uk-accordion', $data_accordion);
+  $accordion_attributes->setAttribute('data-uk-accordion', $data_accordion);
 
   // Set accordion attributes for twig template.
   $variables['accordion_attributes'] = $accordion_attributes;
@@ -72,14 +72,14 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   $variables['id'] = UIkitViews::getUniqueId($view);
 
   if ($options['grid_lightbox'] == TRUE) {
-    $grid_attributes->setAttribute('uk-lightbox', 'true');
+    $grid_attributes->setAttribute('data-uk-lightbox', 'true');
   }
 
-  $grid_attributes->setAttribute('uk-grid', '');
+  $grid_attributes->setAttribute('data-uk-grid', '');
   $grid_attributes->setAttribute('class', 'uk-grid');
 
   if ($options['grid_behavior'] == 'masonry') {
-    $grid_attributes->setAttribute('uk-grid', 'masonry: true');
+    $grid_attributes->setAttribute('data-uk-grid', 'masonry: true');
   }
 
   $grid_classes = [];
@@ -89,7 +89,7 @@ function template_preprocess_uikit_view_grid(array &$variables) {
   }
 
   if ($options['grid_behavior'] == 'match' && $options['grid_match_height_selector'] != NULL) {
-    $grid_attributes->setAttribute('uk-height-match', 'target: ' . $options['grid_match_height_selector']);
+    $grid_attributes->setAttribute('data-uk-height-match', 'target: ' . $options['grid_match_height_selector']);
   }
 
   if ($options['flex_classes'] != NULL) {
@@ -229,10 +229,10 @@ function template_preprocess_uikit_view_slider(array &$variables) {
   }
   $data_slider = implode('; ', $slider_data);
   // Add slider_attributes to the variables array.
-  $variables['slider_attributes'] = new Attribute(['uk-slider'=> $data_slider]);
+  $variables['slider_attributes'] = new Attribute(['data-uk-slider'=> $data_slider]);
 
   // Create grid attribute for template.
-  $grid_attributes = new Attribute(['uk-grid' => "", 'class' => ['uk-slider-items', 'uk-grid']]);
+  $grid_attributes = new Attribute(['data-uk-grid' => "", 'class' => ['uk-slider-items', 'uk-grid']]);
   if ($options['grid_gutter'] != NULL) {
     $grid_attributes->addClass($options['grid_gutter']);
   }
@@ -243,14 +243,14 @@ function template_preprocess_uikit_view_slider(array &$variables) {
     $grid_attributes->addClass('uk-grid-match');
   }
   if ($options['grid_match_height'] == TRUE && $options['grid_match_height_selector'] != NULL) {
-    $grid_attributes->setAttribute('uk-height-match', 'target: ' . $options['grid_match_height_selector']);
+    $grid_attributes->setAttribute('data-uk-height-match', 'target: ' . $options['grid_match_height_selector']);
   }
   // Add grid_attributes to the variables array.
   $variables['grid_attributes'] = $grid_attributes;
 
   // Create attributes for slidenav.
-  $variables['slidenav_left_attributes'] = new Attribute(['uk-slidenav-previous' => "", 'uk-slider-item' => 'previous']);
-  $variables['slidenav_right_attributes'] = new Attribute(['uk-slidenav-next' => "", 'uk-slider-item' => 'next']);
+  $variables['slidenav_left_attributes'] = new Attribute(['data-uk-slidenav-previous' => "", 'data-uk-slider-item' => 'previous']);
+  $variables['slidenav_right_attributes'] = new Attribute(['data-uk-slidenav-next' => "", 'data-uk-slider-item' => 'next']);
 
   // Set other necessary attributes variables for twig template.
   $variables['caption_attributes'] = new Attribute();
@@ -316,11 +316,11 @@ function template_preprocess_uikit_view_slideshow(array &$variables) {
     $slideshow_data[] = "clsActivated: $transition";
   }
   $data_slideshow = implode('; ', $slideshow_data);
-  $variables['slideshow_attributes'] = new Attribute(['uk-slideshow' => $data_slideshow]);
+  $variables['slideshow_attributes'] = new Attribute(['data-uk-slideshow' => $data_slideshow]);
 
   // Create attributes for slidenav.
-  $variables['slidenav_left_attributes'] = new Attribute(['uk-slidenav-previous' => "", 'uk-slideshow-item' => 'previous']);
-  $variables['slidenav_right_attributes'] = new Attribute(['uk-slidenav-next' => "", 'uk-slideshow-item' => 'next']);
+  $variables['slidenav_left_attributes'] = new Attribute(['data-uk-slidenav-previous' => "", 'data-uk-slideshow-item' => 'previous']);
+  $variables['slidenav_right_attributes'] = new Attribute(['data-uk-slidenav-next' => "", 'data-uk-slideshow-item' => 'next']);
 
   // Set other necessary attributes variables for twig template.
   $variables['caption_attributes'] = new Attribute();
@@ -362,7 +362,7 @@ function template_preprocess_uikit_view_switcher(array &$variables) {
   $switcher_accordion = implode('; ', $switcher_data);
 
   $switcher_attributes = new Attribute();
-  $switcher_attributes->setAttribute('uk-switcher', $switcher_accordion);
+  $switcher_attributes->setAttribute('data-uk-switcher', $switcher_accordion);
 
   // Set switcher attributes for twig template.
   $variables['switcher_attributes'] = $switcher_attributes;

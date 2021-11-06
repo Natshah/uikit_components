@@ -121,7 +121,7 @@
   {% if thumbnav %}
   <ul class="uk-thumbnav">
     {% for row in items %}
-        <li uk-slider-item="{{ loop.index0 }}"><a href="#">{{ row.thumbnail }}</a></li>
+        <li data-uk-slider-item="{{ loop.index0 }}"><a href="#">{{ row.thumbnail }}</a></li>
     {% endfor %}
   </ul>
 {% endif %}

@@ -92,7 +92,7 @@ class UIkitVideo extends RenderElement {
         $element['#attributes']->setAttribute('playsinline', '');
       }
     }
-    $element['#attributes']->setAttribute('uk-video', $component_options);
+    $element['#attributes']->setAttribute('data-uk-video', $component_options);
 
     return $element;
   }
