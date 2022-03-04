@@ -1,0 +1,26 @@
+diff --git a/uikit_views/includes/uikit_views.theme.inc b/uikit_views/includes/uikit_views.theme.inc
+index b9fa3e1..b398943 100644
+--- a/uikit_views/includes/uikit_views.theme.inc
++++ b/uikit_views/includes/uikit_views.theme.inc
+@@ -84,6 +84,10 @@ function template_preprocess_uikit_view_grid(array &$variables) {
+ 
+   $grid_classes = [];
+ 
++  if ($options['flex_classes'] != NULL) {
++    $grid_classes += explode(' ', $options['flex_classes']);
++  }
++
+   if ($options['grid_behavior'] == 'match' && $options['grid_match_height_selector'] == NULL) {
+     $grid_classes[] = 'uk-grid-match';
+   }
+@@ -92,10 +96,6 @@ function template_preprocess_uikit_view_grid(array &$variables) {
+     $grid_attributes->setAttribute('data-uk-height-match', 'target: ' . $options['grid_match_height_selector']);
+   }
+ 
+-  if ($options['flex_classes'] != NULL) {
+-    $grid_classes += explode (' ', $options['flex_classes']);
+-  }
+-
+   if ($options['grid_gutter'] != 'default') {
+     $grid_classes[] = $options['grid_gutter'];
+   }

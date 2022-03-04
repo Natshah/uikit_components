@@ -84,16 +84,16 @@ function template_preprocess_uikit_view_grid(array &$variables) {
 
   $grid_classes = [];
 
+  if ($options['flex_classes'] != NULL) {
+    $grid_classes += explode(' ', $options['flex_classes']);
+  }
+
   if ($options['grid_behavior'] == 'match' && $options['grid_match_height_selector'] == NULL) {
     $grid_classes[] = 'uk-grid-match';
   }
 
   if ($options['grid_behavior'] == 'match' && $options['grid_match_height_selector'] != NULL) {
     $grid_attributes->setAttribute('data-uk-height-match', 'target: ' . $options['grid_match_height_selector']);
-  }
-
-  if ($options['flex_classes'] != NULL) {
-    $grid_classes += explode (' ', $options['flex_classes']);
   }
 
   if ($options['grid_gutter'] != 'default') {
