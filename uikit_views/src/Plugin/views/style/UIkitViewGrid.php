@@ -123,7 +123,7 @@ class UIkitViewGrid extends StylePluginBase {
     ];
 
     $form['grid_match_height_selector'] = [
-      '#title' => $this->t('The selector for match height (optional'),
+      '#title' => $this->t('The selector for match height (optional)'),
       '#type' => 'textfield',
       '#default_value' => $this->options['grid_match_height_selector'],
       '#description' => $this->t('With "match height" setting, the direct child of each cell will have the same height.<br />If you want apply match height to another selector, use this field.'),
